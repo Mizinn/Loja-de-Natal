@@ -1,6 +1,6 @@
 LOJA: Casa Natalina Confeitaria
 SEGMENTO: Confeitaria
-TURMA: 1TI_C
+TURMA: 1TIC
 
 INTEGRANTES:
  - Miguel Carnieli - nº [PREENCHER]
