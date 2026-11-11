@@ -37,7 +37,7 @@ RECURSOS DE JAVASCRIPT IMPLEMENTADOS (13: 5 obrigatórios + 8 extras) - arquivo 
 CRÉDITOS:
  - Fotos dos produtos, banners e galeria: Wikimedia Commons (https://commons.wikimedia.org), todas com licença livre
    (Creative Commons ou domínio público). As fotos foram recortadas e reduzidas para o site. Lista completa abaixo e na página sobre.html.
- - Fotos da equipe (img/equipe-miguel.jpg e img/equipe-felipe.jpg): fotos pessoais dos próprios integrantes, usadas com autorização.
+ - Fotos da equipe (img/equipe-miguel.jpg, img/equipe-felipe.jpg e img/equipe-gabriel.jpg): fotos pessoais dos próprios integrantes, usadas com autorização.
  - Logotipo, ícone da aba e camada de pinheiros do parallax: desenhos SVG feitos pela equipe.
  - Música: "Jingle Bells" (James Lord Pierpont, 1857 - domínio público), tocada pelo navegador com a Web Audio API. Não há arquivo de áudio.
  - Fontes: Google Fonts - Fraunces e Nunito Sans.
