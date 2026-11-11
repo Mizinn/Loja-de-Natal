@@ -3,118 +3,179 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doce Natal | Confeitaria Natalina - Home</title>
-  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <meta name="description" content="Doce Natal: panetones, biscoitos, bolos e cestas de Natal feitos à mão.">
+  <title>Doce Natal | Confeitaria de Natal</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body class="pagina-home">
 
-  <!-- CABEÇALHO (igual em todas as páginas) -->
+  <!-- ===== CABEÇALHO (igual em todas as páginas) ===== -->
+  <p class="aviso-topo">Encomendas de Natal até <strong>22 de dezembro</strong><span class="some-celular"> · retirada na loja ou entrega na cidade</span></p>
   <header>
-    <a href="index.html" class="logo-container">
-      <img src="img/logo.svg" alt="Logotipo Doce Natal Confeitaria" class="logo-img">
-    </a>
-    <nav class="menu" id="menu-principal" aria-label="Menu principal">
-        <a href="index.html" class="ativo" aria-current="page">Home</a>
+    <div class="container cabecalho">
+      <a href="index.html" class="logo"><img src="img/logo.svg" alt="Doce Natal Confeitaria - página inicial"></a>
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <a href="index.html" class="ativo" aria-current="page">Início</a>
         <a href="produtos.html">Produtos</a>
-        <a href="sobre.html">Sobre Nós</a>
-        <a href="galeria.html">Galeria & Ofertas</a>
+        <a href="sobre.html">Sobre nós</a>
+        <a href="galeria.html">Galeria e ofertas</a>
         <a href="contato.html">Contato</a>
-    </nav>
-    <div class="header-actions">
-      <button type="button" id="btn-musica" class="btn-audio" aria-pressed="false" aria-label="Tocar música de Natal">
-        <span class="icone" aria-hidden="true">🎵</span><span class="rotulo">Tocar música</span>
-      </button>
-      <button type="button" id="btn-carrinho" class="btn-carrinho" aria-label="Abrir carrinho de compras">
-        <span aria-hidden="true">🛒</span> <span id="qtd-carrinho">0</span>
-      </button>
-      <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">☰</button>
+      </nav>
+      <div class="acoes">
+        <button type="button" id="btn-musica" class="botao-icone" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 18.5A2.5 2.5 0 1 1 7 16V5l12-2v12.5a2.5 2.5 0 1 1-2-2.45V6.4L9 7.7z"/></svg>
+          <span class="rotulo">Música</span>
+        </button>
+        <button type="button" id="btn-carrinho" class="botao-icone" aria-label="Abrir carrinho">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 8h14l-1.2 12H6.2zM9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="rotulo">Sacola</span>
+          <span id="qtd-carrinho" class="contador-carrinho">0</span>
+        </button>
+        <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">☰</button>
+      </div>
     </div>
+    <div class="varal" aria-hidden="true"></div>
   </header>
 
   <main>
-    <!-- SLIDESHOW / CARROSSEL: só um slide tem a classe "ativo" -->
-    <section class="slideshow-container" aria-label="Promoções de Natal">
-      <div class="slide ativo">
-        <img src="img/banners/banner1.svg" alt="Banner com presentes, brilhos e Papai Noel">
-        <div class="slide-caption">
-          <h2>Panetones Trufados Gourmet</h2>
-          <p>O verdadeiro sabor artesanal feito com receitas tradicionais e recheios generosos.</p>
+    <!-- ===== ABERTURA + SLIDESHOW ===== -->
+    <section class="container inicio">
+      <div>
+        <span class="chapeu">Feito à mão, em pequenas fornadas</span>
+        <h1>O Natal tem cheiro de <em>panetone saindo do forno</em></h1>
+        <p>Somos uma confeitaria de família. De novembro a janeiro a cozinha só pensa em uma coisa: doces de Natal para a sua ceia, para presentear e para comer escondido antes da meia-noite.</p>
+        <div class="botoes">
+          <a href="produtos.html" class="botao pulsar">Ver os 50 produtos</a>
+          <a href="sobre.html" class="botao botao-contorno">Nossa história</a>
         </div>
+        <p class="assinatura">— Miguel, Felipe e Gabriel</p>
       </div>
-      <div class="slide">
-        <img src="img/banners/banner2.svg" alt="Banner com presentes e brilhos para as cestas de Natal">
-        <div class="slide-caption">
-          <h2>Cestas e Kits Especiais</h2>
-          <p>Presenteie quem você ama com nossas embalagens exclusivas de alta confeitaria.</p>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="img/banners/banner3.svg" alt="Banner com presentes e brilhos para os biscoitos decorados">
-        <div class="slide-caption">
-          <h2>Biscoitos de Gengibre Decorados</h2>
-          <p>Tradição, crocância e encanto em cada detalhe artesanal.</p>
-        </div>
-      </div>
-      <button type="button" class="prev-slide" id="anterior" aria-label="Slide anterior">❮</button>
-      <button type="button" class="next-slide" id="proximo" aria-label="Próximo slide">❯</button>
-      <div class="indicadores" id="indicadores" aria-label="Escolher slide"></div>
-    </section>
 
-    <!-- CONTAGEM REGRESSIVA -->
-    <section class="countdown-section revelar">
-      <h2>Contagem Regressiva para a Grande Noite</h2>
-      <p class="contagem" data-contagem>Carregando contagem regressiva...</p>
-    </section>
-
-    <!-- PARALLAX: duas camadas que se movem em velocidades diferentes ao rolar -->
-    <section class="parallax-wrapper revelar" aria-labelledby="titulo-home">
-      <img src="img/banners/camada-fundo.svg" alt="Montanhas ao fundo" class="parallax-layer" data-velocidade="0.2">
-      <img src="img/banners/camada-frente.svg" alt="Pinheiros nevados à frente" class="parallax-layer" data-velocidade="0.5">
-      <div class="parallax-text">
-        <h1 id="titulo-home">A Magia do Natal na Sua Mesa</h1>
-        <p>Receitas históricas preparadas com o carinho e o afeto que a sua família merece.</p>
+      <!-- Slideshow: só o slide com a classe "ativo" aparece. O JavaScript troca a classe. -->
+      <div class="slideshow" aria-roledescription="carrossel" aria-label="Destaques da semana">
+        <figure class="slide ativo">
+          <img src="img/banners/slide-panetone.jpg" alt="Panetone cortado mostrando a massa com frutas, com uma árvore de Natal iluminada ao fundo">
+          <figcaption>Panetone da Vó<small>a receita que começou tudo</small></figcaption>
+        </figure>
+        <figure class="slide">
+          <img src="img/banners/slide-biscoitos.jpg" alt="Mesa coberta de biscoitos de gengibre em formato de bonecos, estrelas e árvores">
+          <figcaption>Biscoitos de gengibre<small>decorados um por um</small></figcaption>
+        </figure>
+        <figure class="slide">
+          <img src="img/banners/slide-casinha.jpg" alt="Casinha de gengibre com telhado de confeitos coloridos e bonecos de biscoito na frente">
+          <figcaption>Casinha para montar<small>diversão para as crianças na véspera</small></figcaption>
+        </figure>
+        <button type="button" class="seta seta-anterior" id="anterior" aria-label="Foto anterior">‹</button>
+        <button type="button" class="seta seta-proxima" id="proximo" aria-label="Próxima foto">›</button>
+        <div class="indicadores" id="indicadores"></div>
       </div>
     </section>
 
-    <!-- DESTAQUES: cards gerados pelo JavaScript (produtos com destaque: true) -->
-    <section class="secao-destaques">
-      <h2 class="titulo-secao revelar">Produtos em Destaque 🌟</h2>
+    <!-- ===== CONTAGEM REGRESSIVA ===== -->
+    <section class="faixa-contagem" aria-labelledby="titulo-contagem">
+      <div class="container">
+        <div>
+          <h2 id="titulo-contagem">Quanto falta para o Natal</h2>
+          <p>Encomende com antecedência: os panetones levam 3 dias para ficar prontos.</p>
+        </div>
+        <div class="contagem" data-contagem aria-live="off">
+          <div><span data-dias>--</span><small>dias</small></div>
+          <div><span data-horas>--</span><small>horas</small></div>
+          <div><span data-minutos>--</span><small>min</small></div>
+          <div><span data-segundos>--</span><small>seg</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PRODUTOS EM DESTAQUE (cards criados pelo JavaScript) ===== -->
+    <section class="secao container">
+      <div class="topo-secao revelar">
+        <div>
+          <span class="chapeu">Os mais pedidos</span>
+          <h2 class="titulo-secao">O que mais sai da nossa vitrine em dezembro</h2>
+        </div>
+        <a href="produtos.html" class="botao botao-contorno">Catálogo completo</a>
+      </div>
       <div id="lista-produtos" class="grade-produtos"></div>
-      <p class="chamada-catalogo">
-        <a href="produtos.html" class="btn-comprar btn-link">Ver Catálogo Completo (50 Produtos) ➔</a>
-      </p>
     </section>
 
-    <!-- CHAMADAS PARA AS OUTRAS PÁGINAS -->
-    <section class="contato-info revelar" aria-labelledby="titulo-chamadas">
-      <h2 id="titulo-chamadas" class="titulo-secao titulo-verde">Explore a Doce Natal 🎁</h2>
-      <div class="info-grid">
-        <a href="sobre.html" class="info-card card-chamada"><span aria-hidden="true">📖</span><h3>Nossa História</h3><p>Conheça a confeitaria, a nossa missão e a equipe por trás das receitas.</p></a>
-        <a href="galeria.html" class="info-card card-chamada"><span aria-hidden="true">✨</span><h3>Galeria & Ofertas</h3><p>Veja nossas delícias de perto e aproveite as condições especiais de Natal.</p></a>
-        <a href="contato.html" class="info-card card-chamada"><span aria-hidden="true">🎅</span><h3>Fale Conosco</h3><p>Encomendas, dúvidas e sugestões para a sua ceia. Responderemos rapidinho!</p></a>
+    <!-- ===== PARALLAX: duas camadas que andam em velocidades diferentes ===== -->
+    <section class="parallax" aria-label="Frase da confeitaria">
+      <img src="img/banners/parallax-fundo.jpg" alt="Serra coberta de neve em uma noite azul" class="camada camada-fundo" data-velocidade="0.25">
+      <img src="img/banners/pinheiros-frente.svg" alt="Fileira de pinheiros com neve" class="camada camada-frente" data-velocidade="0.6">
+      <div class="parallax-texto">
+        <blockquote>“A gente não vende doce. A gente vende aquele minuto de silêncio na mesa quando todo mundo prova.”</blockquote>
+        <cite>Dona Cida, a avó que inventou o Panetone da Vó</cite>
+      </div>
+    </section>
+
+    <!-- ===== COMO ENCOMENDAR ===== -->
+    <section class="secao container">
+      <span class="chapeu revelar">Sem complicação</span>
+      <h2 class="titulo-secao revelar">Como fazer a sua encomenda</h2>
+      <ol class="passos">
+        <li class="revelar"><h3>Escolha no catálogo</h3><p>Coloque os doces na sacola. Dá para filtrar por categoria e buscar por ingrediente.</p></li>
+        <li class="revelar"><h3>Confirme pelo contato</h3><p>Mande uma mensagem com o dia de retirada. Respondemos em até 1 dia útil.</p></li>
+        <li class="revelar"><h3>Retire quentinho</h3><p>Na loja ou com entrega na cidade até o dia 24, às 15h. Depois disso, só no ano que vem!</p></li>
+      </ol>
+    </section>
+
+    <!-- ===== CHAMADAS PARA AS OUTRAS PÁGINAS ===== -->
+    <section class="container" aria-label="Conheça mais">
+      <div class="atalhos">
+        <a href="sobre.html" class="atalho revelar"><h3>Quem faz os doces</h3><p>A história da família, a linha do tempo e a equipe.</p><span>Sobre nós →</span></a>
+        <a href="galeria.html" class="atalho revelar"><h3>Fotos e ofertas</h3><p>A vitrine de perto e as condições especiais de dezembro.</p><span>Galeria e ofertas →</span></a>
+        <a href="contato.html" class="atalho revelar"><h3>Fale com a gente</h3><p>Encomendas grandes, dúvidas sobre ingredientes e alergias.</p><span>Contato →</span></a>
       </div>
     </section>
   </main>
 
-  <!-- RODAPÉ (igual em todas as páginas) -->
+  <!-- ===== RODAPÉ (igual em todas as páginas) ===== -->
   <footer>
-    <p>🎄 <strong>Doce Natal Confeitaria Natalina</strong> &copy; 2026 - Todos os direitos reservados.</p>
-    <p>Projeto AV2 Desenvolvimento Web - Colégio UNASP | Prof. Samuel Elias</p>
-    <p>Imagens: ilustrações vetoriais (SVG) autorais. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público), gerada no navegador.</p>
+    <div class="container rodape">
+      <div>
+        <img src="img/logo-claro.svg" alt="Doce Natal Confeitaria" class="rodape-logo">
+        <p>Confeitaria de Natal feita em família desde 2019. Loja fictícia criada para o projeto AV2 de Desenvolvimento Web.</p>
+      </div>
+      <div>
+        <h2>Páginas</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre nós</a></li>
+          <li><a href="galeria.html">Galeria e ofertas</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Loja</h2>
+        <ul>
+          <li>Rua das Hortênsias, 1225 - São Paulo/SP</li>
+          <li>(11) 5555-1225</li>
+          <li>Seg. a sáb., 8h às 19h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-fim">
+      <div class="container">
+        <p>© 2026 Doce Natal · Projeto escolar - Colégio UNASP · Prof. Samuel Elias · Equipe: Miguel Carnieli, Felipe Russomano e Gabriel Karan.</p>
+        <p>Fotos: Wikimedia Commons (licenças Creative Commons e domínio público) - lista completa de autores na página <a href="sobre.html#creditos">Sobre nós</a>. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público).</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- JANELA (MODAL) DE DETALHES DO PRODUTO / LIGHTBOX -->
-  <div id="modal-produto" class="modal" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
-    <div class="modal-conteudo">
-      <button type="button" class="fechar-modal" aria-label="Fechar janela">&times;</button>
-      <div id="modal-corpo"></div>
+  <!-- janela flutuante (modal) usada para os detalhes do produto -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Detalhes">
+    <div class="modal-caixa">
+      <button type="button" class="fechar" aria-label="Fechar">×</button>
+      <div id="modal-conteudo"></div>
     </div>
   </div>
-  <button type="button" id="topo" aria-label="Voltar ao topo">⬆</button>
+  <button type="button" id="topo" aria-label="Voltar ao topo">↑</button>
 
-  <!-- A ordem importa: produtos.js precisa vir ANTES de script.js -->
+  <!-- produtos.js precisa vir ANTES do script.js -->
   <script src="js/produtos.js"></script>
   <script src="js/script.js"></script>
 </body>

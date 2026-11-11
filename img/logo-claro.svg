@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="262" height="56" viewBox="0 0 262 56" role="img" aria-label="Doce Natal Confeitaria">
+  <!-- estrela de 8 pontas dentro de um círculo -->
+  <circle cx="28" cy="28" r="25" fill="#1E4D38"/>
+  <circle cx="28" cy="28" r="21" fill="none" stroke="#C59A3D" stroke-width="1" stroke-dasharray="2 3"/>
+  <path d="M28 11 L31 24 L44 28 L31 32 L28 45 L25 32 L12 28 L25 24 Z" fill="#C59A3D"/>
+  <path d="M28 19 L30 26 L37 28 L30 30 L28 37 L26 30 L19 28 L26 26 Z" fill="#FBF7EF" transform="rotate(45 28 28)"/>
+  <text x="62" y="30" font-family="Georgia, 'Times New Roman', serif" font-size="25" font-weight="700" fill="#FBF7EF">Doce <tspan fill="#E5A3A7" font-style="italic">Natal</tspan></text>
+  <text x="63" y="47" font-family="Arial, sans-serif" font-size="9.5" letter-spacing="2" fill="#C9D1DC">CONFEITARIA · DESDE 2019</text>
+</svg>

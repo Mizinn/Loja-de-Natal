@@ -1,244 +1,227 @@
 /* ==========================================================
-   JAVASCRIPT PRINCIPAL - LOJA NATALINA DOCE NATAL
-   Um único arquivo para o site todo. Cada recurso só roda se o
-   elemento dele existir na página (por isso não dá erro nas outras).
-   Obrigatórios: 1 Slideshow, 2 Parallax, 3 Sons, 4 Cards, 5 Filtro
-   Extras: 6 Carrinho, 7 Contagem, 8 Formulário, 9 Menu, 10 Modal,
-           11 Neve, 12 Animação ao rolar, 13 Voltar ao topo
+   DOCE NATAL - script.js
+   Um arquivo só para o site inteiro. Cada função começa
+   verificando se o elemento existe na página; se não existir,
+   ela para ali (return) e não dá erro nas outras páginas.
+
+   Obrigatórios: 1 Slideshow · 2 Parallax · 3 Sons · 4 Cards · 5 Filtro e busca
+   Extras: 6 Carrinho · 7 Contagem regressiva · 8 Validação do formulário
+           9 Menu hambúrguer · 10 Modal e lightbox · 11 Neve
+           12 Animação ao rolar · 13 Voltar ao topo
    ========================================================== */
 
 /* ---------- Funções de apoio ---------- */
+
+// 59.9 -> "R$ 59,90"
 function formatarPreco(valor) {
   return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
-// Tira acentos e maiúsculas para a busca achar "acucar" em "Açúcar"
+// Deixa o texto minúsculo e sem acento, para "acucar" achar "Açúcar"
 function normalizar(texto) {
   return texto.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 }
 
-// Aviso rápido que some sozinho (substitui os alert() do projeto antigo)
-function mostrarAviso(mensagem) {
+// Mensagem rápida no rodapé da tela, que some sozinha
+function mostrarAviso(texto) {
   const aviso = document.createElement("div");
   aviso.className = "aviso";
   aviso.setAttribute("role", "status");
-  aviso.textContent = mensagem;
+  aviso.textContent = texto;
   document.body.appendChild(aviso);
-  setTimeout(() => aviso.remove(), 2600);
+  setTimeout(() => aviso.remove(), 2500);
 }
 
-/* ---------- 1. SLIDESHOW (obrigatório) ---------- */
-function initSlideshow() {
+
+/* ---------- 1. SLIDESHOW ----------
+   Os slides ficam empilhados no mesmo lugar (CSS position: absolute).
+   Só o que tem a classe "ativo" fica visível. Como as fotos têm a mesma
+   proporção da caixa (4:3), nenhuma aparece cortada ao trocar. */
+function iniciarSlideshow() {
   const slides = document.querySelectorAll(".slide");
-  if (!slides.length) return;
+  if (slides.length === 0) return;
 
-  const caixaIndicadores = document.getElementById("indicadores");
-  const botoes = [];          // as bolinhas
+  const caixaBolinhas = document.getElementById("indicadores");
+  const bolinhas = [];
   let atual = 0;
-  let timer = null;
+  let relogio;
 
-  // Só um slide tem a classe "ativo"; as bolinhas seguem o mesmo slide
   function mostrarSlide(indice) {
-    slides.forEach(s => s.classList.remove("ativo"));
-    botoes.forEach(b => b.classList.remove("ativo"));
-    atual = (indice + slides.length) % slides.length;   // volta ao início/fim
+    slides[atual].classList.remove("ativo");
+    bolinhas[atual].classList.remove("ativo");
+
+    // o % faz voltar ao primeiro depois do último (e ao último antes do primeiro)
+    atual = (indice + slides.length) % slides.length;
+
     slides[atual].classList.add("ativo");
-    if (botoes[atual]) botoes[atual].classList.add("ativo");
+    bolinhas[atual].classList.add("ativo");
   }
 
-  // Troca automática a cada 5s. Reiniciamos o relógio quando a pessoa clica.
-  function iniciarTimer() {
-    clearInterval(timer);
-    timer = setInterval(() => mostrarSlide(atual + 1), 5000);
+  // troca sozinho a cada 5 segundos; quando a pessoa clica, o tempo recomeça
+  function reiniciarRelogio() {
+    clearInterval(relogio);
+    relogio = setInterval(() => mostrarSlide(atual + 1), 5000);
   }
 
-  function irPara(indice) {
-    mostrarSlide(indice);
-    iniciarTimer();
-  }
-
-  // Cria uma bolinha (button) para cada slide com um laço
-  if (caixaIndicadores) {
-    slides.forEach((_, i) => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "indicador";
-      b.setAttribute("aria-label", `Ir para o slide ${i + 1}`);
-      b.addEventListener("click", () => irPara(i));
-      caixaIndicadores.appendChild(b);
-      botoes.push(b);
+  // uma bolinha para cada slide
+  slides.forEach((slide, i) => {
+    const bolinha = document.createElement("button");
+    bolinha.type = "button";
+    bolinha.className = "indicador";
+    bolinha.setAttribute("aria-label", "Mostrar foto " + (i + 1));
+    bolinha.addEventListener("click", () => {
+      mostrarSlide(i);
+      reiniciarRelogio();
     });
-  }
-
-  const proximo = document.getElementById("proximo");
-  const anterior = document.getElementById("anterior");
-  if (proximo) proximo.addEventListener("click", () => irPara(atual + 1));
-  if (anterior) anterior.addEventListener("click", () => irPara(atual - 1));
-
-  mostrarSlide(0);
-  iniciarTimer();
-}
-
-/* ---------- 2. PARALLAX (obrigatório) ----------
-   Cada camada anda uma fração da posição da seção na tela.
-   Camadas com velocidades diferentes dão a sensação de profundidade. */
-function initParallax() {
-  const camadas = document.querySelectorAll("[data-velocidade]");
-  if (!camadas.length) return;
-
-  let esperando = false;   // evita recalcular mais de uma vez por quadro
-
-  function atualizar() {
-    esperando = false;
-    camadas.forEach(camada => {
-      const area = camada.parentElement.getBoundingClientRect();
-      // -1 quando a seção entra por baixo, 0 no meio da tela, +1 quando sai por cima
-      const meioDaSecao = area.top + area.height / 2;
-      const posicao = (meioDaSecao - window.innerHeight / 2) / (window.innerHeight / 2 + area.height / 2);
-      const limitada = Math.max(-1, Math.min(1, posicao));
-      const velocidade = parseFloat(camada.dataset.velocidade);
-      camada.style.transform = `translateY(${limitada * velocidade * 120}px)`;
-    });
-  }
-
-  window.addEventListener("scroll", () => {
-    if (!esperando) {
-      esperando = true;
-      requestAnimationFrame(atualizar);
-    }
+    caixaBolinhas.appendChild(bolinha);
+    bolinhas.push(bolinha);
   });
-  atualizar();
+
+  document.getElementById("proximo").addEventListener("click", () => {
+    mostrarSlide(atual + 1);
+    reiniciarRelogio();
+  });
+  document.getElementById("anterior").addEventListener("click", () => {
+    mostrarSlide(atual - 1);
+    reiniciarRelogio();
+  });
+
+  bolinhas[0].classList.add("ativo");
+  reiniciarRelogio();
 }
 
-/* ---------- 3. SONS (obrigatório) ----------
-   Não usamos arquivo .mp3: o som é criado pelo navegador (Web Audio API).
-   A música é "Jingle Bells" (domínio público), em volume baixo.
-   O navegador só libera som depois de um clique, por isso há o botão. */
-let audioCtx = null;
-let ganhoMusica = null;      // controle de volume da música
-let timerMusica = null;
-let musicaTocando = false;
 
-// Notas da melodia: [frequência em Hz, duração em "tempos"]
+/* ---------- 2. PARALLAX ----------
+   Quando a página rola, cada camada se move uma fração diferente
+   (data-velocidade). O fundo anda pouco e os pinheiros andam mais:
+   isso dá a sensação de profundidade. */
+function iniciarParallax() {
+  const camadas = document.querySelectorAll("[data-velocidade]");
+  if (camadas.length === 0) return;
+
+  const secao = camadas[0].parentElement;
+
+  function mover() {
+    // distância entre o meio da seção e o meio da tela
+    const caixa = secao.getBoundingClientRect();
+    const distancia = caixa.top + caixa.height / 2 - window.innerHeight / 2;
+
+    camadas.forEach(camada => {
+      const velocidade = Number(camada.dataset.velocidade);
+      camada.style.transform = `translateY(${distancia * velocidade * -0.3}px)`;
+    });
+  }
+
+  window.addEventListener("scroll", mover);
+  mover();
+}
+
+
+/* ---------- 3. SONS ----------
+   Não usamos arquivo de áudio: a música "Jingle Bells" (domínio público)
+   é tocada nota por nota pelo próprio navegador, com a Web Audio API.
+   O navegador só deixa tocar som depois de um clique, por isso existe o botão. */
+let audio = null;            // o "aparelho de som" do navegador
+let volumeMusica = null;     // controla o volume só da música
+let tocando = false;
+let proximaVolta = null;
+
+// cada nota: [frequência em Hz, duração em tempos]
 const DO = 523.25, RE = 587.33, MI = 659.25, FA = 698.46, SOL = 783.99;
-const MELODIA = [
-  [MI, 1], [MI, 1], [MI, 2], [MI, 1], [MI, 1], [MI, 2],
+const MUSICA = [
+  [MI, 1], [MI, 1], [MI, 2],   [MI, 1], [MI, 1], [MI, 2],
   [MI, 1], [SOL, 1], [DO, 1.5], [RE, 0.5], [MI, 4],
   [FA, 1], [FA, 1], [FA, 1.5], [FA, 0.5], [FA, 1], [MI, 1], [MI, 1], [MI, 0.5], [MI, 0.5],
-  [SOL, 1], [SOL, 1], [FA, 1], [RE, 1], [DO, 4]
+  [MI, 1], [RE, 1], [RE, 1], [MI, 1], [RE, 2], [SOL, 2]
 ];
-const DURACAO_TEMPO = 0.3;   // segundos por tempo
+const TEMPO = 0.28;          // segundos de cada tempo
 
-function obterAudio() {
-  if (!audioCtx) {
-    const Contexto = window.AudioContext || window.webkitAudioContext;
-    if (!Contexto) return null;
-    audioCtx = new Contexto();
-  }
-  if (audioCtx.state === "suspended") audioCtx.resume();
-  return audioCtx;
+function prepararAudio() {
+  if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+  if (audio.state === "suspended") audio.resume();
 }
 
-// Toca uma nota: sobe o volume rápido e desce devagar (som de "sininho")
-function tocarNota(frequencia, inicio, duracao) {
-  const osc = audioCtx.createOscillator();
-  const ganho = audioCtx.createGain();
-  osc.type = "triangle";
-  osc.frequency.value = frequencia;
-  ganho.gain.setValueAtTime(0.0001, inicio);
-  ganho.gain.exponentialRampToValueAtTime(1, inicio + 0.02);
-  ganho.gain.exponentialRampToValueAtTime(0.0001, inicio + duracao);
-  osc.connect(ganho);
-  ganho.connect(ganhoMusica);
-  osc.start(inicio);
-  osc.stop(inicio + duracao + 0.05);
+// toca uma nota com som de sininho: começa forte e vai sumindo
+function tocarNota(frequencia, inicio, duracao, saida) {
+  const oscilador = audio.createOscillator();
+  const volume = audio.createGain();
+  oscilador.type = "triangle";
+  oscilador.frequency.value = frequencia;
+  volume.gain.setValueAtTime(0.0001, inicio);
+  volume.gain.exponentialRampToValueAtTime(1, inicio + 0.02);
+  volume.gain.exponentialRampToValueAtTime(0.0001, inicio + duracao);
+  oscilador.connect(volume);
+  volume.connect(saida);
+  oscilador.start(inicio);
+  oscilador.stop(inicio + duracao + 0.05);
 }
 
-// Agenda a melodia inteira e, quando ela acaba, agenda de novo (loop)
-function agendarMelodia() {
-  if (!musicaTocando) return;
-  let momento = audioCtx.currentTime + 0.1;
-  MELODIA.forEach(([frequencia, tempos]) => {
-    const duracao = tempos * DURACAO_TEMPO;
-    tocarNota(frequencia, momento, duracao * 0.9);
-    momento += duracao;
+// agenda a música inteira e, quando acabar, agenda de novo (repete)
+function tocarMusica() {
+  if (!tocando) return;
+  let momento = audio.currentTime + 0.1;
+  MUSICA.forEach(([frequencia, tempos]) => {
+    tocarNota(frequencia, momento, tempos * TEMPO * 0.9, volumeMusica);
+    momento += tempos * TEMPO;
   });
-  momento += DURACAO_TEMPO * 2;   // pausa antes de repetir
-  timerMusica = setTimeout(agendarMelodia, (momento - audioCtx.currentTime) * 1000);
+  proximaVolta = setTimeout(tocarMusica, (momento - audio.currentTime + 0.6) * 1000);
 }
 
-function ligarMusica() {
-  if (!obterAudio()) return;
-  ganhoMusica = audioCtx.createGain();
-  ganhoMusica.gain.value = 0.07;            // volume baixo (vai de 0 a 1)
-  ganhoMusica.connect(audioCtx.destination);
-  musicaTocando = true;
-  agendarMelodia();
-}
-
-function desligarMusica() {
-  musicaTocando = false;
-  clearTimeout(timerMusica);
-  if (ganhoMusica) {
-    ganhoMusica.disconnect();               // corta o som na hora
-    ganhoMusica = null;
+function ligarDesligarMusica(botao) {
+  prepararAudio();
+  if (tocando) {
+    tocando = false;
+    clearTimeout(proximaVolta);
+    volumeMusica.disconnect();        // corta o som na hora
+  } else {
+    tocando = true;
+    volumeMusica = audio.createGain();
+    volumeMusica.gain.value = 0.06;   // volume baixinho
+    volumeMusica.connect(audio.destination);
+    tocarMusica();
   }
+  botao.setAttribute("aria-pressed", String(tocando));
+  botao.querySelector(".rotulo").textContent = tocando ? "Pausar" : "Música";
 }
 
-function initSons() {
-  const botao = document.getElementById("btn-musica");
-  if (!botao) return;
-  const icone = botao.querySelector(".icone");
-  const rotulo = botao.querySelector(".rotulo");
-
-  botao.addEventListener("click", () => {
-    if (musicaTocando) desligarMusica(); else ligarMusica();
-    botao.setAttribute("aria-pressed", String(musicaTocando));
-    botao.setAttribute("aria-label", musicaTocando ? "Pausar música de Natal" : "Tocar música de Natal");
-    if (icone) icone.textContent = musicaTocando ? "🔊" : "🎵";
-    if (rotulo) rotulo.textContent = musicaTocando ? "Pausar música" : "Tocar música";
-  });
-}
-
-// Efeito sonoro curtinho (sininho) usado ao adicionar no carrinho e ao enviar o formulário
+// "plim" curtinho: ao colocar na sacola e ao enviar o formulário
 function tocarSino() {
   try {
-    const ctx = obterAudio();
-    if (!ctx) return;
-    const osc = ctx.createOscillator();
-    const ganho = ctx.createGain();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(1200, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(600, ctx.currentTime + 0.5);
-    ganho.gain.setValueAtTime(0.15, ctx.currentTime);
-    ganho.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
-    osc.connect(ganho);
-    ganho.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.5);
+    prepararAudio();
+    tocarNota(1318.5, audio.currentTime, 0.5, audio.destination);
+    tocarNota(1975.5, audio.currentTime + 0.08, 0.6, audio.destination);
   } catch (erro) {
-    console.log("Áudio bloqueado pelo navegador.");
+    // se o navegador bloquear o som, o site continua funcionando
   }
 }
 
-/* ---------- 4. CARDS DINÂMICOS (obrigatório) ----------
-   Um produto vira HTML de um card; map() faz isso para os 50 e
-   join("") junta tudo em um texto único que vai para o innerHTML. */
+function iniciarSons() {
+  const botao = document.getElementById("btn-musica");
+  if (!botao) return;
+  botao.addEventListener("click", () => ligarDesligarMusica(botao));
+}
+
+
+/* ---------- 4. CARDS DINÂMICOS ----------
+   criarCard recebe UM produto e devolve o HTML do card (template literal).
+   mostrarProdutos usa map() para fazer isso com a lista toda e join("")
+   para juntar tudo em um texto só, que vai para o innerHTML. */
 function criarCard(produto) {
   return `
     <article class="card revelar">
-      <button type="button" class="card-img-btn" data-detalhes="${produto.id}" aria-label="Ver detalhes de ${produto.nome}">
+      <button type="button" class="card-foto" data-detalhes="${produto.id}" aria-label="Ver detalhes: ${produto.nome}">
         <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
       </button>
-      <div class="card-body">
+      <div class="card-corpo">
         <span class="card-categoria">${produto.categoria}</span>
         <h3>${produto.nome}</h3>
         <p>${produto.descricao}</p>
-        <div class="card-preco">${formatarPreco(produto.preco)}</div>
-        <button type="button" class="btn-comprar" data-id="${produto.id}">Adicionar ao Carrinho 🛒</button>
+        <div class="card-rodape">
+          <span class="etiqueta">${formatarPreco(produto.preco)}</span>
+          <button type="button" class="botao btn-comprar" data-id="${produto.id}">+ Sacola</button>
+        </div>
       </div>
-    </article>
-  `;
+    </article>`;
 }
 
 function mostrarProdutos(lista) {
@@ -248,464 +231,514 @@ function mostrarProdutos(lista) {
   if (lista.length === 0) {
     area.innerHTML = `
       <div class="sem-resultado">
-        <h2>🎅 Ops! Nenhum produto encontrado.</h2>
-        <p>Tente buscar por outro termo ou categoria natalina! ❄️</p>
+        <h2>Nenhum doce encontrado</h2>
+        <p>Tente outra palavra ou escolha "Todas" nas categorias.</p>
       </div>`;
     return;
   }
 
   area.innerHTML = lista.map(criarCard).join("");
-  observarElementos();   // os cards novos também precisam da animação ao rolar
+  observarNovos();   // os cards novos também ganham a animação ao rolar
 }
 
-/* ---------- 5. FILTRO E BUSCA (obrigatório) ---------- */
-function initFiltroEBusca() {
+
+/* ---------- 5. FILTRO E BUSCA ----------
+   A cada letra digitada ou categoria clicada, filtramos o array
+   completo e desenhamos os cards de novo. */
+function iniciarFiltro() {
   const campoBusca = document.getElementById("busca");
-  const seletorCat = document.getElementById("categoria");
+  const botoesCategoria = document.querySelectorAll("#categorias button");
   const contador = document.getElementById("contador");
-  if (!campoBusca || !seletorCat) return;
+  if (!campoBusca) return;
+
+  let categoriaEscolhida = "todas";
 
   function filtrar() {
     const texto = normalizar(campoBusca.value.trim());
-    const categoria = seletorCat.value;
 
-    const resultado = produtos.filter(p => {
-      const combinaTexto = normalizar(p.nome).includes(texto) || normalizar(p.descricao).includes(texto);
-      const combinaCategoria = categoria === "todas" || p.categoria === categoria;
-      return combinaTexto && combinaCategoria;
+    const resultado = produtos.filter(produto => {
+      const achouTexto = normalizar(produto.nome).includes(texto) ||
+                         normalizar(produto.descricao).includes(texto);
+      const achouCategoria = categoriaEscolhida === "todas" ||
+                             produto.categoria === categoriaEscolhida;
+      return achouTexto && achouCategoria;
     });
 
     mostrarProdutos(resultado);
-    if (contador) {
-      contador.textContent = `Mostrando ${resultado.length} de ${produtos.length} produtos`;
-    }
+    contador.textContent = `Mostrando ${resultado.length} de ${produtos.length} produtos`;
   }
 
   campoBusca.addEventListener("input", filtrar);
-  seletorCat.addEventListener("change", filtrar);
+
+  botoesCategoria.forEach(botao => {
+    botao.addEventListener("click", () => {
+      botoesCategoria.forEach(b => b.classList.remove("ativo"));
+      botao.classList.add("ativo");
+      categoriaEscolhida = botao.dataset.categoria;
+      filtrar();
+    });
+  });
 }
 
-/* ---------- 6. CARRINHO DE COMPRAS (extra) ----------
-   O carrinho guarda só { id, qtd } de cada item no localStorage.
-   Nome, preço e imagem são buscados no array "produtos" pelo id. */
-const CHAVE_CARRINHO = "carrinho_doce_natal_v2";
+
+/* ---------- 6. CARRINHO (sacola) ----------
+   Guardamos só { id, qtd } de cada item no localStorage.
+   Nome, preço e foto são buscados no array "produtos" pelo id. */
+const CHAVE = "sacola-doce-natal";
 let carrinho = lerCarrinho();
 
 function lerCarrinho() {
   try {
-    const dados = JSON.parse(localStorage.getItem(CHAVE_CARRINHO));
-    if (!Array.isArray(dados)) return [];
-    return dados.filter(i => i && Number.isInteger(i.id) && i.qtd > 0);
+    return JSON.parse(localStorage.getItem(CHAVE)) || [];
   } catch (erro) {
-    return [];   // localStorage bloqueado ou texto inválido
+    return [];
   }
 }
 
 function salvarCarrinho() {
   try {
-    localStorage.setItem(CHAVE_CARRINHO, JSON.stringify(carrinho));
+    localStorage.setItem(CHAVE, JSON.stringify(carrinho));
   } catch (erro) {
-    console.log("Não foi possível salvar o carrinho neste navegador.");
+    // navegador sem localStorage: a sacola funciona, só não fica salva
   }
+  atualizarCarrinho();
 }
 
-function quantidadeTotal() {
-  return carrinho.reduce((soma, item) => soma + item.qtd, 0);
-}
-
-function valorTotal() {
-  return carrinho.reduce((soma, item) => {
-    const p = produtos.find(prod => prod.id === item.id);
-    return soma + (p ? p.preco * item.qtd : 0);
-  }, 0);
+function buscarProduto(id) {
+  return produtos.find(p => p.id === id);
 }
 
 function adicionarAoCarrinho(id) {
-  const p = produtos.find(item => item.id === id);
-  if (!p) return;
-  const existente = carrinho.find(item => item.id === id);
-  if (existente) existente.qtd++; else carrinho.push({ id, qtd: 1 });
+  const produto = buscarProduto(id);
+  if (!produto) return;
+
+  const item = carrinho.find(i => i.id === id);
+  if (item) {
+    item.qtd++;
+  } else {
+    carrinho.push({ id: id, qtd: 1 });
+  }
   salvarCarrinho();
-  atualizarCarrinho();
   tocarSino();
-  mostrarAviso(`✨ "${p.nome}" foi para o carrinho!`);
+  mostrarAviso(`"${produto.nome}" foi para a sacola`);
 }
 
-function alterarQuantidade(id, delta) {
+function mudarQuantidade(id, mudanca) {
   const item = carrinho.find(i => i.id === id);
   if (!item) return;
-  item.qtd += delta;
-  if (item.qtd <= 0) carrinho = carrinho.filter(i => i.id !== id);   // chegou a 0: remove
+  item.qtd += mudanca;
+  if (item.qtd <= 0) {
+    carrinho = carrinho.filter(i => i.id !== id);   // chegou a zero: sai da sacola
+  }
   salvarCarrinho();
-  atualizarCarrinho();
 }
 
 function removerDoCarrinho(id) {
   carrinho = carrinho.filter(i => i.id !== id);
   salvarCarrinho();
-  atualizarCarrinho();
 }
 
-function limparCarrinho() {
-  carrinho = [];
-  salvarCarrinho();
-  atualizarCarrinho();
-}
-
-// Atualiza o número no cabeçalho e, se o painel existir, a lista e o total
 function atualizarCarrinho() {
-  const badge = document.getElementById("qtd-carrinho");
-  if (badge) badge.textContent = quantidadeTotal();
+  // número no botão do cabeçalho (soma das quantidades)
+  const quantidade = carrinho.reduce((soma, item) => soma + item.qtd, 0);
+  document.getElementById("qtd-carrinho").textContent = quantidade;
 
+  // valor total
+  const total = carrinho.reduce((soma, item) => {
+    const produto = buscarProduto(item.id);
+    return produto ? soma + produto.preco * item.qtd : soma;
+  }, 0);
+  document.getElementById("carrinho-total").textContent = formatarPreco(total);
+
+  // lista de itens
   const lista = document.getElementById("carrinho-lista");
-  const total = document.getElementById("carrinho-total");
-  if (!lista || !total) return;
-
   if (carrinho.length === 0) {
-    lista.innerHTML = `<li class="carrinho-vazio">🎄 Seu carrinho natalino está vazio.<br>Adicione deliciosos produtos para a sua ceia!</li>`;
-  } else {
-    lista.innerHTML = carrinho.map(item => {
-      const p = produtos.find(prod => prod.id === item.id);
-      if (!p) return "";
-      return `
-        <li class="item-carrinho">
-          <img src="${p.imagem}" alt="${p.nome}">
-          <div>
-            <div class="item-nome">${p.nome}</div>
-            <div class="item-preco">${formatarPreco(p.preco * item.qtd)}</div>
-            <div class="item-qtd">
-              <button type="button" data-diminuir="${p.id}" aria-label="Diminuir quantidade de ${p.nome}">−</button>
-              <span aria-label="Quantidade">${item.qtd}</span>
-              <button type="button" data-aumentar="${p.id}" aria-label="Aumentar quantidade de ${p.nome}">+</button>
-            </div>
-          </div>
-          <button type="button" class="item-remover" data-remover="${p.id}" aria-label="Remover ${p.nome} do carrinho">🗑️</button>
-        </li>`;
-    }).join("");
+    lista.innerHTML = `<li class="carrinho-vazio">Sua sacola está vazia.<br>Que tal um panetone?</li>`;
+    return;
   }
-  total.textContent = formatarPreco(valorTotal());
+  lista.innerHTML = carrinho.map(item => {
+    const p = buscarProduto(item.id);
+    if (!p) return "";
+    return `
+      <li class="item">
+        <img src="${p.imagem}" alt="${p.nome}">
+        <div>
+          <div class="item-nome">${p.nome}</div>
+          <div class="item-preco">${formatarPreco(p.preco * item.qtd)}</div>
+          <div class="item-qtd">
+            <button type="button" data-menos="${p.id}" aria-label="Diminuir ${p.nome}">−</button>
+            <span>${item.qtd}</span>
+            <button type="button" data-mais="${p.id}" aria-label="Aumentar ${p.nome}">+</button>
+          </div>
+        </div>
+        <button type="button" class="item-remover" data-remover="${p.id}" aria-label="Remover ${p.nome}">×</button>
+      </li>`;
+  }).join("");
 }
 
-// Cria o painel do carrinho uma vez só (assim não precisa repetir o HTML nas 5 páginas)
-function criarPainelCarrinho() {
+// O HTML da sacola é criado aqui uma vez só, para não repetir nas 5 páginas
+function iniciarCarrinho() {
   const fundo = document.createElement("div");
   fundo.className = "carrinho-fundo";
-  fundo.id = "carrinho-fundo";
 
-  const painel = document.createElement("aside");
-  painel.className = "carrinho-painel";
-  painel.id = "carrinho-painel";
-  painel.setAttribute("aria-label", "Carrinho de compras");
-  painel.innerHTML = `
+  const gaveta = document.createElement("aside");
+  gaveta.className = "carrinho";
+  gaveta.setAttribute("aria-label", "Sacola de compras");
+  gaveta.innerHTML = `
     <div class="carrinho-topo">
-      <h2>🛒 Seu Carrinho</h2>
-      <button type="button" class="carrinho-fechar" aria-label="Fechar carrinho">&times;</button>
+      <h2>Sua sacola</h2>
+      <button type="button" class="fechar" id="fechar-carrinho" aria-label="Fechar sacola">×</button>
     </div>
     <ul class="carrinho-lista" id="carrinho-lista"></ul>
     <div class="carrinho-rodape">
-      <div class="carrinho-total"><span>Total:</span> <strong id="carrinho-total">R$ 0,00</strong></div>
-      <div class="carrinho-acoes">
-        <button type="button" class="btn-comprar btn-secundario" id="carrinho-limpar">Limpar</button>
-        <button type="button" class="btn-comprar" id="carrinho-finalizar">Finalizar compra</button>
+      <div class="carrinho-total"><span>Total</span><strong id="carrinho-total">R$ 0,00</strong></div>
+      <div class="carrinho-botoes">
+        <button type="button" class="botao botao-contorno" id="esvaziar">Esvaziar</button>
+        <button type="button" class="botao botao-verde" id="finalizar">Finalizar pedido</button>
       </div>
     </div>`;
-  document.body.appendChild(fundo);
-  document.body.appendChild(painel);
+  document.body.append(fundo, gaveta);
 
-  fundo.addEventListener("click", fecharCarrinho);
-  painel.querySelector(".carrinho-fechar").addEventListener("click", fecharCarrinho);
-  document.getElementById("carrinho-limpar").addEventListener("click", limparCarrinho);
-  document.getElementById("carrinho-finalizar").addEventListener("click", () => {
+  const abrir = () => document.body.classList.add("carrinho-aberto");
+  const fechar = () => document.body.classList.remove("carrinho-aberto");
+
+  document.getElementById("btn-carrinho").addEventListener("click", abrir);
+  document.getElementById("fechar-carrinho").addEventListener("click", fechar);
+  fundo.addEventListener("click", fechar);
+
+  document.getElementById("esvaziar").addEventListener("click", () => {
+    carrinho = [];
+    salvarCarrinho();
+  });
+
+  document.getElementById("finalizar").addEventListener("click", () => {
     if (carrinho.length === 0) {
-      mostrarAviso("Seu carrinho está vazio!");
+      mostrarAviso("A sacola está vazia.");
       return;
     }
-    limparCarrinho();
-    fecharCarrinho();
+    carrinho = [];
+    salvarCarrinho();
+    fechar();
     tocarSino();
-    mostrarAviso("🎁 Pedido simulado com sucesso! Feliz Natal!");   // a loja é fictícia
+    mostrarAviso("Pedido de teste enviado! (a loja é fictícia)");
   });
 
-  // Botões + − 🗑️ da lista (delegação: a lista é recriada a cada mudança)
-  painel.addEventListener("click", (e) => {
-    const mais = e.target.closest("[data-aumentar]");
-    const menos = e.target.closest("[data-diminuir]");
-    const remover = e.target.closest("[data-remover]");
-    if (mais) alterarQuantidade(Number(mais.dataset.aumentar), 1);
-    if (menos) alterarQuantidade(Number(menos.dataset.diminuir), -1);
-    if (remover) removerDoCarrinho(Number(remover.dataset.remover));
+  // botões + − × da lista (delegação: a lista é recriada a cada mudança)
+  gaveta.addEventListener("click", evento => {
+    const alvo = evento.target;
+    if (alvo.dataset.mais) mudarQuantidade(Number(alvo.dataset.mais), 1);
+    if (alvo.dataset.menos) mudarQuantidade(Number(alvo.dataset.menos), -1);
+    if (alvo.dataset.remover) removerDoCarrinho(Number(alvo.dataset.remover));
   });
-}
 
-function abrirCarrinho() {
-  document.body.classList.add("carrinho-aberto");
-}
-
-function fecharCarrinho() {
-  document.body.classList.remove("carrinho-aberto");
-}
-
-function initCarrinho() {
-  criarPainelCarrinho();
-  const botao = document.getElementById("btn-carrinho");
-  if (botao) botao.addEventListener("click", abrirCarrinho);
   atualizarCarrinho();
 }
 
-/* ---------- 7. CONTAGEM REGRESSIVA (extra) ---------- */
-function initContagemRegressiva() {
-  const elementos = document.querySelectorAll("[data-contagem]");
-  if (!elementos.length) return;
+
+/* ---------- 7. CONTAGEM REGRESSIVA ----------
+   setInterval chama a função a cada 1 segundo. */
+function iniciarContagem() {
+  const caixas = document.querySelectorAll("[data-contagem]");
+  if (caixas.length === 0) return;
 
   function atualizar() {
     const agora = new Date();
-    let natal = new Date(agora.getFullYear(), 11, 25);          // mês 11 = dezembro!
+    let natal = new Date(agora.getFullYear(), 11, 25);   // mês 11 = dezembro (começa no 0)
     if (agora > natal) natal = new Date(agora.getFullYear() + 1, 11, 25);
 
-    const falta = natal - agora;                                // milissegundos
+    const falta = natal - agora;                         // em milissegundos
     const dias = Math.floor(falta / (1000 * 60 * 60 * 24));
     const horas = Math.floor(falta / (1000 * 60 * 60)) % 24;
     const minutos = Math.floor(falta / (1000 * 60)) % 60;
     const segundos = Math.floor(falta / 1000) % 60;
 
-    const texto = `Faltam ${dias}d ${horas}h ${minutos}min ${segundos}s para o Natal! 🎄`;
-    elementos.forEach(el => el.textContent = texto);
+    // padStart deixa sempre com 2 dígitos: 7 -> "07"
+    caixas.forEach(caixa => {
+      caixa.querySelector("[data-dias]").textContent = dias;
+      caixa.querySelector("[data-horas]").textContent = String(horas).padStart(2, "0");
+      caixa.querySelector("[data-minutos]").textContent = String(minutos).padStart(2, "0");
+      caixa.querySelector("[data-segundos]").textContent = String(segundos).padStart(2, "0");
+    });
   }
 
   atualizar();
   setInterval(atualizar, 1000);
 }
 
-/* ---------- 8. VALIDAÇÃO DE FORMULÁRIO (extra) ---------- */
-function initValidacaoForm() {
+
+/* ---------- 8. VALIDAÇÃO DO FORMULÁRIO ---------- */
+function iniciarFormulario() {
   const form = document.getElementById("form-contato");
-  const alerta = document.getElementById("mensagem-alerta");
-  if (!form || !alerta) return;
+  if (!form) return;
 
-  const campos = {
-    nome: document.getElementById("nome"),
-    email: document.getElementById("email"),
-    mensagem: document.getElementById("mensagem")
-  };
+  const mensagemFinal = document.getElementById("mensagem-form");
+  const nomesCampos = ["nome", "email", "assunto", "mensagem"];
 
-  // Mostra (ou limpa) o erro embaixo de um campo
-  function marcarErro(nomeCampo, texto) {
-    const campo = campos[nomeCampo];
-    const span = document.getElementById("erro-" + nomeCampo);
-    campo.setAttribute("aria-invalid", texto ? "true" : "false");
-    if (span) span.textContent = texto;
-  }
+  // devolve o texto do erro, ou "" se o campo estiver certo
+  function verificar(nomeCampo) {
+    const valor = document.getElementById(nomeCampo).value.trim();
 
-  // Devolve o texto do erro de cada campo ("" quando está tudo certo)
-  function validarCampo(nomeCampo) {
-    const valor = campos[nomeCampo].value.trim();
     if (nomeCampo === "nome") {
-      if (valor === "") return "Por favor, digite seu nome.";
+      if (valor === "") return "Escreva o seu nome.";
       if (valor.length < 3) return "O nome precisa ter pelo menos 3 letras.";
     }
     if (nomeCampo === "email") {
-      const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
-      if (valor === "") return "Por favor, digite seu e-mail.";
-      if (!emailValido) return "Digite um e-mail válido, como nome@exemplo.com.";
+      if (valor === "") return "Escreva o seu e-mail.";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) return "Esse e-mail parece incompleto. Exemplo: nome@email.com";
+    }
+    if (nomeCampo === "assunto" && valor === "") {
+      return "Escolha um assunto.";
     }
     if (nomeCampo === "mensagem") {
       if (valor === "") return "Escreva a sua mensagem.";
-      if (valor.length < 10) return "A mensagem precisa ter pelo menos 10 caracteres.";
+      if (valor.length < 10) return "A mensagem precisa ter pelo menos 10 letras.";
     }
     return "";
   }
 
-  // Limpa o erro assim que a pessoa corrige o campo
-  Object.keys(campos).forEach(nomeCampo => {
-    campos[nomeCampo].addEventListener("input", () => {
-      if (campos[nomeCampo].getAttribute("aria-invalid") === "true") {
-        marcarErro(nomeCampo, validarCampo(nomeCampo));
+  // mostra o erro embaixo do campo e marca a borda de vermelho
+  function marcar(nomeCampo, erro) {
+    document.getElementById(nomeCampo).setAttribute("aria-invalid", erro ? "true" : "false");
+    document.getElementById("erro-" + nomeCampo).textContent = erro;
+  }
+
+  // quando a pessoa corrige o campo, o erro some na hora
+  nomesCampos.forEach(nomeCampo => {
+    document.getElementById(nomeCampo).addEventListener("input", () => {
+      if (document.getElementById(nomeCampo).getAttribute("aria-invalid") === "true") {
+        marcar(nomeCampo, verificar(nomeCampo));
       }
     });
   });
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();                      // impede a página de recarregar
-    let primeiroComErro = null;
+  form.addEventListener("submit", evento => {
+    evento.preventDefault();             // não deixa a página recarregar
 
-    Object.keys(campos).forEach(nomeCampo => {
-      const erro = validarCampo(nomeCampo);
-      marcarErro(nomeCampo, erro);
-      if (erro && !primeiroComErro) primeiroComErro = campos[nomeCampo];
+    let temErro = false;
+    nomesCampos.forEach(nomeCampo => {
+      const erro = verificar(nomeCampo);
+      marcar(nomeCampo, erro);
+      if (erro && !temErro) {
+        document.getElementById(nomeCampo).focus();
+        temErro = true;
+      }
     });
 
-    if (primeiroComErro) {
-      alerta.className = "mensagem-alerta erro";
-      alerta.textContent = "⚠️ Corrija os campos destacados e tente novamente.";
-      alerta.style.display = "block";
-      primeiroComErro.focus();
+    if (temErro) {
+      mensagemFinal.className = "mensagem-form erro";
+      mensagemFinal.textContent = "Confira os campos marcados em vermelho.";
       return;
     }
 
-    const nome = campos.nome.value.trim();
-    alerta.className = "mensagem-alerta sucesso";
-    alerta.textContent = `✨ Obrigado, ${nome}! Sua mensagem de Natal foi enviada com sucesso!`;
-    alerta.style.display = "block";
+    const primeiroNome = document.getElementById("nome").value.trim().split(" ")[0];
+    mensagemFinal.className = "mensagem-form sucesso";
+    mensagemFinal.textContent = `Obrigado, ${primeiroNome}! Recebemos sua mensagem e respondemos em até 1 dia útil.`;
     form.reset();
     tocarSino();
   });
 }
 
-/* ---------- 9. MENU RESPONSIVO / HAMBÚRGUER (extra) ---------- */
-function initMenuResponsivo() {
+
+/* ---------- 9. MENU HAMBÚRGUER ---------- */
+function iniciarMenu() {
   const botao = document.querySelector(".btn-menu");
-  const menu = document.querySelector(".menu");
+  const menu = document.getElementById("menu");
   if (!botao || !menu) return;
 
-  function definirMenu(aberto) {
-    menu.classList.toggle("aberto", aberto);
-    botao.setAttribute("aria-expanded", String(aberto));
-    botao.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
-    botao.textContent = aberto ? "✕" : "☰";
+  function abrirOuFechar(abrir) {
+    menu.classList.toggle("aberto", abrir);
+    botao.setAttribute("aria-expanded", String(abrir));
+    botao.setAttribute("aria-label", abrir ? "Fechar menu" : "Abrir menu");
+    botao.textContent = abrir ? "✕" : "☰";
   }
 
-  botao.addEventListener("click", () => definirMenu(!menu.classList.contains("aberto")));
-  menu.addEventListener("click", (e) => {
-    if (e.target.closest("a")) definirMenu(false);       // fecha ao escolher uma página
+  botao.addEventListener("click", () => abrirOuFechar(!menu.classList.contains("aberto")));
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") abrirOuFechar(false);
   });
   window.addEventListener("resize", () => {
-    if (window.innerWidth >= 992) definirMenu(false);    // no desktop o menu já aparece
+    if (window.innerWidth >= 992) abrirOuFechar(false);
   });
 }
 
-/* ---------- 10. MODAL / LIGHTBOX (extra) ---------- */
-function abrirModalProduto(id) {
-  const p = produtos.find(item => item.id === id);
-  const modal = document.getElementById("modal-produto");
-  const corpo = document.getElementById("modal-corpo");
-  if (!p || !modal || !corpo) return;
 
-  corpo.innerHTML = `
-    <img class="modal-img" src="${p.imagem}" alt="${p.nome}">
-    <h2 class="modal-titulo">${p.nome}</h2>
-    <p class="modal-categoria">${p.categoria}</p>
-    <p class="modal-texto">${p.descricao}</p>
-    <h3 class="modal-preco">${formatarPreco(p.preco)}</h3>
-    <button type="button" class="btn-comprar" data-id="${p.id}">Adicionar ao Carrinho 🛒</button>
-  `;
-  modal.classList.add("aberto");
-  modal.querySelector(".fechar-modal").focus();
+/* ---------- 10. MODAL (detalhes do produto) E LIGHTBOX (galeria) ---------- */
+const modal = {
+  janela: null,
+  conteudo: null,
+  fotos: [],        // fotos da galeria
+  fotoAtual: 0
+};
+
+function abrirModal(html) {
+  modal.conteudo.innerHTML = html;
+  modal.janela.classList.add("aberto");
+  modal.janela.querySelector(".fechar").focus();
 }
 
 function fecharModal() {
-  const modal = document.getElementById("modal-produto");
-  if (modal) modal.classList.remove("aberto");
+  modal.janela.classList.remove("aberto");
+  modal.conteudo.innerHTML = "";
 }
 
-function initModal() {
-  const modal = document.getElementById("modal-produto");
-  if (!modal) return;
+function abrirDetalhes(id) {
+  const p = buscarProduto(id);
+  if (!p) return;
+  abrirModal(`
+    <div class="modal-produto">
+      <img src="${p.imagem}" alt="${p.nome}">
+      <div class="modal-info">
+        <span class="card-categoria">${p.categoria}</span>
+        <h2>${p.nome}</h2>
+        <p>${p.descricao}</p>
+        <span class="etiqueta">${formatarPreco(p.preco)}</span><br>
+        <button type="button" class="botao btn-comprar" data-id="${p.id}">Colocar na sacola</button>
+      </div>
+    </div>`);
+}
 
-  modal.querySelector(".fechar-modal").addEventListener("click", fecharModal);
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) fecharModal();               // clique no fundo escuro
+function mostrarFoto(indice) {
+  // volta ao começo depois da última foto (igual ao slideshow)
+  modal.fotoAtual = (indice + modal.fotos.length) % modal.fotos.length;
+  const foto = modal.fotos[modal.fotoAtual];
+  abrirModal(`
+    <div class="modal-foto">
+      <img src="${foto.src}" alt="${foto.alt}">
+      <p>${foto.legenda} <small>(${modal.fotoAtual + 1} de ${modal.fotos.length})</small></p>
+      <button type="button" class="seta seta-anterior" data-foto-anterior aria-label="Foto anterior">‹</button>
+      <button type="button" class="seta seta-proxima" data-foto-proxima aria-label="Próxima foto">›</button>
+    </div>`);
+}
+
+function iniciarModal() {
+  modal.janela = document.getElementById("modal");
+  modal.conteudo = document.getElementById("modal-conteudo");
+  if (!modal.janela) return;
+
+  // guarda as fotos da galeria (se a página tiver galeria)
+  document.querySelectorAll(".foto-galeria").forEach(botao => {
+    const img = botao.querySelector("img");
+    modal.fotos.push({ src: img.src, alt: img.alt, legenda: botao.querySelector("span").textContent });
+  });
+
+  modal.janela.querySelector(".fechar").addEventListener("click", fecharModal);
+  modal.janela.addEventListener("click", e => {
+    if (e.target === modal.janela) fecharModal();              // clique no fundo escuro
+    if (e.target.closest("[data-foto-anterior]")) mostrarFoto(modal.fotoAtual - 1);
+    if (e.target.closest("[data-foto-proxima]")) mostrarFoto(modal.fotoAtual + 1);
+  });
+
+  document.addEventListener("keydown", e => {
+    if (!modal.janela.classList.contains("aberto")) return;
+    if (e.key === "Escape") fecharModal();
+    if (modal.fotos.length && modal.conteudo.querySelector(".modal-foto")) {
+      if (e.key === "ArrowRight") mostrarFoto(modal.fotoAtual + 1);
+      if (e.key === "ArrowLeft") mostrarFoto(modal.fotoAtual - 1);
+    }
   });
 }
 
-/* ---------- 11. EFEITO DE NEVE (extra) ---------- */
-function initEfeitoNeve() {
-  const quantidade = 25;
-  for (let i = 0; i < quantidade; i++) {
-    const floco = document.createElement("div");
+
+/* ---------- 11. NEVE ----------
+   Criamos bolinhas brancas com o DOM. Cada uma tem tamanho, posição,
+   velocidade e atraso sorteados, e a animação "cair" do CSS faz o resto. */
+function iniciarNeve() {
+  for (let i = 0; i < 22; i++) {
+    const floco = document.createElement("span");
+    const tamanho = Math.random() * 5 + 3;
     floco.className = "floco";
-    floco.textContent = "❄";
     floco.setAttribute("aria-hidden", "true");
+    floco.style.width = tamanho + "px";
+    floco.style.height = tamanho + "px";
     floco.style.left = Math.random() * 100 + "vw";
-    floco.style.animationDuration = (Math.random() * 5 + 6) + "s";
-    floco.style.animationDelay = (-Math.random() * 10) + "s";   // começam em alturas diferentes
-    floco.style.fontSize = (Math.random() * 14 + 10) + "px";
+    floco.style.opacity = Math.random() * 0.5 + 0.4;
+    floco.style.animationDuration = Math.random() * 8 + 9 + "s";
+    floco.style.animationDelay = -Math.random() * 15 + "s";
     document.body.appendChild(floco);
   }
 }
 
-/* ---------- 12. ANIMAÇÃO AO ROLAR (extra) ----------
-   Um único observador vigia todos os elementos .revelar. Quando um
-   deles aparece na tela, ganha a classe .visivel (o CSS faz a animação). */
+
+/* ---------- 12. ANIMAÇÃO AO ROLAR ----------
+   O IntersectionObserver avisa quando um elemento .revelar entra na tela.
+   Aí colocamos a classe .visivel e o CSS faz ele aparecer. */
 let observador = null;
 
-function initObservador() {
-  observador = new IntersectionObserver((entradas) => {
-    entradas.forEach(entrada => {
-      if (entrada.isIntersecting) {
-        entrada.target.classList.add("visivel");
-        observador.unobserve(entrada.target);            // já apareceu: não precisa vigiar mais
-      }
-    });
-  }, { threshold: 0.1 });
-  observarElementos();
-}
-
-// Chamada na inicialização e toda vez que novos cards são criados
-function observarElementos() {
+function observarNovos() {
   if (!observador) return;
   document.querySelectorAll(".revelar:not(.visivel)").forEach(el => observador.observe(el));
 }
 
-/* ---------- 13. BOTÃO VOLTAR AO TOPO (extra) ---------- */
-function initBotaoTopo() {
+function iniciarRevelar() {
+  if (!("IntersectionObserver" in window)) {
+    document.querySelectorAll(".revelar").forEach(el => el.classList.add("visivel"));
+    return;
+  }
+  observador = new IntersectionObserver(entradas => {
+    entradas.forEach(entrada => {
+      if (entrada.isIntersecting) {
+        entrada.target.classList.add("visivel");
+        observador.unobserve(entrada.target);   // já apareceu, não precisa vigiar mais
+      }
+    });
+  }, { threshold: 0.12 });
+  observarNovos();
+}
+
+
+/* ---------- 13. VOLTAR AO TOPO ---------- */
+function iniciarTopo() {
   const botao = document.getElementById("topo");
   if (!botao) return;
 
   window.addEventListener("scroll", () => {
-    botao.style.display = window.scrollY > 400 ? "block" : "none";
+    botao.classList.toggle("mostrar", window.scrollY > 500);
   });
   botao.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 }
 
-/* ---------- CLIQUES NOS CARDS, NA GALERIA E NO MODAL ----------
-   Os cards são criados pelo JavaScript depois que a página carrega,
-   então escutamos o clique no documento inteiro (delegação de evento)
-   e perguntamos "qual elemento foi clicado?" com e.target.closest(). */
-function initCliquesGerais() {
-  document.addEventListener("click", (e) => {
-    const comprar = e.target.closest(".btn-comprar[data-id]");
+
+/* ---------- CLIQUES EM ELEMENTOS CRIADOS PELO JAVASCRIPT ----------
+   Os cards não existem quando a página carrega, então ouvimos o clique
+   no documento inteiro (delegação de evento) e vemos o que foi clicado. */
+function iniciarCliques() {
+  document.addEventListener("click", evento => {
+    const comprar = evento.target.closest(".btn-comprar");
     if (comprar) {
       adicionarAoCarrinho(Number(comprar.dataset.id));
       return;
     }
-    const detalhes = e.target.closest("[data-detalhes]");
-    if (detalhes) abrirModalProduto(Number(detalhes.dataset.detalhes));
-  });
-
-  // Tecla Esc fecha o modal, o carrinho e o menu aberto
-  document.addEventListener("keydown", (e) => {
-    if (e.key !== "Escape") return;
-    fecharModal();
-    fecharCarrinho();
-    const menu = document.querySelector(".menu.aberto");
-    const botaoMenu = document.querySelector(".btn-menu");
-    if (menu && botaoMenu) botaoMenu.click();          // fecha o menu hambúrguer
+    const detalhes = evento.target.closest("[data-detalhes]");
+    if (detalhes) {
+      abrirDetalhes(Number(detalhes.dataset.detalhes));
+      return;
+    }
+    const foto = evento.target.closest("[data-foto]");
+    if (foto) mostrarFoto(Number(foto.dataset.foto));
   });
 }
 
-/* ---------- INICIALIZAÇÃO GERAL ---------- */
-document.addEventListener("DOMContentLoaded", () => {
-  initSlideshow();
-  initParallax();
-  initSons();
-  initFiltroEBusca();
-  initCarrinho();
-  initContagemRegressiva();
-  initValidacaoForm();
-  initMenuResponsivo();
-  initModal();
-  initEfeitoNeve();
-  initObservador();
-  initBotaoTopo();
-  initCliquesGerais();
 
-  // Home mostra só os destaques; Produtos mostra os 50
-  const area = document.getElementById("lista-produtos");
-  if (area && typeof produtos !== "undefined") {
-    if (document.body.classList.contains("pagina-home")) {
-      mostrarProdutos(produtos.filter(p => p.destaque));
-    } else {
-      mostrarProdutos(produtos);
-    }
+/* ---------- COMEÇA TUDO QUANDO A PÁGINA TERMINA DE CARREGAR ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  iniciarRevelar();
+  iniciarSlideshow();
+  iniciarParallax();
+  iniciarSons();
+  iniciarFiltro();
+  iniciarCarrinho();
+  iniciarContagem();
+  iniciarFormulario();
+  iniciarMenu();
+  iniciarModal();
+  iniciarNeve();
+  iniciarTopo();
+  iniciarCliques();
+
+  // Início mostra 8 destaques; a página Produtos mostra os 50
+  if (document.body.classList.contains("pagina-home")) {
+    mostrarProdutos(produtos.filter(p => p.destaque).slice(0, 8));
+  } else {
+    mostrarProdutos(produtos);
   }
 });

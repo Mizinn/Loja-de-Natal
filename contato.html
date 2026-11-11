@@ -3,101 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doce Natal | Fale Conosco</title>
-  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <meta name="description" content="Fale com a Doce Natal: encomendas, dúvidas e endereço.">
+  <title>Doce Natal | Contato</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
 
-  <!-- CABEÇALHO (igual em todas as páginas) -->
+  <!-- ===== CABEÇALHO (igual em todas as páginas) ===== -->
+  <p class="aviso-topo">Encomendas de Natal até <strong>22 de dezembro</strong><span class="some-celular"> · retirada na loja ou entrega na cidade</span></p>
   <header>
-    <a href="index.html" class="logo-container">
-      <img src="img/logo.svg" alt="Logotipo Doce Natal Confeitaria" class="logo-img">
-    </a>
-    <nav class="menu" id="menu-principal" aria-label="Menu principal">
-        <a href="index.html">Home</a>
+    <div class="container cabecalho">
+      <a href="index.html" class="logo"><img src="img/logo.svg" alt="Doce Natal Confeitaria - página inicial"></a>
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <a href="index.html">Início</a>
         <a href="produtos.html">Produtos</a>
-        <a href="sobre.html">Sobre Nós</a>
-        <a href="galeria.html">Galeria & Ofertas</a>
+        <a href="sobre.html">Sobre nós</a>
+        <a href="galeria.html">Galeria e ofertas</a>
         <a href="contato.html" class="ativo" aria-current="page">Contato</a>
-    </nav>
-    <div class="header-actions">
-      <button type="button" id="btn-musica" class="btn-audio" aria-pressed="false" aria-label="Tocar música de Natal">
-        <span class="icone" aria-hidden="true">🎵</span><span class="rotulo">Tocar música</span>
-      </button>
-      <button type="button" id="btn-carrinho" class="btn-carrinho" aria-label="Abrir carrinho de compras">
-        <span aria-hidden="true">🛒</span> <span id="qtd-carrinho">0</span>
-      </button>
-      <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">☰</button>
+      </nav>
+      <div class="acoes">
+        <button type="button" id="btn-musica" class="botao-icone" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 18.5A2.5 2.5 0 1 1 7 16V5l12-2v12.5a2.5 2.5 0 1 1-2-2.45V6.4L9 7.7z"/></svg>
+          <span class="rotulo">Música</span>
+        </button>
+        <button type="button" id="btn-carrinho" class="botao-icone" aria-label="Abrir carrinho">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 8h14l-1.2 12H6.2zM9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="rotulo">Sacola</span>
+          <span id="qtd-carrinho" class="contador-carrinho">0</span>
+        </button>
+        <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">☰</button>
+      </div>
     </div>
+    <div class="varal" aria-hidden="true"></div>
   </header>
 
-  <main>
-    <section class="contato-container revelar">
-      <h1 class="titulo-pagina">Fale com o Papai Noel 🎅</h1>
-      <p class="subtitulo-pagina">Dúvidas sobre encomendas, entregas ou sugestões para a ceia? Envie sua mensagem!</p>
-
-      <!-- novalidate: desliga as mensagens do navegador para a validação ser feita pelo nosso JavaScript -->
-      <form id="form-contato" novalidate>
-        <div class="form-group">
-          <label for="nome">Seu Nome Completo *</label>
-          <input type="text" id="nome" name="nome" placeholder="Ex: Maria Silva" autocomplete="name" required>
-          <span class="erro-campo" id="erro-nome" role="alert"></span>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Seu E-mail *</label>
-          <input type="email" id="email" name="email" placeholder="Ex: maria@exemplo.com" autocomplete="email" required>
-          <span class="erro-campo" id="erro-email" role="alert"></span>
-        </div>
-
-        <div class="form-group">
-          <label for="assunto">Assunto</label>
-          <input type="text" id="assunto" name="assunto" placeholder="Ex: Encomenda de Panetones">
-        </div>
-
-        <div class="form-group">
-          <label for="mensagem">Sua Mensagem *</label>
-          <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva aqui os detalhes do seu pedido..." required></textarea>
-          <span class="erro-campo" id="erro-mensagem" role="alert"></span>
-        </div>
-
-        <button type="submit" class="btn-comprar btn-enviar">Enviar Mensagem Natalina ✉️</button>
-      </form>
-
-      <div id="mensagem-alerta" class="mensagem-alerta" role="status" aria-live="polite"></div>
+  <main class="container">
+    <section class="cabecalho-pagina revelar">
+      <span class="chapeu">Contato</span>
+      <h1>Fale com a confeitaria</h1>
+      <p class="texto-apoio">Encomendas grandes, dúvidas sobre ingredientes, alergias ou só um elogio. A gente responde em até um dia útil.</p>
     </section>
 
-    <!-- INFORMAÇÕES DA LOJA (dados fictícios) -->
-    <section class="contato-info revelar" aria-labelledby="titulo-info">
-      <h2 id="titulo-info" class="titulo-secao titulo-verde">Onde nos encontrar 📍</h2>
-      <div class="info-grid">
-        <div class="info-card"><span aria-hidden="true">🏠</span><h3>Endereço</h3><p>Rua dos Pinheiros Nevados, 25<br>Bairro Estrela do Natal - São Paulo/SP<br>(endereço fictício)</p></div>
-        <div class="info-card"><span aria-hidden="true">📞</span><h3>Telefone</h3><p>(11) 5555-2512<br>WhatsApp: (11) 95555-2512<br>(números fictícios)</p></div>
-        <div class="info-card"><span aria-hidden="true">🕒</span><h3>Horário</h3><p>Seg. a Sáb.: 8h às 19h<br>Dezembro: todos os dias, até as 22h</p></div>
-        <div class="info-card"><span aria-hidden="true">📱</span><h3>Redes sociais</h3><p>Instagram: @docenatal.confeitaria<br>Facebook: /docenatalconfeitaria<br>(perfis fictícios)</p></div>
-      </div>
-    </section>
+    <div class="contato">
+      <!-- FORMULÁRIO: novalidate desliga os avisos do navegador, quem valida é o nosso JavaScript -->
+      <section class="formulario revelar" aria-labelledby="titulo-form">
+        <h2 id="titulo-form" class="titulo-secao">Mande sua mensagem</h2>
+        <form id="form-contato" novalidate>
+          <div class="campo">
+            <label for="nome">Nome *</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Como podemos te chamar?">
+            <span class="erro-campo" id="erro-nome"></span>
+          </div>
+          <div class="campo">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="voce@exemplo.com">
+            <span class="erro-campo" id="erro-email"></span>
+          </div>
+          <div class="campo">
+            <label for="assunto">Assunto *</label>
+            <select id="assunto" name="assunto">
+              <option value="">Escolha um assunto</option>
+              <option>Encomenda</option>
+              <option>Cesta para empresa</option>
+              <option>Dúvida sobre ingredientes</option>
+              <option>Elogio ou reclamação</option>
+            </select>
+            <span class="erro-campo" id="erro-assunto"></span>
+          </div>
+          <div class="campo">
+            <label for="mensagem">Mensagem *</label>
+            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Ex.: Quero 2 panetones da vó para o dia 23."></textarea>
+            <span class="erro-campo" id="erro-mensagem"></span>
+          </div>
+          <button type="submit" class="botao">Enviar mensagem</button>
+          <div id="mensagem-form" class="mensagem-form" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <!-- INFORMAÇÕES DA LOJA (dados fictícios) -->
+      <aside class="revelar" aria-labelledby="titulo-loja">
+        <h2 id="titulo-loja" class="titulo-secao">Onde estamos</h2>
+        <ul class="info-loja">
+          <li><strong>Endereço</strong>Rua das Hortênsias, 1225 - Vila Mariana, São Paulo/SP</li>
+          <li><strong>Telefone e WhatsApp</strong>(11) 5555-1225 · (11) 95555-1225</li>
+          <li><strong>Horário</strong>Segunda a sábado, das 8h às 19h. Em dezembro abrimos todos os dias até 22h.</li>
+          <li><strong>Redes sociais</strong>Instagram @docenatal.confeitaria · Facebook /docenatalconfeitaria</li>
+        </ul>
+        <p class="observacao">Endereço, telefones e perfis são fictícios: a loja foi inventada para o projeto escolar.</p>
+      </aside>
+    </div>
   </main>
 
-  <!-- RODAPÉ (igual em todas as páginas) -->
+  <!-- ===== RODAPÉ (igual em todas as páginas) ===== -->
   <footer>
-    <p>🎄 <strong>Doce Natal Confeitaria Natalina</strong> &copy; 2026 - Todos os direitos reservados.</p>
-    <p>Projeto AV2 Desenvolvimento Web - Colégio UNASP | Prof. Samuel Elias</p>
-    <p>Imagens: ilustrações vetoriais (SVG) autorais. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público), gerada no navegador.</p>
+    <div class="container rodape">
+      <div>
+        <img src="img/logo-claro.svg" alt="Doce Natal Confeitaria" class="rodape-logo">
+        <p>Confeitaria de Natal feita em família desde 2019. Loja fictícia criada para o projeto AV2 de Desenvolvimento Web.</p>
+      </div>
+      <div>
+        <h2>Páginas</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre nós</a></li>
+          <li><a href="galeria.html">Galeria e ofertas</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Loja</h2>
+        <ul>
+          <li>Rua das Hortênsias, 1225 - São Paulo/SP</li>
+          <li>(11) 5555-1225</li>
+          <li>Seg. a sáb., 8h às 19h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-fim">
+      <div class="container">
+        <p>© 2026 Doce Natal · Projeto escolar - Colégio UNASP · Prof. Samuel Elias · Equipe: Miguel Carnieli, Felipe Russomano e Gabriel Karan.</p>
+        <p>Fotos: Wikimedia Commons (licenças Creative Commons e domínio público) - lista completa de autores na página <a href="sobre.html#creditos">Sobre nós</a>. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público).</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- JANELA (MODAL) DE DETALHES DO PRODUTO / LIGHTBOX -->
-  <div id="modal-produto" class="modal" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
-    <div class="modal-conteudo">
-      <button type="button" class="fechar-modal" aria-label="Fechar janela">&times;</button>
-      <div id="modal-corpo"></div>
+  <!-- janela flutuante (modal) usada para os detalhes do produto -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Detalhes">
+    <div class="modal-caixa">
+      <button type="button" class="fechar" aria-label="Fechar">×</button>
+      <div id="modal-conteudo"></div>
     </div>
   </div>
-  <button type="button" id="topo" aria-label="Voltar ao topo">⬆</button>
+  <button type="button" id="topo" aria-label="Voltar ao topo">↑</button>
 
-  <!-- A ordem importa: produtos.js precisa vir ANTES de script.js -->
+  <!-- produtos.js precisa vir ANTES do script.js -->
   <script src="js/produtos.js"></script>
   <script src="js/script.js"></script>
 </body>

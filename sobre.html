@@ -3,109 +3,243 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doce Natal | Sobre Nós</title>
-  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <meta name="description" content="A história da Doce Natal, missão, valores e a equipe.">
+  <title>Doce Natal | Sobre nós</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
 
-  <!-- CABEÇALHO (igual em todas as páginas) -->
+  <!-- ===== CABEÇALHO (igual em todas as páginas) ===== -->
+  <p class="aviso-topo">Encomendas de Natal até <strong>22 de dezembro</strong><span class="some-celular"> · retirada na loja ou entrega na cidade</span></p>
   <header>
-    <a href="index.html" class="logo-container">
-      <img src="img/logo.svg" alt="Logotipo Doce Natal Confeitaria" class="logo-img">
-    </a>
-    <nav class="menu" id="menu-principal" aria-label="Menu principal">
-        <a href="index.html">Home</a>
+    <div class="container cabecalho">
+      <a href="index.html" class="logo"><img src="img/logo.svg" alt="Doce Natal Confeitaria - página inicial"></a>
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <a href="index.html">Início</a>
         <a href="produtos.html">Produtos</a>
-        <a href="sobre.html" class="ativo" aria-current="page">Sobre Nós</a>
-        <a href="galeria.html">Galeria & Ofertas</a>
+        <a href="sobre.html" class="ativo" aria-current="page">Sobre nós</a>
+        <a href="galeria.html">Galeria e ofertas</a>
         <a href="contato.html">Contato</a>
-    </nav>
-    <div class="header-actions">
-      <button type="button" id="btn-musica" class="btn-audio" aria-pressed="false" aria-label="Tocar música de Natal">
-        <span class="icone" aria-hidden="true">🎵</span><span class="rotulo">Tocar música</span>
-      </button>
-      <button type="button" id="btn-carrinho" class="btn-carrinho" aria-label="Abrir carrinho de compras">
-        <span aria-hidden="true">🛒</span> <span id="qtd-carrinho">0</span>
-      </button>
-      <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">☰</button>
+      </nav>
+      <div class="acoes">
+        <button type="button" id="btn-musica" class="botao-icone" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 18.5A2.5 2.5 0 1 1 7 16V5l12-2v12.5a2.5 2.5 0 1 1-2-2.45V6.4L9 7.7z"/></svg>
+          <span class="rotulo">Música</span>
+        </button>
+        <button type="button" id="btn-carrinho" class="botao-icone" aria-label="Abrir carrinho">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 8h14l-1.2 12H6.2zM9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="rotulo">Sacola</span>
+          <span id="qtd-carrinho" class="contador-carrinho">0</span>
+        </button>
+        <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">☰</button>
+      </div>
     </div>
+    <div class="varal" aria-hidden="true"></div>
   </header>
 
   <main>
-    <div class="container-sobre">
-      <article class="historia-box revelar">
-        <h1>Nossa História Doce 📖</h1>
-        <p>Fundada no espírito de partilha e união do Natal, a <strong>Doce Natal Confeitaria</strong> começou com a paixão por criar momentos inesquecíveis em torno da ceia. Nossos confeiteiros combinam tradição com ingredientes finos selecionados para levar aroma e aconchego a milhares de lares.</p>
-        <h2 class="titulo-verde">Missão, Visão e Valores</h2>
-        <ul class="lista-mvv">
-          <li><strong>Missão:</strong> Transformar as festas de fim de ano em experiências inesquecíveis através do sabor e da arte da confeitaria artesanal.</li>
-          <li><strong>Visão:</strong> Ser a confeitaria natalina referência no Brasil em qualidade, criatividade e acolhimento.</li>
-          <li><strong>Valores:</strong> Afeto, tradição artesanal, rigor na seleção dos ingredientes e encanto em cada detalhe.</li>
-        </ul>
+    <!-- HISTÓRIA (fictícia) -->
+    <section class="secao container historia">
+      <article class="revelar">
+        <span class="chapeu">Desde 2019</span>
+        <h1>Uma cozinha, uma avó e trinta panetones</h1>
+        <p>A Doce Natal começou no fim de 2019, quando a Dona Cida resolveu fazer o panetone da família para vender para os vizinhos. Eram trinta. Acabaram em dois dias, e no ano seguinte a lista de encomendas ocupava a porta inteira da geladeira.</p>
+        <p>Hoje a receita é a mesma, mas a cozinha cresceu. Os netos cuidam da loja, das fotos e agora do site. A massa ainda descansa 36 horas antes de ir ao forno, os biscoitos ainda são pintados um por um e ninguém sai da loja sem provar alguma coisa.</p>
       </article>
+      <img src="img/galeria/panetone-forno.jpg" alt="Panetone assando dentro do forno, com a luz do forno acesa" class="foto-moldura revelar">
+    </section>
 
-      <!-- LINHA DO TEMPO (a história é fictícia) -->
-      <section class="revelar" aria-labelledby="titulo-tempo">
-        <h2 id="titulo-tempo" class="titulo-secao titulo-verde">Nossa Linha do Tempo 🕰️</h2>
+    <!-- MISSÃO, VISÃO E VALORES -->
+    <section class="secao container" aria-labelledby="titulo-valores">
+      <span class="chapeu revelar">No que a gente acredita</span>
+      <h2 id="titulo-valores" class="titulo-secao revelar">Missão, visão e valores</h2>
+      <div class="valores">
+        <article class="valor revelar">
+          <h3>Missão</h3>
+          <p>Levar para a mesa de cada família um doce de Natal com gosto de casa de avó, feito sem pressa e com ingredientes de verdade.</p>
+        </article>
+        <article class="valor revelar">
+          <h3>Visão</h3>
+          <p>Ser a confeitaria que as pessoas lembram quando sentem cheiro de canela, em todo mês de dezembro.</p>
+        </article>
+        <article class="valor revelar">
+          <h3>Valores</h3>
+          <p>Receita de família, ingrediente bom, preço justo, atendimento pelo nome e nenhum doce jogado fora: o que sobra vai para a creche do bairro.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- LINHA DO TEMPO + CONTAGEM -->
+    <section class="secao container historia" aria-labelledby="titulo-tempo">
+      <div class="revelar">
+        <span class="chapeu">Ano a ano</span>
+        <h2 id="titulo-tempo" class="titulo-secao">Nossa linha do tempo</h2>
         <ol class="linha-tempo">
-          <li class="marco revelar"><span class="ano">2019</span><h3>A primeira fornada</h3><p>Na cozinha de casa, os primeiros 30 panetones foram vendidos para vizinhos e amigos.</p></li>
-          <li class="marco revelar"><span class="ano">2021</span><h3>As cestas de presente</h3><p>Nascem as cestas e os kits natalinos, que logo viraram febre entre as famílias da cidade.</p></li>
-          <li class="marco revelar"><span class="ano">2023</span><h3>Biscoitos decorados</h3><p>Os biscoitos de gengibre pintados à mão conquistam as crianças e ganham uma linha própria.</p></li>
-          <li class="marco revelar"><span class="ano">2026</span><h3>A loja virtual</h3><p>O Natal chega ao seu celular: agora todo o catálogo está a um clique de distância.</p></li>
+          <li><span class="ano">2019</span><h3>A primeira fornada</h3><p>Trinta panetones na cozinha de casa, vendidos para vizinhos e amigos da igreja.</p></li>
+          <li><span class="ano">2021</span><h3>Chegam as cestas</h3><p>As cestas de presente viram moda entre as empresas do bairro.</p></li>
+          <li><span class="ano">2023</span><h3>Biscoitos pintados</h3><p>Os flocos de neve com glacê azul ganham uma vitrine só para eles.</p></li>
+          <li><span class="ano">2026</span><h3>A loja virtual</h3><p>O catálogo inteiro passa a caber no celular. Este site!</p></li>
         </ol>
-      </section>
-
-      <!-- CONTAGEM REGRESSIVA -->
-      <section class="countdown-section revelar">
-        <h2>Falta pouco para a ceia!</h2>
-        <p class="contagem" data-contagem>Carregando contagem regressiva...</p>
-      </section>
-
-      <section class="revelar" aria-labelledby="titulo-equipe">
-        <h2 id="titulo-equipe" class="titulo-secao titulo-verde">Conheça a Nossa Equipe 👨‍🍳</h2>
-        <div class="equipe-grid">
-          <article class="equipe-card">
-            <div class="equipe-avatar" aria-hidden="true">🎄</div>
-            <h3>Miguel Carnieli</h3>
-            <p class="funcao">Design do site</p>
-            <p>Responsável pelo catálogo de 50 itens, imagens, publicação e testes de responsividade.</p>
-          </article>
-          <article class="equipe-card">
-            <div class="equipe-avatar" aria-hidden="true">🎨</div>
-            <h3>Felipe Russomano</h3>
-            <p class="funcao">Desenvolvedor do CSS</p>
-            <p>Responsável pela arquitetura HTML5, estilo CSS3 e identidade visual natalina.</p>
-          </article>
-          <article class="equipe-card">
-            <div class="equipe-avatar" aria-hidden="true">💻</div>
-            <h3>Gabriel Karan</h3>
-            <p class="funcao">Desenvolvedor JavaScript</p>
-            <p>Responsável pela manipulação do DOM, array de 50 produtos, filtros e carrinho.</p>
-          </article>
+      </div>
+      <div class="faixa-contagem caixa-contagem revelar">
+        <h2>Faltam poucos dias</h2>
+        <p>Contagem até a noite de Natal, atualizada a cada segundo.</p>
+        <div class="contagem" data-contagem>
+          <div><span data-dias>--</span><small>dias</small></div>
+          <div><span data-horas>--</span><small>horas</small></div>
+          <div><span data-minutos>--</span><small>min</small></div>
+          <div><span data-segundos>--</span><small>seg</small></div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+
+    <!-- EQUIPE -->
+    <section class="secao container" aria-labelledby="titulo-equipe">
+      <span class="chapeu revelar">Quem fez este site</span>
+      <h2 id="titulo-equipe" class="titulo-secao revelar">A equipe</h2>
+      <div class="equipe">
+        <article class="pessoa revelar">
+          <div class="avatar" aria-hidden="true">MC</div>
+          <h3>Miguel Carnieli</h3>
+          <p class="funcao">Design e conteúdo</p>
+          <p>Escolheu as fotos, montou o catálogo dos 50 produtos, publicou no GitHub Pages e testou no celular.</p>
+        </article>
+        <article class="pessoa revelar">
+          <div class="avatar" aria-hidden="true">FR</div>
+          <h3>Felipe Russomano</h3>
+          <p class="funcao">HTML e CSS</p>
+          <p>Estruturou as cinco páginas, criou a paleta, as variáveis e o layout responsivo.</p>
+        </article>
+        <article class="pessoa revelar">
+          <div class="avatar" aria-hidden="true">GK</div>
+          <h3>Gabriel Karan</h3>
+          <p class="funcao">JavaScript</p>
+          <p>Programou os cards, o filtro, o carrinho, o slideshow, o parallax e a validação do formulário.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CRÉDITOS DAS IMAGENS -->
+    <section class="container creditos" id="creditos" aria-labelledby="titulo-creditos">
+      <h2 id="titulo-creditos" class="titulo-secao">Créditos das fotos</h2>
+      <p class="texto-apoio">Todas as fotos vêm do Wikimedia Commons e têm licença livre (Creative Commons ou domínio público). As fotos foram recortadas e reduzidas para o site.</p>
+      <details>
+        <summary>Ver a lista de autores e licenças</summary>
+        <ol>
+          <li><code>img/produtos/panetone-trufado.jpg</code> - "Panettone Raúl Asencio.jpg", por Francesc Fort, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Panettone_Ra%C3%BAl_Asencio.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/chocotone-doce-de-leite.jpg</code> - "Home made panettone by Nicola (5300955223).jpg", por N i c o l a from Fiumicino (Rome), Italy, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Home_made_panettone_by_Nicola_(5300955223).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/panetone-tradicional-frutas.jpg</code> - "Panettone italiano. Pan dulce de Navidad.jpg", por Juan Emilio Prades Bel, CC BY 4.0. <a href="https://commons.wikimedia.org/wiki/File:Panettone_italiano._Pan_dulce_de_Navidad.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/panetone-laranja.jpg</code> - "Slice of panettone.jpg", por stu_spivack, CC BY-SA 2.0. <a href="https://commons.wikimedia.org/wiki/File:Slice_of_panettone.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/pandoro-baunilha.jpg</code> - "Pandoro cut 01.jpg", por Kuebi = Armin Kübelbeck, CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:Pandoro_cut_01.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/panetone-gotas-chocolate.jpg</code> - "Panettone - Nicolettone 2017 - IMG 7079 (31379967150).jpg", por N i c o l a from Fiumicino (Rome), Italy, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Panettone_-_Nicolettone_2017_-_IMG_7079_(31379967150).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/mini-panetones.jpg</code> - "Panettone shaped Muffins (24128497507).jpg", por N i c o l a from Fiumicino (Rome), Italy, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Panettone_shaped_Muffins_(24128497507).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/panetone-classico-italiano.jpg</code> - "Panettone aufgeschnitten freigestellt.jpg", por Hartung, Public domain. <a href="https://commons.wikimedia.org/wiki/File:Panettone_aufgeschnitten_freigestellt.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/panetone-passas.jpg</code> - "Panettone - Nicolettone 2017 - IMG 7085 (31752542285).jpg", por N i c o l a from Fiumicino (Rome), Italy, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Panettone_-_Nicolettone_2017_-_IMG_7085_(31752542285).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/caixa-degustacao-panetones.jpg</code> - "Panettone shaped Muffins (24128499227).jpg", por N i c o l a from Fiumicino (Rome), Italy, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Panettone_shaped_Muffins_(24128499227).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/biscoito-gengibre.jpg</code> - "Gingerbread men.jpg", por Gaetan Lee, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Gingerbread_men.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/biscoitos-decorados.jpg</code> - "Decorated sugar cookies 2.jpg", por Julie Anne Workman, CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:Decorated_sugar_cookies_2.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/biscoito-amendoas.jpg</code> - "Almond Biscuit Bakery.JPG", por Triv.rao, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Almond_Biscuit_Bakery.JPG" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/speculoos.jpg</code> - "Spekulatius four pieces of.jpg", por Zerohund, CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:Spekulatius_four_pieces_of.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/estrela-canela.jpg</code> - "Zimtsterne.jpg", por 4028mdk09, CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:Zimtsterne.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/biscoito-glace-real.jpg</code> - "Snowflake Christmas sugar cookies (2), December 2008.jpg", por Kristin Ausk, CC BY-SA 2.0. <a href="https://commons.wikimedia.org/wiki/File:Snowflake_Christmas_sugar_cookies_(2),_December_2008.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/cookies-chocolate.jpg</code> - "Chocolate chip cookies on cutting board.jpg", por Mshuang2, CC0. <a href="https://commons.wikimedia.org/wiki/File:Chocolate_chip_cookies_on_cutting_board.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/biscoito-mel-chocolate.jpg</code> - "Lebkuchen-single.jpg", por Cnbrb, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Lebkuchen-single.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/alfajor-chocolate.jpg</code> - "It&#x27;s It ice cream sandwich 2021-07.png", por WhatamIdoing, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:It%27s_It_ice_cream_sandwich_2021-07.png" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/lata-vintage-biscoitos.jpg</code> - "Big+Lots+2011+Christmas+Cookie+Tin+-+Bakery+25.JPG", por Ed Berg http://toyconnect.blogspot.com/, CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:Big%2BLots%2B2011%2BChristmas%2BCookie%2BTin%2B-%2BBakery%2B25.JPG" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/galette-dos-reis.jpg</code> - "Galette des rois dllu.jpg", por Dllu, CC BY 4.0. <a href="https://commons.wikimedia.org/wiki/File:Galette_des_rois_dllu.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/tronco-de-natal.jpg</code> - "Buche de Noel (Yule Log).jpg", por Mitantig, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Buche_de_Noel_(Yule_Log).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/torta-holandesa.jpg</code> - "Chocolate Haupia Pie - 2459168787.jpg", por Gregg Tavares, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Chocolate_Haupia_Pie_-_2459168787.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/bolo-nozes.jpg</code> - "A slice of coffee and walnut cake - Audit Room Café, Petworth House.jpg", por Andy Li, CC0. <a href="https://commons.wikimedia.org/wiki/File:A_slice_of_coffee_and_walnut_cake_-_Audit_Room_Caf%C3%A9,_Petworth_House.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/torta-maca-canela.jpg</code> - "Apple pie 7.jpg", por Shisma, CC BY 4.0. <a href="https://commons.wikimedia.org/wiki/File:Apple_pie_7.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/cheesecake-frutas-vermelhas.jpg</code> - "Berry Cheesecake (7263633496).jpg", por Rexness, CC BY-SA 2.0. <a href="https://commons.wikimedia.org/wiki/File:Berry_Cheesecake_(7263633496).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/stollen.jpg</code> - "Stollen-Dresdner Christstollen.jpg", por Gürgi, Public domain. <a href="https://commons.wikimedia.org/wiki/File:Stollen-Dresdner_Christstollen.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/torta-mousse-chocolate.jpg</code> - "Chocolate mousse cake 2.jpg", por Lionel Allorge, CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:Chocolate_mousse_cake_2.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/bolo-red-velvet.jpg</code> - "Red velvet cake slice.jpg", por Flickr user ~Twon~ : https://www.flickr.com/photos/twon/, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Red_velvet_cake_slice.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/cupcakes-natal.jpg</code> - "Christmas Cupcakes.jpg", por Tim Sullivan, CC0. <a href="https://commons.wikimedia.org/wiki/File:Christmas_Cupcakes.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/cesta-premium.jpg</code> - "Brown Christmas cookie in vintage basket (49341546557).jpg", por Nenad Stojkovic from Srbija, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Brown_Christmas_cookie_in_vintage_basket_(49341546557).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/kit-cortadores.jpg</code> - "Cookies-christmas-xmas-baking (24300047376).jpg", por www.Pixel.la Free Stock Photos, CC0. <a href="https://commons.wikimedia.org/wiki/File:Cookies-christmas-xmas-baking_(24300047376).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/cesta-frutas.jpg</code> - "Exotic Fruit Gift Basket (4461109309).jpg", por Vegan Feast Catering, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Exotic_Fruit_Gift_Basket_(4461109309).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/kit-casinha-gengibre.jpg</code> - "Gingerbread House 2025.jpg", por Louis174936, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Gingerbread_House_2025.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/cesta-cafe-manha.jpg</code> - "Morning-breakfast-croissant (24244330501).jpg", por www.Pixel.la Free Stock Photos, CC0. <a href="https://commons.wikimedia.org/wiki/File:Morning-breakfast-croissant_(24244330501).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/kit-brigadeiros.jpg</code> - "Brigadeiro.jpg", por User Mayra (Maych) on Flickr, CC BY-SA 2.0. <a href="https://commons.wikimedia.org/wiki/File:Brigadeiro.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/kit-sucos-artesanais.jpg</code> - "Prune juice bottles.jpg", por Betty Wills (Atsme), CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Prune_juice_bottles.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/caixa-presente.jpg</code> - "Brown gift box with red ribbon and bow.jpg", por Shixart1985, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Brown_gift_box_with_red_ribbon_and_bow.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/bau-madeira.jpg</code> - "Chest - 18c - Wooden Architecture Centre, Tyumen.jpg", por Лапоть, CC0. <a href="https://commons.wikimedia.org/wiki/File:Chest_-_18c_-_Wooden_Architecture_Centre,_Tyumen.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/kit-infantil-confeiteiro.jpg</code> - "Sugar Sprinkled Sugar Cookies.jpg", por HeatherMarieKosur, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Sugar_Sprinkled_Sugar_Cookies.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/chocolate-quente.jpg</code> - "Hot chocolate in western.jpg", por Geoffreyrabbit, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Hot_chocolate_in_western.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/gemada-sem-alcool.jpg</code> - "Eggnog (cropped).jpg", por Dinner Series, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Eggnog_(cropped).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/suco-quente-uva.jpg</code> - "Mulled wine - Olea 2025-12-26.jpg", por Andy Li, CC0. <a href="https://commons.wikimedia.org/wiki/File:Mulled_wine_-_Olea_2025-12-26.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/caixa-trufas.jpg</code> - "Chocolate truffles 2.jpg", por Off-shell, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Chocolate_truffles_2.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/drageas-amendoa.jpg</code> - "La-Pone-Jordan-Almonds.jpg", por Evan-Amos, CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:La-Pone-Jordan-Almonds.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/bombons-frutas.jpg</code> - "Raspberry chocolate truffle from Mary Ann&#x27;s Chocolates Dessert, March 2011.jpg", por Steven Depolo, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Raspberry_chocolate_truffle_from_Mary_Ann%27s_Chocolates_Dessert,_March_2011.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/espumante-uva.jpg</code> - "Bottle, juice (AM 2004.52.223-6).jpg", por Greenway&#x27;s Orchards Ltd, CC BY 4.0. <a href="https://commons.wikimedia.org/wiki/File:Bottle,_juice_(AM_2004.52.223-6).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/cha-canela-maca.jpg</code> - "Tarçın çayı 2013-11-23 01-56.jpg", por User:Hari1414, CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:Tar%C3%A7%C4%B1n_%C3%A7ay%C4%B1_2013-11-23_01-56.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/barra-chocolate.jpg</code> - "Righteously Raw chocolate.jpg", por Mx. Granger, CC0. <a href="https://commons.wikimedia.org/wiki/File:Righteously_Raw_chocolate.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/produtos/creme-avela.jpg</code> - "Schockelasbotterschmir.jpg", por Cornischong at Luxembourgish Wikipedia, CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:Schockelasbotterschmir.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/banners/slide-panetone.jpg</code> - "Panettone - Nicolettone 2017 - IMG 7092 (31752504105).jpg", por N i c o l a from Fiumicino (Rome), Italy, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Panettone_-_Nicolettone_2017_-_IMG_7092_(31752504105).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/banners/slide-biscoitos.jpg</code> - "Gingerbread Cookies on Table.jpg", por GutMaze, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Gingerbread_Cookies_on_Table.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/banners/slide-casinha.jpg</code> - "Gingerbread landscape.jpg", por Orsotron, CC BY-SA 3.0. <a href="https://commons.wikimedia.org/wiki/File:Gingerbread_landscape.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/banners/parallax-fundo.jpg</code> - "Snowy Night, Forest, Dunes, and Cleveland Peak (53406270337).jpg", por Great Sand Dunes National Park and Preserve, Public domain. <a href="https://commons.wikimedia.org/wiki/File:Snowy_Night,_Forest,_Dunes,_and_Cleveland_Peak_(53406270337).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/galeria/bandeja-doces.jpg</code> - "A friend&#x27;s baked goodies for caloing at home, Ehrenbach.jpg", por Gerda Arendt, CC0. <a href="https://commons.wikimedia.org/wiki/File:A_friend%27s_baked_goodies_for_caloing_at_home,_Ehrenbach.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/galeria/mesa-ceia.jpg</code> - "Christmas Eve dinner table with Christmas food 01.jpg", por Chris Olszewski, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:Christmas_Eve_dinner_table_with_Christmas_food_01.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/galeria/casinha-confeitos.jpg</code> - "Gingerbread house with candy.jpg", por Thegreatmutata, CC BY 4.0. <a href="https://commons.wikimedia.org/wiki/File:Gingerbread_house_with_candy.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/galeria/biscoitos-pintados.jpg</code> - "02014 Die traditionelle Adventkirmes in Sanok.JPG", por Silar, CC BY-SA 4.0. <a href="https://commons.wikimedia.org/wiki/File:02014_Die_traditionelle_Adventkirmes_in_Sanok.JPG" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/galeria/tronco-decorado.jpg</code> - "Bûche de Noël chocolat framboise maison.jpg", por Jebulon, CC0. <a href="https://commons.wikimedia.org/wiki/File:B%C3%BBche_de_No%C3%ABl_chocolat_framboise_maison.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/galeria/biscoito-arvore.jpg</code> - "Christmas tree sugar cookies, December 2008.jpg", por Kristin Ausk, CC BY-SA 2.0. <a href="https://commons.wikimedia.org/wiki/File:Christmas_tree_sugar_cookies,_December_2008.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/galeria/cupcakes-mesa.jpg</code> - "Christmas cupcakes.jpg", por cooknken, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Christmas_cupcakes.jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/galeria/panetone-forno.jpg</code> - "Panettone IMG 3619 (44319157480).jpg", por N i c o l a from Fiumicino (Rome), Italy, CC BY 2.0. <a href="https://commons.wikimedia.org/wiki/File:Panettone_IMG_3619_(44319157480).jpg" target="_blank" rel="noopener">Fonte</a></li>
+          <li><code>img/galeria/biscoitos-gengibre.jpg</code> - "Erimuotoisia piparkakkuja.jpg", por Pipariryhmä, CC BY 3.0. <a href="https://commons.wikimedia.org/wiki/File:Erimuotoisia_piparkakkuja.jpg" target="_blank" rel="noopener">Fonte</a></li>
+        </ol>
+      </details>
+    </section>
   </main>
 
-  <!-- RODAPÉ (igual em todas as páginas) -->
+  <!-- ===== RODAPÉ (igual em todas as páginas) ===== -->
   <footer>
-    <p>🎄 <strong>Doce Natal Confeitaria Natalina</strong> &copy; 2026 - Todos os direitos reservados.</p>
-    <p>Projeto AV2 Desenvolvimento Web - Colégio UNASP | Prof. Samuel Elias</p>
-    <p>Imagens: ilustrações vetoriais (SVG) autorais. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público), gerada no navegador.</p>
+    <div class="container rodape">
+      <div>
+        <img src="img/logo-claro.svg" alt="Doce Natal Confeitaria" class="rodape-logo">
+        <p>Confeitaria de Natal feita em família desde 2019. Loja fictícia criada para o projeto AV2 de Desenvolvimento Web.</p>
+      </div>
+      <div>
+        <h2>Páginas</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre nós</a></li>
+          <li><a href="galeria.html">Galeria e ofertas</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Loja</h2>
+        <ul>
+          <li>Rua das Hortênsias, 1225 - São Paulo/SP</li>
+          <li>(11) 5555-1225</li>
+          <li>Seg. a sáb., 8h às 19h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-fim">
+      <div class="container">
+        <p>© 2026 Doce Natal · Projeto escolar - Colégio UNASP · Prof. Samuel Elias · Equipe: Miguel Carnieli, Felipe Russomano e Gabriel Karan.</p>
+        <p>Fotos: Wikimedia Commons (licenças Creative Commons e domínio público) - lista completa de autores na página <a href="sobre.html#creditos">Sobre nós</a>. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público).</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- JANELA (MODAL) DE DETALHES DO PRODUTO / LIGHTBOX -->
-  <div id="modal-produto" class="modal" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
-    <div class="modal-conteudo">
-      <button type="button" class="fechar-modal" aria-label="Fechar janela">&times;</button>
-      <div id="modal-corpo"></div>
+  <!-- janela flutuante (modal) usada para os detalhes do produto -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Detalhes">
+    <div class="modal-caixa">
+      <button type="button" class="fechar" aria-label="Fechar">×</button>
+      <div id="modal-conteudo"></div>
     </div>
   </div>
-  <button type="button" id="topo" aria-label="Voltar ao topo">⬆</button>
+  <button type="button" id="topo" aria-label="Voltar ao topo">↑</button>
 
-  <!-- A ordem importa: produtos.js precisa vir ANTES de script.js -->
+  <!-- produtos.js precisa vir ANTES do script.js -->
   <script src="js/produtos.js"></script>
   <script src="js/script.js"></script>
 </body>

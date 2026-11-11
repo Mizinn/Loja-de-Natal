@@ -1,4 +1,4 @@
-LOJA: Doce Natal Confeitaria Natalina
+LOJA: Doce Natal Confeitaria
 SEGMENTO: Confeitaria
 TURMA: 1TI_A
 
@@ -10,25 +10,94 @@ INTEGRANTES:
 LINKS:
  Site (GitHub Pages): https://mizinn.github.io/Loja-de-Natal/
  Repositório (GitHub): https://github.com/Mizinn/Loja-de-Natal
- Vídeo (YouTube): [PREENCHER: https://www.youtube.com/watch?v=...]
+ Vídeo (YouTube): [PREENCHER: link do vídeo]
+
+PÁGINAS: index.html (Início), produtos.html, sobre.html, galeria.html (Galeria e ofertas), contato.html
 
 RECURSOS DE JAVASCRIPT IMPLEMENTADOS (13: 5 obrigatórios + 8 extras) - arquivo js/script.js
- 1. Slideshow / Carrossel com botões e indicadores (obrigatório) - index.html
- 2. Parallax em JavaScript, 2 camadas (obrigatório) - index.html
- 3. Sons: música "Jingle Bells" com botão de ligar/desligar e sininho ao adicionar no carrinho (obrigatório) - todas as páginas
- 4. Cards dinâmicos dos 50 produtos com map() e template literal (obrigatório) - produtos.html e index.html (destaques)
- 5. Filtro por categoria e busca por nome/ingrediente, com contador e mensagem de "nenhum produto" (obrigatório) - produtos.html
- 6. Carrinho de compras: adicionar, aumentar/diminuir, remover, total e quantidade, salvo no localStorage - todas as páginas
- 7. Contagem regressiva até o Natal (setInterval) - index.html, sobre.html e galeria.html (com seção de ofertas)
- 8. Validação do formulário com mensagens de erro por campo e de sucesso - contato.html
- 9. Menu responsivo hambúrguer - todas as páginas
- 10. Modal / Lightbox com detalhes do produto - galeria.html, produtos.html e index.html
- 11. Efeito de neve caindo (DOM) - todas as páginas
+ 1. Slideshow com setas, bolinhas e troca automática a cada 5 s (obrigatório) - index.html
+ 2. Parallax em JavaScript com 2 camadas: foto da serra ao fundo e pinheiros na frente (obrigatório) - index.html
+ 3. Sons: música "Jingle Bells" com botão de ligar/desligar e sininho ao colocar na sacola (obrigatório) - todas as páginas
+ 4. Cards dinâmicos dos 50 produtos com map(), join("") e template literal (obrigatório) - produtos.html e index.html (destaques)
+ 5. Filtro por categoria (botões) e busca por nome/ingrediente, com contador e aviso de "nenhum doce encontrado" (obrigatório) - produtos.html
+ 6. Carrinho (sacola): adicionar, aumentar/diminuir, remover, esvaziar, total e quantidade, salvo no localStorage - todas as páginas
+ 7. Contagem regressiva até o Natal (setInterval) - index.html, sobre.html e galeria.html
+ 8. Validação do formulário (nome, e-mail, assunto e mensagem) com erro por campo e mensagem de sucesso - contato.html
+ 9. Menu hambúrguer no celular (fecha também com a tecla Esc) - todas as páginas
+ 10. Modal com detalhes do produto e lightbox da galeria com setas e teclado - produtos.html, index.html e galeria.html
+ 11. Efeito de neve criado com o DOM - todas as páginas
  12. Animação ao rolar (IntersectionObserver) - todas as páginas
- 13. Botão "Voltar ao topo" suave - todas as páginas
+ 13. Botão "voltar ao topo" com rolagem suave - todas as páginas
 
-CRÉDITOS (imagens, sons e ícones):
- - Imagens dos produtos, banners e logotipo: ilustrações vetoriais (SVG) criadas pela equipe para o projeto, com emojis do sistema.
- - Música: "Jingle Bells" (James Lord Pierpont, 1857 - domínio público), gerada no próprio navegador pela Web Audio API. Não há arquivos de áudio.
- - Fontes: Google Fonts - Mountains of Christmas e Poppins.
- - Todos os nomes de lojas, endereços, telefones e redes sociais do site são fictícios.
+CRÉDITOS:
+ - Fotos: Wikimedia Commons (https://commons.wikimedia.org), todas com licença livre (Creative Commons ou domínio público).
+   As fotos foram recortadas e reduzidas para o site. Lista completa abaixo e na página sobre.html.
+ - Logotipo, ícone da aba e camada de pinheiros do parallax: desenhos SVG feitos pela equipe.
+ - Música: "Jingle Bells" (James Lord Pierpont, 1857 - domínio público), tocada pelo navegador com a Web Audio API. Não há arquivo de áudio.
+ - Fontes: Google Fonts - Fraunces e Nunito Sans.
+ - Nome da loja, endereço, telefones e redes sociais são fictícios.
+
+CRÉDITOS DAS FOTOS (arquivo: título original, autor, licença, fonte):
+ - img/produtos/panetone-trufado.jpg: "Panettone Raúl Asencio.jpg", por Francesc Fort (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Panettone_Ra%C3%BAl_Asencio.jpg
+ - img/produtos/chocotone-doce-de-leite.jpg: "Home made panettone by Nicola (5300955223).jpg", por N i c o l a from Fiumicino (Rome), Italy (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Home_made_panettone_by_Nicola_(5300955223).jpg
+ - img/produtos/panetone-tradicional-frutas.jpg: "Panettone italiano. Pan dulce de Navidad.jpg", por Juan Emilio Prades Bel (CC BY 4.0) - https://commons.wikimedia.org/wiki/File:Panettone_italiano._Pan_dulce_de_Navidad.jpg
+ - img/produtos/panetone-laranja.jpg: "Slice of panettone.jpg", por stu_spivack (CC BY-SA 2.0) - https://commons.wikimedia.org/wiki/File:Slice_of_panettone.jpg
+ - img/produtos/pandoro-baunilha.jpg: "Pandoro cut 01.jpg", por Kuebi = Armin Kübelbeck (CC BY-SA 3.0) - https://commons.wikimedia.org/wiki/File:Pandoro_cut_01.jpg
+ - img/produtos/panetone-gotas-chocolate.jpg: "Panettone - Nicolettone 2017 - IMG 7079 (31379967150).jpg", por N i c o l a from Fiumicino (Rome), Italy (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Panettone_-_Nicolettone_2017_-_IMG_7079_(31379967150).jpg
+ - img/produtos/mini-panetones.jpg: "Panettone shaped Muffins (24128497507).jpg", por N i c o l a from Fiumicino (Rome), Italy (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Panettone_shaped_Muffins_(24128497507).jpg
+ - img/produtos/panetone-classico-italiano.jpg: "Panettone aufgeschnitten freigestellt.jpg", por Hartung (Public domain) - https://commons.wikimedia.org/wiki/File:Panettone_aufgeschnitten_freigestellt.jpg
+ - img/produtos/panetone-passas.jpg: "Panettone - Nicolettone 2017 - IMG 7085 (31752542285).jpg", por N i c o l a from Fiumicino (Rome), Italy (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Panettone_-_Nicolettone_2017_-_IMG_7085_(31752542285).jpg
+ - img/produtos/caixa-degustacao-panetones.jpg: "Panettone shaped Muffins (24128499227).jpg", por N i c o l a from Fiumicino (Rome), Italy (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Panettone_shaped_Muffins_(24128499227).jpg
+ - img/produtos/biscoito-gengibre.jpg: "Gingerbread men.jpg", por Gaetan Lee (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Gingerbread_men.jpg
+ - img/produtos/biscoitos-decorados.jpg: "Decorated sugar cookies 2.jpg", por Julie Anne Workman (CC BY-SA 3.0) - https://commons.wikimedia.org/wiki/File:Decorated_sugar_cookies_2.jpg
+ - img/produtos/biscoito-amendoas.jpg: "Almond Biscuit Bakery.JPG", por Triv.rao (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Almond_Biscuit_Bakery.JPG
+ - img/produtos/speculoos.jpg: "Spekulatius four pieces of.jpg", por Zerohund (CC BY-SA 3.0) - https://commons.wikimedia.org/wiki/File:Spekulatius_four_pieces_of.jpg
+ - img/produtos/estrela-canela.jpg: "Zimtsterne.jpg", por 4028mdk09 (CC BY-SA 3.0) - https://commons.wikimedia.org/wiki/File:Zimtsterne.jpg
+ - img/produtos/biscoito-glace-real.jpg: "Snowflake Christmas sugar cookies (2), December 2008.jpg", por Kristin Ausk (CC BY-SA 2.0) - https://commons.wikimedia.org/wiki/File:Snowflake_Christmas_sugar_cookies_(2),_December_2008.jpg
+ - img/produtos/cookies-chocolate.jpg: "Chocolate chip cookies on cutting board.jpg", por Mshuang2 (CC0) - https://commons.wikimedia.org/wiki/File:Chocolate_chip_cookies_on_cutting_board.jpg
+ - img/produtos/biscoito-mel-chocolate.jpg: "Lebkuchen-single.jpg", por Cnbrb (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Lebkuchen-single.jpg
+ - img/produtos/alfajor-chocolate.jpg: "It's It ice cream sandwich 2021-07.png", por WhatamIdoing (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:It%27s_It_ice_cream_sandwich_2021-07.png
+ - img/produtos/lata-vintage-biscoitos.jpg: "Big+Lots+2011+Christmas+Cookie+Tin+-+Bakery+25.JPG", por Ed Berg http://toyconnect.blogspot.com/ (CC BY-SA 3.0) - https://commons.wikimedia.org/wiki/File:Big%2BLots%2B2011%2BChristmas%2BCookie%2BTin%2B-%2BBakery%2B25.JPG
+ - img/produtos/galette-dos-reis.jpg: "Galette des rois dllu.jpg", por Dllu (CC BY 4.0) - https://commons.wikimedia.org/wiki/File:Galette_des_rois_dllu.jpg
+ - img/produtos/tronco-de-natal.jpg: "Buche de Noel (Yule Log).jpg", por Mitantig (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Buche_de_Noel_(Yule_Log).jpg
+ - img/produtos/torta-holandesa.jpg: "Chocolate Haupia Pie - 2459168787.jpg", por Gregg Tavares (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Chocolate_Haupia_Pie_-_2459168787.jpg
+ - img/produtos/bolo-nozes.jpg: "A slice of coffee and walnut cake - Audit Room Café, Petworth House.jpg", por Andy Li (CC0) - https://commons.wikimedia.org/wiki/File:A_slice_of_coffee_and_walnut_cake_-_Audit_Room_Caf%C3%A9,_Petworth_House.jpg
+ - img/produtos/torta-maca-canela.jpg: "Apple pie 7.jpg", por Shisma (CC BY 4.0) - https://commons.wikimedia.org/wiki/File:Apple_pie_7.jpg
+ - img/produtos/cheesecake-frutas-vermelhas.jpg: "Berry Cheesecake (7263633496).jpg", por Rexness (CC BY-SA 2.0) - https://commons.wikimedia.org/wiki/File:Berry_Cheesecake_(7263633496).jpg
+ - img/produtos/stollen.jpg: "Stollen-Dresdner Christstollen.jpg", por Gürgi (Public domain) - https://commons.wikimedia.org/wiki/File:Stollen-Dresdner_Christstollen.jpg
+ - img/produtos/torta-mousse-chocolate.jpg: "Chocolate mousse cake 2.jpg", por Lionel Allorge (CC BY-SA 3.0) - https://commons.wikimedia.org/wiki/File:Chocolate_mousse_cake_2.jpg
+ - img/produtos/bolo-red-velvet.jpg: "Red velvet cake slice.jpg", por Flickr user ~Twon~ : https://www.flickr.com/photos/twon/ (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Red_velvet_cake_slice.jpg
+ - img/produtos/cupcakes-natal.jpg: "Christmas Cupcakes.jpg", por Tim Sullivan (CC0) - https://commons.wikimedia.org/wiki/File:Christmas_Cupcakes.jpg
+ - img/produtos/cesta-premium.jpg: "Brown Christmas cookie in vintage basket (49341546557).jpg", por Nenad Stojkovic from Srbija (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Brown_Christmas_cookie_in_vintage_basket_(49341546557).jpg
+ - img/produtos/kit-cortadores.jpg: "Cookies-christmas-xmas-baking (24300047376).jpg", por www.Pixel.la Free Stock Photos (CC0) - https://commons.wikimedia.org/wiki/File:Cookies-christmas-xmas-baking_(24300047376).jpg
+ - img/produtos/cesta-frutas.jpg: "Exotic Fruit Gift Basket (4461109309).jpg", por Vegan Feast Catering (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Exotic_Fruit_Gift_Basket_(4461109309).jpg
+ - img/produtos/kit-casinha-gengibre.jpg: "Gingerbread House 2025.jpg", por Louis174936 (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Gingerbread_House_2025.jpg
+ - img/produtos/cesta-cafe-manha.jpg: "Morning-breakfast-croissant (24244330501).jpg", por www.Pixel.la Free Stock Photos (CC0) - https://commons.wikimedia.org/wiki/File:Morning-breakfast-croissant_(24244330501).jpg
+ - img/produtos/kit-brigadeiros.jpg: "Brigadeiro.jpg", por User Mayra (Maych) on Flickr (CC BY-SA 2.0) - https://commons.wikimedia.org/wiki/File:Brigadeiro.jpg
+ - img/produtos/kit-sucos-artesanais.jpg: "Prune juice bottles.jpg", por Betty Wills (Atsme) (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Prune_juice_bottles.jpg
+ - img/produtos/caixa-presente.jpg: "Brown gift box with red ribbon and bow.jpg", por Shixart1985 (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Brown_gift_box_with_red_ribbon_and_bow.jpg
+ - img/produtos/bau-madeira.jpg: "Chest - 18c - Wooden Architecture Centre, Tyumen.jpg", por Лапоть (CC0) - https://commons.wikimedia.org/wiki/File:Chest_-_18c_-_Wooden_Architecture_Centre,_Tyumen.jpg
+ - img/produtos/kit-infantil-confeiteiro.jpg: "Sugar Sprinkled Sugar Cookies.jpg", por HeatherMarieKosur (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Sugar_Sprinkled_Sugar_Cookies.jpg
+ - img/produtos/chocolate-quente.jpg: "Hot chocolate in western.jpg", por Geoffreyrabbit (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Hot_chocolate_in_western.jpg
+ - img/produtos/gemada-sem-alcool.jpg: "Eggnog (cropped).jpg", por Dinner Series (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Eggnog_(cropped).jpg
+ - img/produtos/suco-quente-uva.jpg: "Mulled wine - Olea 2025-12-26.jpg", por Andy Li (CC0) - https://commons.wikimedia.org/wiki/File:Mulled_wine_-_Olea_2025-12-26.jpg
+ - img/produtos/caixa-trufas.jpg: "Chocolate truffles 2.jpg", por Off-shell (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Chocolate_truffles_2.jpg
+ - img/produtos/drageas-amendoa.jpg: "La-Pone-Jordan-Almonds.jpg", por Evan-Amos (CC BY-SA 3.0) - https://commons.wikimedia.org/wiki/File:La-Pone-Jordan-Almonds.jpg
+ - img/produtos/bombons-frutas.jpg: "Raspberry chocolate truffle from Mary Ann's Chocolates Dessert, March 2011.jpg", por Steven Depolo (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Raspberry_chocolate_truffle_from_Mary_Ann%27s_Chocolates_Dessert,_March_2011.jpg
+ - img/produtos/espumante-uva.jpg: "Bottle, juice (AM 2004.52.223-6).jpg", por Greenway's Orchards Ltd (CC BY 4.0) - https://commons.wikimedia.org/wiki/File:Bottle,_juice_(AM_2004.52.223-6).jpg
+ - img/produtos/cha-canela-maca.jpg: "Tarçın çayı 2013-11-23 01-56.jpg", por User:Hari1414 (CC BY-SA 3.0) - https://commons.wikimedia.org/wiki/File:Tar%C3%A7%C4%B1n_%C3%A7ay%C4%B1_2013-11-23_01-56.jpg
+ - img/produtos/barra-chocolate.jpg: "Righteously Raw chocolate.jpg", por Mx. Granger (CC0) - https://commons.wikimedia.org/wiki/File:Righteously_Raw_chocolate.jpg
+ - img/produtos/creme-avela.jpg: "Schockelasbotterschmir.jpg", por Cornischong at Luxembourgish Wikipedia (CC BY-SA 3.0) - https://commons.wikimedia.org/wiki/File:Schockelasbotterschmir.jpg
+ - img/banners/slide-panetone.jpg: "Panettone - Nicolettone 2017 - IMG 7092 (31752504105).jpg", por N i c o l a from Fiumicino (Rome), Italy (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Panettone_-_Nicolettone_2017_-_IMG_7092_(31752504105).jpg
+ - img/banners/slide-biscoitos.jpg: "Gingerbread Cookies on Table.jpg", por GutMaze (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Gingerbread_Cookies_on_Table.jpg
+ - img/banners/slide-casinha.jpg: "Gingerbread landscape.jpg", por Orsotron (CC BY-SA 3.0) - https://commons.wikimedia.org/wiki/File:Gingerbread_landscape.jpg
+ - img/banners/parallax-fundo.jpg: "Snowy Night, Forest, Dunes, and Cleveland Peak (53406270337).jpg", por Great Sand Dunes National Park and Preserve (Public domain) - https://commons.wikimedia.org/wiki/File:Snowy_Night,_Forest,_Dunes,_and_Cleveland_Peak_(53406270337).jpg
+ - img/galeria/bandeja-doces.jpg: "A friend's baked goodies for caloing at home, Ehrenbach.jpg", por Gerda Arendt (CC0) - https://commons.wikimedia.org/wiki/File:A_friend%27s_baked_goodies_for_caloing_at_home,_Ehrenbach.jpg
+ - img/galeria/mesa-ceia.jpg: "Christmas Eve dinner table with Christmas food 01.jpg", por Chris Olszewski (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:Christmas_Eve_dinner_table_with_Christmas_food_01.jpg
+ - img/galeria/casinha-confeitos.jpg: "Gingerbread house with candy.jpg", por Thegreatmutata (CC BY 4.0) - https://commons.wikimedia.org/wiki/File:Gingerbread_house_with_candy.jpg
+ - img/galeria/biscoitos-pintados.jpg: "02014 Die traditionelle Adventkirmes in Sanok.JPG", por Silar (CC BY-SA 4.0) - https://commons.wikimedia.org/wiki/File:02014_Die_traditionelle_Adventkirmes_in_Sanok.JPG
+ - img/galeria/tronco-decorado.jpg: "Bûche de Noël chocolat framboise maison.jpg", por Jebulon (CC0) - https://commons.wikimedia.org/wiki/File:B%C3%BBche_de_No%C3%ABl_chocolat_framboise_maison.jpg
+ - img/galeria/biscoito-arvore.jpg: "Christmas tree sugar cookies, December 2008.jpg", por Kristin Ausk (CC BY-SA 2.0) - https://commons.wikimedia.org/wiki/File:Christmas_tree_sugar_cookies,_December_2008.jpg
+ - img/galeria/cupcakes-mesa.jpg: "Christmas cupcakes.jpg", por cooknken (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Christmas_cupcakes.jpg
+ - img/galeria/panetone-forno.jpg: "Panettone IMG 3619 (44319157480).jpg", por N i c o l a from Fiumicino (Rome), Italy (CC BY 2.0) - https://commons.wikimedia.org/wiki/File:Panettone_IMG_3619_(44319157480).jpg
+ - img/galeria/biscoitos-gengibre.jpg: "Erimuotoisia piparkakkuja.jpg", por Pipariryhmä (CC BY 3.0) - https://commons.wikimedia.org/wiki/File:Erimuotoisia_piparkakkuja.jpg

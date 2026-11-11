@@ -3,103 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doce Natal | Galeria & Ofertas</title>
-  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <meta name="description" content="Fotos da confeitaria e ofertas de Natal.">
+  <title>Doce Natal | Galeria e ofertas</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsivo.css">
 </head>
 <body>
 
-  <!-- CABEÇALHO (igual em todas as páginas) -->
+  <!-- ===== CABEÇALHO (igual em todas as páginas) ===== -->
+  <p class="aviso-topo">Encomendas de Natal até <strong>22 de dezembro</strong><span class="some-celular"> · retirada na loja ou entrega na cidade</span></p>
   <header>
-    <a href="index.html" class="logo-container">
-      <img src="img/logo.svg" alt="Logotipo Doce Natal Confeitaria" class="logo-img">
-    </a>
-    <nav class="menu" id="menu-principal" aria-label="Menu principal">
-        <a href="index.html">Home</a>
+    <div class="container cabecalho">
+      <a href="index.html" class="logo"><img src="img/logo.svg" alt="Doce Natal Confeitaria - página inicial"></a>
+      <nav class="menu" id="menu" aria-label="Menu principal">
+        <a href="index.html">Início</a>
         <a href="produtos.html">Produtos</a>
-        <a href="sobre.html">Sobre Nós</a>
-        <a href="galeria.html" class="ativo" aria-current="page">Galeria & Ofertas</a>
+        <a href="sobre.html">Sobre nós</a>
+        <a href="galeria.html" class="ativo" aria-current="page">Galeria e ofertas</a>
         <a href="contato.html">Contato</a>
-    </nav>
-    <div class="header-actions">
-      <button type="button" id="btn-musica" class="btn-audio" aria-pressed="false" aria-label="Tocar música de Natal">
-        <span class="icone" aria-hidden="true">🎵</span><span class="rotulo">Tocar música</span>
-      </button>
-      <button type="button" id="btn-carrinho" class="btn-carrinho" aria-label="Abrir carrinho de compras">
-        <span aria-hidden="true">🛒</span> <span id="qtd-carrinho">0</span>
-      </button>
-      <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">☰</button>
+      </nav>
+      <div class="acoes">
+        <button type="button" id="btn-musica" class="botao-icone" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9 18.5A2.5 2.5 0 1 1 7 16V5l12-2v12.5a2.5 2.5 0 1 1-2-2.45V6.4L9 7.7z"/></svg>
+          <span class="rotulo">Música</span>
+        </button>
+        <button type="button" id="btn-carrinho" class="botao-icone" aria-label="Abrir carrinho">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" d="M5 8h14l-1.2 12H6.2zM9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="rotulo">Sacola</span>
+          <span id="qtd-carrinho" class="contador-carrinho">0</span>
+        </button>
+        <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">☰</button>
+      </div>
     </div>
+    <div class="varal" aria-hidden="true"></div>
   </header>
 
-  <main>
-    <section class="cabecalho-galeria revelar">
-      <h1 class="titulo-pagina">Galeria de Momentos & Ofertas ✨</h1>
-      <p class="subtitulo-pagina">Clique em qualquer imagem para ampliá-la e ver os detalhes do produto no nosso Lightbox!</p>
+  <main class="container">
+    <section class="cabecalho-pagina revelar">
+      <span class="chapeu">Galeria e ofertas</span>
+      <h1>A vitrine de perto</h1>
+      <p class="texto-apoio">Clique em uma foto para ampliar. Dentro da foto ampliada, use as setas (ou as teclas ← e →) para passar para a próxima.</p>
     </section>
 
-    <div class="galeria-grid revelar">
-      <button type="button" class="galeria-item" data-detalhes="1" aria-label="Ver detalhes: Panetone Trufado Belga">
-        <img src="img/produtos/prod-01.svg" alt="Panetone Trufado Belga">
-        <span class="galeria-overlay"><strong>Panetone Trufado Belga</strong><br>Clique para ver detalhes</span>
-      </button>
-      <button type="button" class="galeria-item" data-detalhes="11" aria-label="Ver detalhes: Biscoito Homem de Gengibre">
-        <img src="img/produtos/prod-11.svg" alt="Biscoito Homem de Gengibre">
-        <span class="galeria-overlay"><strong>Biscoito Homem de Gengibre</strong><br>Clique para ver detalhes</span>
-      </button>
-      <button type="button" class="galeria-item" data-detalhes="21" aria-label="Ver detalhes: Bolo Rei Tradicional">
-        <img src="img/produtos/prod-21.svg" alt="Bolo Rei Tradicional">
-        <span class="galeria-overlay"><strong>Bolo Rei Tradicional</strong><br>Clique para ver detalhes</span>
-      </button>
-      <button type="button" class="galeria-item" data-detalhes="31" aria-label="Ver detalhes: Cesta Natal Premium">
-        <img src="img/produtos/prod-31.svg" alt="Cesta Natal Premium">
-        <span class="galeria-overlay"><strong>Cesta Natal Premium</strong><br>Clique para ver detalhes</span>
-      </button>
-      <button type="button" class="galeria-item" data-detalhes="41" aria-label="Ver detalhes: Chocolate Quente Cremoso">
-        <img src="img/produtos/prod-41.svg" alt="Chocolate Quente Cremoso">
-        <span class="galeria-overlay"><strong>Chocolate Quente Cremoso</strong><br>Clique para ver detalhes</span>
-      </button>
-      <button type="button" class="galeria-item" data-detalhes="6" aria-label="Ver detalhes: Chocotone de Pistache">
-        <img src="img/produtos/prod-06.svg" alt="Chocotone de Pistache">
-        <span class="galeria-overlay"><strong>Chocotone de Pistache</strong><br>Clique para ver detalhes</span>
-      </button>
-    </div>
-
-    <section class="countdown-section revelar">
-      <h2>As ofertas de Natal acabam em...</h2>
-      <p class="contagem" data-contagem>Carregando contagem regressiva...</p>
+    <!-- GALERIA: cada botão abre a foto no lightbox -->
+    <section class="galeria revelar" id="galeria" aria-label="Fotos da confeitaria">
+      <button type="button" class="foto-galeria" data-foto="0"><img src="img/galeria/bandeja-doces.jpg" alt="Bandeja grande de biscoitos e doces sortidos com laranjas e um pinheirinho" loading="lazy"><span>Bandeja da ceia</span></button>
+      <button type="button" class="foto-galeria" data-foto="1"><img src="img/galeria/biscoitos-pintados.jpg" alt="Travessa com biscoitos de gengibre decorados com glacê branco" loading="lazy"><span>Biscoitos pintados</span></button>
+      <button type="button" class="foto-galeria" data-foto="2"><img src="img/galeria/casinha-confeitos.jpg" alt="Casinha de gengibre coberta de confeitos verdes, vermelhos e azuis" loading="lazy"><span>Casinha de confeitos</span></button>
+      <button type="button" class="foto-galeria" data-foto="3"><img src="img/galeria/tronco-decorado.jpg" alt="Tronco de Natal de chocolate decorado com pinheirinhos e trenó" loading="lazy"><span>Tronco decorado</span></button>
+      <button type="button" class="foto-galeria" data-foto="4"><img src="img/galeria/mesa-ceia.jpg" alt="Mesa de ceia posta com toalha branca, caminho vermelho e castiçal" loading="lazy"><span>Mesa de ceia</span></button>
+      <button type="button" class="foto-galeria" data-foto="5"><img src="img/galeria/biscoito-arvore.jpg" alt="Biscoito em formato de árvore com glacê verde e bolinhas vermelhas" loading="lazy"><span>Árvore de biscoito</span></button>
+      <button type="button" class="foto-galeria" data-foto="6"><img src="img/galeria/cupcakes-mesa.jpg" alt="Cupcakes decorados de Natal sobre uma mesa de madeira" loading="lazy"><span>Cupcakes</span></button>
+      <button type="button" class="foto-galeria" data-foto="7"><img src="img/galeria/biscoitos-gengibre.jpg" alt="Biscoitos de gengibre com desenhos de glacê branco e verde" loading="lazy"><span>Gengibre e glacê</span></button>
+      <button type="button" class="foto-galeria" data-foto="8"><img src="img/galeria/panetone-forno.jpg" alt="Panetone crescendo dentro do forno aceso" loading="lazy"><span>Direto do forno</span></button>
     </section>
 
-    <!-- OFERTAS ESPECIAIS DE NATAL -->
-    <section class="contato-info revelar" aria-labelledby="titulo-ofertas">
-      <h2 id="titulo-ofertas" class="titulo-secao titulo-verde">Ofertas Especiais de Natal 🎁</h2>
-      <div class="info-grid">
-        <div class="info-card"><span aria-hidden="true">🚚</span><h3>Frete Grátis</h3><p>Em compras acima de R$ 150,00 para toda a cidade até 24/12.</p></div>
-        <div class="info-card"><span aria-hidden="true">🍪</span><h3>Leve 3, Pague 2</h3><p>Em todos os Biscoitos Natalinos: monte a sua lata do jeito que quiser.</p></div>
-        <div class="info-card"><span aria-hidden="true">💳</span><h3>10% no Pix</h3><p>Desconto especial em qualquer Cesta ou Kit pago à vista no Pix.</p></div>
-        <div class="info-card"><span aria-hidden="true">🎀</span><h3>Embalagem Presente</h3><p>Laço e cartão de Natal personalizados sem custo adicional.</p></div>
+    <!-- OFERTAS + CONTAGEM -->
+    <section class="secao" aria-labelledby="titulo-ofertas">
+      <span class="chapeu revelar">Só em dezembro</span>
+      <h2 id="titulo-ofertas" class="titulo-secao revelar">Ofertas de Natal</h2>
+      <div class="ofertas">
+        <article class="oferta revelar"><span class="selo">Frete grátis</span><h3>Entrega sem custo</h3><p>Em pedidos acima de R$ 150,00 para qualquer bairro da cidade.</p></article>
+        <article class="oferta revelar"><span class="selo">Leve 3</span><h3>Biscoitos 3 por 2</h3><p>Leve três pacotes de biscoitos e pague só dois. Pode misturar sabores.</p></article>
+        <article class="oferta revelar"><span class="selo">-10%</span><h3>Cestas no Pix</h3><p>Dez por cento de desconto em qualquer cesta ou kit pago no Pix.</p></article>
+        <article class="oferta revelar"><span class="selo">Brinde</span><h3>Cartão escrito à mão</h3><p>Em toda encomenda para presente, com a mensagem que você escolher.</p></article>
+      </div>
+    </section>
+
+    <section class="faixa-contagem caixa-contagem revelar" aria-labelledby="titulo-fim-ofertas">
+      <div class="container">
+        <div>
+          <h2 id="titulo-fim-ofertas">As ofertas acabam no Natal</h2>
+          <p>Depois do dia 25, só no ano que vem.</p>
+        </div>
+        <div class="contagem" data-contagem>
+          <div><span data-dias>--</span><small>dias</small></div>
+          <div><span data-horas>--</span><small>horas</small></div>
+          <div><span data-minutos>--</span><small>min</small></div>
+          <div><span data-segundos>--</span><small>seg</small></div>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- RODAPÉ (igual em todas as páginas) -->
+  <!-- ===== RODAPÉ (igual em todas as páginas) ===== -->
   <footer>
-    <p>🎄 <strong>Doce Natal Confeitaria Natalina</strong> &copy; 2026 - Todos os direitos reservados.</p>
-    <p>Projeto AV2 Desenvolvimento Web - Colégio UNASP | Prof. Samuel Elias</p>
-    <p>Imagens: ilustrações vetoriais (SVG) autorais. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público), gerada no navegador.</p>
+    <div class="container rodape">
+      <div>
+        <img src="img/logo-claro.svg" alt="Doce Natal Confeitaria" class="rodape-logo">
+        <p>Confeitaria de Natal feita em família desde 2019. Loja fictícia criada para o projeto AV2 de Desenvolvimento Web.</p>
+      </div>
+      <div>
+        <h2>Páginas</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre nós</a></li>
+          <li><a href="galeria.html">Galeria e ofertas</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Loja</h2>
+        <ul>
+          <li>Rua das Hortênsias, 1225 - São Paulo/SP</li>
+          <li>(11) 5555-1225</li>
+          <li>Seg. a sáb., 8h às 19h</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-fim">
+      <div class="container">
+        <p>© 2026 Doce Natal · Projeto escolar - Colégio UNASP · Prof. Samuel Elias · Equipe: Miguel Carnieli, Felipe Russomano e Gabriel Karan.</p>
+        <p>Fotos: Wikimedia Commons (licenças Creative Commons e domínio público) - lista completa de autores na página <a href="sobre.html#creditos">Sobre nós</a>. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público).</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- JANELA (MODAL) DE DETALHES DO PRODUTO / LIGHTBOX -->
-  <div id="modal-produto" class="modal" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
-    <div class="modal-conteudo">
-      <button type="button" class="fechar-modal" aria-label="Fechar janela">&times;</button>
-      <div id="modal-corpo"></div>
+  <!-- janela flutuante (modal) usada para os detalhes do produto -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Detalhes">
+    <div class="modal-caixa">
+      <button type="button" class="fechar" aria-label="Fechar">×</button>
+      <div id="modal-conteudo"></div>
     </div>
   </div>
-  <button type="button" id="topo" aria-label="Voltar ao topo">⬆</button>
+  <button type="button" id="topo" aria-label="Voltar ao topo">↑</button>
 
-  <!-- A ordem importa: produtos.js precisa vir ANTES de script.js -->
+  <!-- produtos.js precisa vir ANTES do script.js -->
   <script src="js/produtos.js"></script>
   <script src="js/script.js"></script>
 </body>

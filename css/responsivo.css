@@ -1,104 +1,137 @@
 /* ==========================================================
-   CSS RESPONSIVO - MOBILE FIRST
-   Primeiro o estilo do celular (vale para tudo), depois
-   vamos acrescentando regras para telas maiores com min-width.
-   Celular: até ~600px | Tablet: 600px a 992px | Desktop: 992px+
+   responsivo.css - MOBILE FIRST
+   Primeiro vem o celular (vale para todas as telas).
+   Depois, com min-width, acrescentamos o que muda em telas maiores.
+   Celular: até 599px | Tablet: 600px a 991px | Desktop: 992px ou mais
    ========================================================== */
 
 /* ---------- Celular (base) ---------- */
-.grade-produtos {
-  grid-template-columns: 1fr;
-}
+.grade-produtos { grid-template-columns: 1fr; }
+.galeria { grid-template-columns: repeat(2, 1fr); }
 
-/* O menu vira uma lista que desce do cabeçalho */
+/* menu escondido: o botão hambúrguer abre */
 .menu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--verde);
   flex-direction: column;
-  align-items: flex-start;
-  padding: var(--espaco-3);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  background: var(--papel);
+  border-bottom: 1px solid var(--linha);
+  padding: var(--e1) var(--e2) var(--e2);
+  box-shadow: 0 12px 20px rgba(43, 36, 32, 0.1);
 }
 
-.menu.aberto {
-  display: flex;
+.menu.aberto { display: flex; }
+
+.menu a {
+  padding: 0.7rem 0;
+  border-bottom: 1px dashed var(--linha);
 }
 
-.btn-menu {
-  display: block;
-}
+.menu a.ativo::after { bottom: 6px; right: auto; width: 40px; }
 
-/* No celular o botão de música mostra só o ícone, para caber no cabeçalho */
-.btn-audio .rotulo {
-  display: none;
-}
+.btn-menu { display: block; }
+
+/* no celular os botões do topo mostram só o ícone */
+.botao-icone .rotulo { display: none; }
+
+.logo img { height: 38px; }
+
+.aviso-topo .some-celular { display: none; }
+
+.slideshow { transform: none; border-width: 6px; }
+
+.faixa-contagem .container { flex-direction: column; align-items: flex-start; }
+.contagem div { min-width: 60px; }
+
+.parallax { height: 340px; }
+.parallax-texto blockquote { font-size: 1.3rem; }
+
+.modal .seta-anterior { left: 4px; }
+.modal .seta-proxima { right: 4px; }
 
 /* ---------- Tablet (a partir de 600px) ---------- */
 @media (min-width: 600px) {
-  .grade-produtos {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  h1 { font-size: 2.6rem; }
+  h2 { font-size: 2rem; }
 
-  header {
-    padding: 0.8rem var(--espaco-3);
-  }
+  .container { padding: 0 var(--e3); }
 
-  .logo-img {
-    height: 50px;
-  }
+  .grade-produtos { grid-template-columns: repeat(2, 1fr); }
+  .galeria { grid-template-columns: repeat(3, 1fr); }
 
-  .btn-audio .rotulo {
-    display: inline;
-  }
+  .botao-icone .rotulo { display: inline; }
+  .aviso-topo .some-celular { display: inline; }
+  .logo img { height: 46px; }
 
-  .titulo-pagina { font-size: 3rem; }
-  .titulo-secao { font-size: 2.6rem; }
+  .slideshow { transform: rotate(1deg); border-width: 10px; }
 
-  .slide img { height: 460px; }
-  .slide-caption { left: 10%; right: 10%; bottom: 20%; padding: var(--espaco-3); }
-  .slide-caption h2 { font-size: 2.6rem; }
-  .slide-caption p { font-size: 1rem; }
-  .prev-slide, .next-slide { width: 50px; height: 50px; font-size: 1.5rem; top: 50%; }
-  .prev-slide { left: 20px; }
-  .next-slide { right: 20px; }
+  .faixa-contagem .container { flex-direction: row; align-items: center; }
+  .contagem div { min-width: 76px; }
 
-  .countdown-section h2 { font-size: 2.5rem; }
-  .contagem { font-size: 2rem; }
+  .parallax { height: 420px; }
+  .parallax-texto blockquote { font-size: 1.7rem; }
 
-  .parallax-wrapper { height: 360px; }
-  .parallax-text { padding: var(--espaco-4); }
-  .parallax-text h1 { font-size: 3rem; }
+  .passos,
+  .atalhos,
+  .valores,
+  .equipe,
+  .ofertas { grid-template-columns: repeat(2, 1fr); }
 
-  .historia-box,
-  .contato-container { padding: 2.5rem; }
-  .historia-box h1 { font-size: 3rem; }
+  .filtros { grid-template-columns: 1fr; }
+
+  .creditos ol { columns: 2; column-gap: var(--e4); }
+
+  .rodape { grid-template-columns: repeat(2, 1fr); }
+
+  .modal-produto { grid-template-columns: 1fr 1fr; }
+  .modal-produto img { height: 100%; }
 }
 
 /* ---------- Desktop (a partir de 992px) ---------- */
 @media (min-width: 992px) {
-  .grade-produtos {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  .grade-produtos { grid-template-columns: repeat(4, 1fr); }
 
-  header {
-    padding: 0.8rem var(--espaco-4);
-  }
-
-  /* Menu em linha dentro do cabeçalho (Flexbox) */
+  /* menu volta a ficar em linha no cabeçalho (Flexbox) */
   .menu {
     display: flex;
     position: static;
     flex-direction: row;
-    background: transparent;
+    gap: var(--e3);
     padding: 0;
+    border: none;
     box-shadow: none;
+    background: transparent;
   }
 
-  .btn-menu {
-    display: none;
+  .menu a { border-bottom: none; padding: 0.4rem 0; }
+  .menu a.ativo::after { bottom: -2px; right: 0; width: auto; }
+
+  .btn-menu { display: none; }
+
+  .inicio {
+    grid-template-columns: 1fr 1.15fr;
+    padding-top: var(--e5);
   }
+
+  .inicio h1 { font-size: 3.3rem; }
+
+  .historia { grid-template-columns: 1.2fr 1fr; }
+
+  .passos,
+  .atalhos,
+  .valores,
+  .equipe { grid-template-columns: repeat(3, 1fr); }
+
+  .ofertas { grid-template-columns: repeat(4, 1fr); }
+
+  .filtros { grid-template-columns: 320px 1fr; align-items: center; }
+
+  .contato { grid-template-columns: 1.4fr 1fr; }
+
+  .rodape { grid-template-columns: 1.4fr 1fr 1fr; }
+
+  .parallax { height: 480px; }
 }
