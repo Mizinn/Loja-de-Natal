@@ -7,6 +7,11 @@ INTEGRANTES:
  - Felipe Russomano - nº [PREENCHER]
  - Gabriel Karan - nº [PREENCHER]
 
+FUNÇÕES NA EQUIPE:
+ - Miguel Carnieli: HTML das 5 páginas, design, fotos, catálogo dos 50 produtos e publicação no GitHub Pages
+ - Felipe Russomano: CSS (paleta, variáveis, animações, layout responsivo) e apoio no design
+ - Gabriel Karan: JavaScript (cards, filtro, carrinho, slideshow, parallax, validação do formulário)
+
 LINKS:
  Site (GitHub Pages): https://mizinn.github.io/Loja-de-Natal/
  Repositório (GitHub): https://github.com/Mizinn/Loja-de-Natal
@@ -30,8 +35,9 @@ RECURSOS DE JAVASCRIPT IMPLEMENTADOS (13: 5 obrigatórios + 8 extras) - arquivo 
  13. Botão "voltar ao topo" com rolagem suave - todas as páginas
 
 CRÉDITOS:
- - Fotos: Wikimedia Commons (https://commons.wikimedia.org), todas com licença livre (Creative Commons ou domínio público).
-   As fotos foram recortadas e reduzidas para o site. Lista completa abaixo e na página sobre.html.
+ - Fotos dos produtos, banners e galeria: Wikimedia Commons (https://commons.wikimedia.org), todas com licença livre
+   (Creative Commons ou domínio público). As fotos foram recortadas e reduzidas para o site. Lista completa abaixo e na página sobre.html.
+ - Fotos da equipe (img/equipe-miguel.jpg e img/equipe-felipe.jpg): fotos pessoais dos próprios integrantes, usadas com autorização.
  - Logotipo, ícone da aba e camada de pinheiros do parallax: desenhos SVG feitos pela equipe.
  - Música: "Jingle Bells" (James Lord Pierpont, 1857 - domínio público), tocada pelo navegador com a Web Audio API. Não há arquivo de áudio.
  - Fontes: Google Fonts - Fraunces e Nunito Sans.
