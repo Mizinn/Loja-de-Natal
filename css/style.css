@@ -1522,9 +1522,156 @@ footer {
   to   { opacity: 1; transform: translate(-50%, 0); }
 }
 
+/* ---------- 14. CLIMA DE NATAL (só decoração, não muda o layout) ---------- */
+
+/* fundo da página com flocos de neve dourados bem clarinhos */
+body {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg stroke='%23C59A3D' stroke-width='1.2' stroke-linecap='round' fill='none' opacity='0.16'%3E%3Cpath d='M30 18v24M19.6 24l20.8 12M19.6 36l20.8-12M27 20l3 3 3-3M27 40l3-3 3 3'/%3E%3Cpath d='M118 104v18M110 108l16 9M110 117l16-9'/%3E%3C/g%3E%3Ccircle cx='86' cy='52' r='1.6' fill='%23A8232B' opacity='0.18'/%3E%3Ccircle cx='40' cy='130' r='1.6' fill='%231E4D38' opacity='0.18'/%3E%3C/svg%3E");
+}
+
+/* varal: agora é uma guirlanda de pinheiro, e as lâmpadas brilham */
+.varal {
+  height: 18px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='18'%3E%3Cpath d='M0 4 Q16 9 32 4 T64 4' stroke='%231E4D38' stroke-width='3' fill='none'/%3E%3Cpath d='M6 5l-3 3M14 7l2 3M24 6l-2 3M38 6l2 3M48 7l-2 3M58 5l3 3' stroke='%232F6B4F' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x top left / 64px 18px;
+}
+
+.varal::before,
+.varal::after {
+  background-size: 64px 18px;
+  filter: drop-shadow(0 0 3px rgba(255, 210, 120, 0.9));
+}
+
+.varal::before {
+  background-image:
+    radial-gradient(circle at 12px 12px, var(--vermelho) 4px, transparent 5px),
+    radial-gradient(circle at 44px 12px, var(--dourado) 4px, transparent 5px);
+}
+
+.varal::after {
+  background-image:
+    radial-gradient(circle at 28px 12px, #3E8E63 4px, transparent 5px),
+    radial-gradient(circle at 60px 12px, #F4EFE2 4px, transparent 5px);
+}
+
+/* estrelinha antes do "chapéu" dos títulos */
+.chapeu::before {
+  content: "✦ ";
+  color: var(--dourado);
+}
+
+/* fita listrada de bengala doce prendendo a foto do slideshow */
+.slideshow::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  z-index: 3;
+  width: 130px;
+  height: 26px;
+  margin-left: -65px;
+  transform: rotate(-3deg);
+  background: repeating-linear-gradient(45deg, var(--vermelho) 0 10px, var(--neve) 10px 20px);
+  opacity: 0.92;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.foto-moldura {
+  border-bottom-width: 34px;     /* moldura estilo foto de polaroide */
+}
+
+/* faixa da contagem com estrelinhas e flocos brancos */
+.faixa-contagem {
+  background-color: var(--verde);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cg fill='white' opacity='0.12'%3E%3Ccircle cx='10' cy='14' r='1.5'/%3E%3Ccircle cx='70' cy='40' r='1'/%3E%3Ccircle cx='100' cy='95' r='1.5'/%3E%3Ccircle cx='35' cy='80' r='1'/%3E%3C/g%3E%3Cpath d='M86 10l2 6 6 2-6 2-2 6-2-6-6-2 6-2z M22 46l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z' fill='%23C59A3D' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* fita vermelha "Mais pedido" nos produtos em destaque */
+.card {
+  position: relative;
+}
+
+.fita {
+  position: absolute;
+  top: 12px;
+  left: -6px;
+  z-index: 2;
+  background: var(--vermelho);
+  color: var(--neve);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* na página inicial todos os cards já são "mais pedidos", então a fita não aparece */
+.pagina-home .fita {
+  display: none;
+}
+
+/* dobrinha da fita (triângulo feito com bordas) */
+.fita::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  border-top: 6px solid var(--vermelho-escuro);
+  border-left: 6px solid transparent;
+}
+
+/* estrelas piscando no céu do parallax */
+.camada-fundo { z-index: 0; }
+.camada-frente { z-index: 2; }
+.parallax-texto { z-index: 3; }
+
+.parallax::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle at 12% 18%, #fff 1.2px, transparent 2px),
+    radial-gradient(circle at 28% 9%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 47% 22%, #fff 1.4px, transparent 2.4px),
+    radial-gradient(circle at 66% 12%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 83% 26%, #fff 1.3px, transparent 2.3px),
+    radial-gradient(circle at 93% 7%, #fff 1px, transparent 2px),
+    radial-gradient(circle at 6% 34%, #fff 1px, transparent 2px);
+  animation: cintilar 3s ease-in-out infinite alternate;
+}
+
+/* neve acumulada em cima do rodapé */
+footer {
+  position: relative;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='16'%3E%3Cpath d='M0 0 H120 V6 Q112 14 104 7 Q96 3 88 9 Q80 15 72 8 Q62 2 52 7 Q44 12 36 6 Q26 1 18 9 Q10 15 0 6 Z' fill='%23FFFFFF'/%3E%3C/svg%3E") repeat-x top / 120px 16px;
+}
+
+/* flocos de neve com desenho (o JavaScript usa essa classe em 1 a cada 3 flocos) */
+.floco.desenhado {
+  border-radius: 0;
+  box-shadow: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg stroke='%23FFFFFF' stroke-width='1.8' stroke-linecap='round' fill='none'%3E%3Cpath d='M12 2v20M3.3 7l17.4 10M3.3 17l17.4-10M9.5 3.5 12 6l2.5-2.5M9.5 20.5 12 18l2.5 2.5'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+  filter: drop-shadow(0 0 2px rgba(80, 110, 140, 0.7));
+}
+
+@keyframes cintilar {
+  from { opacity: 0.35; }
+  to   { opacity: 1; }
+}
+
 /* quem pediu ao sistema "menos movimento" não vê neve nem animações */
 @media (prefers-reduced-motion: reduce) {
-  .floco, .varal::before, .varal::after, .pulsar { animation: none; }
+  .floco, .varal::before, .varal::after, .pulsar, .parallax::before { animation: none; }
   .revelar { opacity: 1; transform: none; transition: none; }
   .slide { transition: none; }
 }

@@ -57,7 +57,7 @@
   h1 { font-size: 2.6rem; }
   h2 { font-size: 2rem; }
 
-  .container { padding: 0 var(--e3); }
+  .container { padding-left: var(--e3); padding-right: var(--e3); }
 
   .grade-produtos { grid-template-columns: repeat(2, 1fr); }
   .galeria { grid-template-columns: repeat(3, 1fr); }

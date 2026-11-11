@@ -209,6 +209,7 @@ function iniciarSons() {
 function criarCard(produto) {
   return `
     <article class="card revelar">
+      ${produto.destaque ? '<span class="fita">Mais pedido</span>' : ""}
       <button type="button" class="card-foto" data-detalhes="${produto.id}" aria-label="Ver detalhes: ${produto.nome}">
         <img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">
       </button>
@@ -643,10 +644,16 @@ function iniciarModal() {
    Criamos bolinhas brancas com o DOM. Cada uma tem tamanho, posição,
    velocidade e atraso sorteados, e a animação "cair" do CSS faz o resto. */
 function iniciarNeve() {
-  for (let i = 0; i < 22; i++) {
+  for (let i = 0; i < 28; i++) {
     const floco = document.createElement("span");
-    const tamanho = Math.random() * 5 + 3;
+    let tamanho = Math.random() * 5 + 3;
     floco.className = "floco";
+
+    // 1 a cada 3 flocos é maior e tem o desenho de floco de neve (CSS .desenhado)
+    if (i % 3 === 0) {
+      floco.classList.add("desenhado");
+      tamanho = Math.random() * 8 + 10;
+    }
     floco.setAttribute("aria-hidden", "true");
     floco.style.width = tamanho + "px";
     floco.style.height = tamanho + "px";
