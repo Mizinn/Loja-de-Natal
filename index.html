@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doce Natal | Confeitaria Natalina - Home</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsivo.css">
+</head>
+<body class="pagina-home">
+
+  <!-- CABEÇALHO (igual em todas as páginas) -->
+  <header>
+    <a href="index.html" class="logo-container">
+      <img src="img/logo.svg" alt="Logotipo Doce Natal Confeitaria" class="logo-img">
+    </a>
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+        <a href="index.html" class="ativo" aria-current="page">Home</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="galeria.html">Galeria & Ofertas</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" id="btn-musica" class="btn-audio" aria-pressed="false" aria-label="Tocar música de Natal">
+        <span class="icone" aria-hidden="true">🎵</span><span class="rotulo">Tocar música</span>
+      </button>
+      <button type="button" id="btn-carrinho" class="btn-carrinho" aria-label="Abrir carrinho de compras">
+        <span aria-hidden="true">🛒</span> <span id="qtd-carrinho">0</span>
+      </button>
+      <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- SLIDESHOW / CARROSSEL: só um slide tem a classe "ativo" -->
+    <section class="slideshow-container" aria-label="Promoções de Natal">
+      <div class="slide ativo">
+        <img src="img/banners/banner1.svg" alt="Banner com presentes, brilhos e Papai Noel">
+        <div class="slide-caption">
+          <h2>Panetones Trufados Gourmet</h2>
+          <p>O verdadeiro sabor artesanal feito com receitas tradicionais e recheios generosos.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="img/banners/banner2.svg" alt="Banner com presentes e brilhos para as cestas de Natal">
+        <div class="slide-caption">
+          <h2>Cestas e Kits Especiais</h2>
+          <p>Presenteie quem você ama com nossas embalagens exclusivas de alta confeitaria.</p>
+        </div>
+      </div>
+      <div class="slide">
+        <img src="img/banners/banner3.svg" alt="Banner com presentes e brilhos para os biscoitos decorados">
+        <div class="slide-caption">
+          <h2>Biscoitos de Gengibre Decorados</h2>
+          <p>Tradição, crocância e encanto em cada detalhe artesanal.</p>
+        </div>
+      </div>
+      <button type="button" class="prev-slide" id="anterior" aria-label="Slide anterior">❮</button>
+      <button type="button" class="next-slide" id="proximo" aria-label="Próximo slide">❯</button>
+      <div class="indicadores" id="indicadores" aria-label="Escolher slide"></div>
+    </section>
+
+    <!-- CONTAGEM REGRESSIVA -->
+    <section class="countdown-section revelar">
+      <h2>Contagem Regressiva para a Grande Noite</h2>
+      <p class="contagem" data-contagem>Carregando contagem regressiva...</p>
+    </section>
+
+    <!-- PARALLAX: duas camadas que se movem em velocidades diferentes ao rolar -->
+    <section class="parallax-wrapper revelar" aria-labelledby="titulo-home">
+      <img src="img/banners/camada-fundo.svg" alt="Montanhas ao fundo" class="parallax-layer" data-velocidade="0.2">
+      <img src="img/banners/camada-frente.svg" alt="Pinheiros nevados à frente" class="parallax-layer" data-velocidade="0.5">
+      <div class="parallax-text">
+        <h1 id="titulo-home">A Magia do Natal na Sua Mesa</h1>
+        <p>Receitas históricas preparadas com o carinho e o afeto que a sua família merece.</p>
+      </div>
+    </section>
+
+    <!-- DESTAQUES: cards gerados pelo JavaScript (produtos com destaque: true) -->
+    <section class="secao-destaques">
+      <h2 class="titulo-secao revelar">Produtos em Destaque 🌟</h2>
+      <div id="lista-produtos" class="grade-produtos"></div>
+      <p class="chamada-catalogo">
+        <a href="produtos.html" class="btn-comprar btn-link">Ver Catálogo Completo (50 Produtos) ➔</a>
+      </p>
+    </section>
+
+    <!-- CHAMADAS PARA AS OUTRAS PÁGINAS -->
+    <section class="contato-info revelar" aria-labelledby="titulo-chamadas">
+      <h2 id="titulo-chamadas" class="titulo-secao titulo-verde">Explore a Doce Natal 🎁</h2>
+      <div class="info-grid">
+        <a href="sobre.html" class="info-card card-chamada"><span aria-hidden="true">📖</span><h3>Nossa História</h3><p>Conheça a confeitaria, a nossa missão e a equipe por trás das receitas.</p></a>
+        <a href="galeria.html" class="info-card card-chamada"><span aria-hidden="true">✨</span><h3>Galeria & Ofertas</h3><p>Veja nossas delícias de perto e aproveite as condições especiais de Natal.</p></a>
+        <a href="contato.html" class="info-card card-chamada"><span aria-hidden="true">🎅</span><h3>Fale Conosco</h3><p>Encomendas, dúvidas e sugestões para a sua ceia. Responderemos rapidinho!</p></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ (igual em todas as páginas) -->
+  <footer>
+    <p>🎄 <strong>Doce Natal Confeitaria Natalina</strong> &copy; 2026 - Todos os direitos reservados.</p>
+    <p>Projeto AV2 Desenvolvimento Web - Colégio UNASP | Prof. Samuel Elias</p>
+    <p>Imagens: ilustrações vetoriais (SVG) autorais. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público), gerada no navegador.</p>
+  </footer>
+
+  <!-- JANELA (MODAL) DE DETALHES DO PRODUTO / LIGHTBOX -->
+  <div id="modal-produto" class="modal" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
+    <div class="modal-conteudo">
+      <button type="button" class="fechar-modal" aria-label="Fechar janela">&times;</button>
+      <div id="modal-corpo"></div>
+    </div>
+  </div>
+  <button type="button" id="topo" aria-label="Voltar ao topo">⬆</button>
+
+  <!-- A ordem importa: produtos.js precisa vir ANTES de script.js -->
+  <script src="js/produtos.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
