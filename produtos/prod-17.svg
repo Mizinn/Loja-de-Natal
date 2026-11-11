@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" role="img" aria-label="Cookies Gotas de Natal">
+  <rect width="600" height="600" fill="#B3202A"/>
+  <circle cx="300" cy="260" r="210" fill="#FFFFFF" opacity="0.14"/>
+  <circle cx="300" cy="260" r="165" fill="#FFFFFF" opacity="0.18"/>
+  <circle cx="361" cy="67" r="3" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="458" cy="138" r="4" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="555" cy="89" r="5" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="92" cy="40" r="3" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="189" cy="111" r="4" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="286" cy="62" r="5" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="383" cy="133" r="3" fill="#FFFFFF" opacity="0.55"/>
+  <text x="290" y="270" font-size="150" text-anchor="middle" dominant-baseline="central">🍪</text>
+  <text x="415" y="175" font-size="70" text-anchor="middle" dominant-baseline="central">🍫</text>
+  <text x="300" y="420" font-size="32" font-family="Arial, sans-serif" font-weight="bold" fill="#FBF6EA" text-anchor="middle">Cookies Gotas de Natal</text>
+  <text x="300" y="540" font-size="20" font-family="Arial, sans-serif" fill="#C9A227" text-anchor="middle">Doce Natal ★ 2026</text>
+</svg>

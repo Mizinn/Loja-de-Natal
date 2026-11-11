@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600" role="img" aria-label="Bolo Vulcão de Chocotone">
+  <rect width="600" height="600" fill="#1B3A5C"/>
+  <circle cx="300" cy="260" r="210" fill="#FFFFFF" opacity="0.14"/>
+  <circle cx="300" cy="260" r="165" fill="#FFFFFF" opacity="0.18"/>
+  <circle cx="437" cy="79" r="3" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="534" cy="30" r="4" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="71" cy="101" r="5" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="168" cy="52" r="3" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="265" cy="123" r="4" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="362" cy="74" r="5" fill="#FFFFFF" opacity="0.55"/>
+  <circle cx="459" cy="25" r="3" fill="#FFFFFF" opacity="0.55"/>
+  <text x="290" y="270" font-size="150" text-anchor="middle" dominant-baseline="central">🌋</text>
+  <text x="415" y="175" font-size="70" text-anchor="middle" dominant-baseline="central">🍞</text>
+  <text x="300" y="405" font-size="32" font-family="Arial, sans-serif" font-weight="bold" fill="#FBF6EA" text-anchor="middle">Bolo Vulcão de</text>
+  <text x="300" y="443" font-size="32" font-family="Arial, sans-serif" font-weight="bold" fill="#FBF6EA" text-anchor="middle">Chocotone</text>
+  <text x="300" y="540" font-size="20" font-family="Arial, sans-serif" fill="#C9A227" text-anchor="middle">Doce Natal ★ 2026</text>
+</svg>

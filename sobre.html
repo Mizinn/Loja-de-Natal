@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doce Natal | Sobre Nós</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsivo.css">
+</head>
+<body>
+
+  <!-- CABEÇALHO (igual em todas as páginas) -->
+  <header>
+    <a href="index.html" class="logo-container">
+      <img src="img/logo.svg" alt="Logotipo Doce Natal Confeitaria" class="logo-img">
+    </a>
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+        <a href="index.html">Home</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="sobre.html" class="ativo" aria-current="page">Sobre Nós</a>
+        <a href="galeria.html">Galeria & Ofertas</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" id="btn-musica" class="btn-audio" aria-pressed="false" aria-label="Tocar música de Natal">
+        <span class="icone" aria-hidden="true">🎵</span><span class="rotulo">Tocar música</span>
+      </button>
+      <button type="button" id="btn-carrinho" class="btn-carrinho" aria-label="Abrir carrinho de compras">
+        <span aria-hidden="true">🛒</span> <span id="qtd-carrinho">0</span>
+      </button>
+      <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="container-sobre">
+      <article class="historia-box revelar">
+        <h1>Nossa História Doce 📖</h1>
+        <p>Fundada no espírito de partilha e união do Natal, a <strong>Doce Natal Confeitaria</strong> começou com a paixão por criar momentos inesquecíveis em torno da ceia. Nossos confeiteiros combinam tradição com ingredientes finos selecionados para levar aroma e aconchego a milhares de lares.</p>
+        <h2 class="titulo-verde">Missão, Visão e Valores</h2>
+        <ul class="lista-mvv">
+          <li><strong>Missão:</strong> Transformar as festas de fim de ano em experiências inesquecíveis através do sabor e da arte da confeitaria artesanal.</li>
+          <li><strong>Visão:</strong> Ser a confeitaria natalina referência no Brasil em qualidade, criatividade e acolhimento.</li>
+          <li><strong>Valores:</strong> Afeto, tradição artesanal, rigor na seleção dos ingredientes e encanto em cada detalhe.</li>
+        </ul>
+      </article>
+
+      <!-- LINHA DO TEMPO (a história é fictícia) -->
+      <section class="revelar" aria-labelledby="titulo-tempo">
+        <h2 id="titulo-tempo" class="titulo-secao titulo-verde">Nossa Linha do Tempo 🕰️</h2>
+        <ol class="linha-tempo">
+          <li class="marco revelar"><span class="ano">2019</span><h3>A primeira fornada</h3><p>Na cozinha de casa, os primeiros 30 panetones foram vendidos para vizinhos e amigos.</p></li>
+          <li class="marco revelar"><span class="ano">2021</span><h3>As cestas de presente</h3><p>Nascem as cestas e os kits natalinos, que logo viraram febre entre as famílias da cidade.</p></li>
+          <li class="marco revelar"><span class="ano">2023</span><h3>Biscoitos decorados</h3><p>Os biscoitos de gengibre pintados à mão conquistam as crianças e ganham uma linha própria.</p></li>
+          <li class="marco revelar"><span class="ano">2026</span><h3>A loja virtual</h3><p>O Natal chega ao seu celular: agora todo o catálogo está a um clique de distância.</p></li>
+        </ol>
+      </section>
+
+      <!-- CONTAGEM REGRESSIVA -->
+      <section class="countdown-section revelar">
+        <h2>Falta pouco para a ceia!</h2>
+        <p class="contagem" data-contagem>Carregando contagem regressiva...</p>
+      </section>
+
+      <section class="revelar" aria-labelledby="titulo-equipe">
+        <h2 id="titulo-equipe" class="titulo-secao titulo-verde">Conheça a Nossa Equipe 🧑‍🍳</h2>
+        <div class="equipe-grid">
+          <article class="equipe-card">
+            <div class="equipe-avatar" aria-hidden="true">🎅</div>
+            <h3>Aluno A (Nº 01)</h3>
+            <p class="funcao">Líder de Design & Front-End</p>
+            <p>Responsável pela arquitetura HTML5, estilo CSS3 e identidade visual natalina.</p>
+          </article>
+          <article class="equipe-card">
+            <div class="equipe-avatar" aria-hidden="true">🤶</div>
+            <h3>Aluno B (Nº 02)</h3>
+            <p class="funcao">Desenvolvedor JavaScript</p>
+            <p>Responsável pela manipulação do DOM, array de 50 produtos, filtros e carrinho.</p>
+          </article>
+          <article class="equipe-card">
+            <div class="equipe-avatar" aria-hidden="true">🧝</div>
+            <h3>Aluno C (Nº 03)</h3>
+            <p class="funcao">Especialista em Conteúdo & QA</p>
+            <p>Responsável pelo catálogo de 50 itens, imagens, publicação e testes de responsividade.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- RODAPÉ (igual em todas as páginas) -->
+  <footer>
+    <p>🎄 <strong>Doce Natal Confeitaria Natalina</strong> &copy; 2026 - Todos os direitos reservados.</p>
+    <p>Projeto AV2 Desenvolvimento Web - Colégio UNASP | Prof. Samuel Elias</p>
+    <p>Imagens: ilustrações vetoriais (SVG) autorais. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público), gerada no navegador.</p>
+  </footer>
+
+  <!-- JANELA (MODAL) DE DETALHES DO PRODUTO / LIGHTBOX -->
+  <div id="modal-produto" class="modal" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
+    <div class="modal-conteudo">
+      <button type="button" class="fechar-modal" aria-label="Fechar janela">&times;</button>
+      <div id="modal-corpo"></div>
+    </div>
+  </div>
+  <button type="button" id="topo" aria-label="Voltar ao topo">⬆</button>
+
+  <!-- A ordem importa: produtos.js precisa vir ANTES de script.js -->
+  <script src="js/produtos.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

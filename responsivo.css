@@ -1,0 +1,104 @@
+/* ==========================================================
+   CSS RESPONSIVO - MOBILE FIRST
+   Primeiro o estilo do celular (vale para tudo), depois
+   vamos acrescentando regras para telas maiores com min-width.
+   Celular: até ~600px | Tablet: 600px a 992px | Desktop: 992px+
+   ========================================================== */
+
+/* ---------- Celular (base) ---------- */
+.grade-produtos {
+  grid-template-columns: 1fr;
+}
+
+/* O menu vira uma lista que desce do cabeçalho */
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--verde);
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--espaco-3);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.menu.aberto {
+  display: flex;
+}
+
+.btn-menu {
+  display: block;
+}
+
+/* No celular o botão de música mostra só o ícone, para caber no cabeçalho */
+.btn-audio .rotulo {
+  display: none;
+}
+
+/* ---------- Tablet (a partir de 600px) ---------- */
+@media (min-width: 600px) {
+  .grade-produtos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  header {
+    padding: 0.8rem var(--espaco-3);
+  }
+
+  .logo-img {
+    height: 50px;
+  }
+
+  .btn-audio .rotulo {
+    display: inline;
+  }
+
+  .titulo-pagina { font-size: 3rem; }
+  .titulo-secao { font-size: 2.6rem; }
+
+  .slide img { height: 460px; }
+  .slide-caption { left: 10%; right: 10%; bottom: 20%; padding: var(--espaco-3); }
+  .slide-caption h2 { font-size: 2.6rem; }
+  .slide-caption p { font-size: 1rem; }
+  .prev-slide, .next-slide { width: 50px; height: 50px; font-size: 1.5rem; top: 50%; }
+  .prev-slide { left: 20px; }
+  .next-slide { right: 20px; }
+
+  .countdown-section h2 { font-size: 2.5rem; }
+  .contagem { font-size: 2rem; }
+
+  .parallax-wrapper { height: 360px; }
+  .parallax-text { padding: var(--espaco-4); }
+  .parallax-text h1 { font-size: 3rem; }
+
+  .historia-box,
+  .contato-container { padding: 2.5rem; }
+  .historia-box h1 { font-size: 3rem; }
+}
+
+/* ---------- Desktop (a partir de 992px) ---------- */
+@media (min-width: 992px) {
+  .grade-produtos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  header {
+    padding: 0.8rem var(--espaco-4);
+  }
+
+  /* Menu em linha dentro do cabeçalho (Flexbox) */
+  .menu {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .btn-menu {
+    display: none;
+  }
+}
