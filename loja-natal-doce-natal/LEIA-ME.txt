@@ -1,0 +1,34 @@
+LOJA: Doce Natal Confeitaria Natalina
+SEGMENTO: Confeitaria
+TURMA: 1TI_A
+
+INTEGRANTES:
+ - [PREENCHER: nome completo] - nº [PREENCHER]
+ - [PREENCHER: nome completo] - nº [PREENCHER]
+ - [PREENCHER: nome completo] - nº [PREENCHER]
+
+LINKS:
+ Site (GitHub Pages): [PREENCHER: https://usuario.github.io/nome-do-repositorio/]
+ Repositório (GitHub): [PREENCHER: https://github.com/usuario/nome-do-repositorio]
+ Vídeo (YouTube): [PREENCHER: https://www.youtube.com/watch?v=...]
+
+RECURSOS DE JAVASCRIPT IMPLEMENTADOS (13: 5 obrigatórios + 8 extras) - arquivo js/script.js
+ 1. Slideshow / Carrossel com botões e indicadores (obrigatório) - index.html
+ 2. Parallax em JavaScript, 2 camadas (obrigatório) - index.html
+ 3. Sons: música "Jingle Bells" com botão de ligar/desligar e sininho ao adicionar no carrinho (obrigatório) - todas as páginas
+ 4. Cards dinâmicos dos 50 produtos com map() e template literal (obrigatório) - produtos.html e index.html (destaques)
+ 5. Filtro por categoria e busca por nome/ingrediente, com contador e mensagem de "nenhum produto" (obrigatório) - produtos.html
+ 6. Carrinho de compras: adicionar, aumentar/diminuir, remover, total e quantidade, salvo no localStorage - todas as páginas
+ 7. Contagem regressiva até o Natal (setInterval) - index.html, sobre.html e galeria.html
+ 8. Validação do formulário com mensagens de erro por campo e de sucesso - contato.html
+ 9. Menu responsivo hambúrguer - todas as páginas
+ 10. Modal / Lightbox com detalhes do produto - galeria.html, produtos.html e index.html
+ 11. Efeito de neve caindo (DOM) - todas as páginas
+ 12. Animação ao rolar (IntersectionObserver) - todas as páginas
+ 13. Botão "Voltar ao topo" suave - todas as páginas
+
+CRÉDITOS (imagens, sons e ícones):
+ - Imagens dos produtos, banners e logotipo: ilustrações vetoriais (SVG) criadas pela equipe para o projeto, com emojis do sistema.
+ - Música: "Jingle Bells" (James Lord Pierpont, 1857 - domínio público), gerada no próprio navegador pela Web Audio API. Não há arquivos de áudio.
+ - Fontes: Google Fonts - Mountains of Christmas e Poppins.
+ - Todos os nomes de lojas, endereços, telefones e redes sociais do site são fictícios.

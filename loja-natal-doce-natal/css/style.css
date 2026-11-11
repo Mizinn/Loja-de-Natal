@@ -1,0 +1,1178 @@
+/* ==========================================================
+   CSS PRINCIPAL - LOJA NATALINA DOCE NATAL
+   Organização: variáveis > base > cabeçalho > seções > cards
+   > sobre > galeria > modal > formulário > carrinho > efeitos
+   O comportamento por tamanho de tela fica em responsivo.css
+   ========================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@300;400;600;700&display=swap');
+
+/* ---------- VARIÁVEIS: cores, fontes e espaçamentos declarados uma única vez ---------- */
+:root {
+  --vermelho: #B3202A;
+  --verde: #1F5D3A;
+  --dourado: #C9A227;
+  --neve: #FFFFFF;
+  --creme: #FBF6EA;
+  --noite: #12263F;
+  --texto-suave: #4a4a4a;
+
+  --fonte-titulo: 'Mountains of Christmas', cursive;
+  --fonte-corpo: 'Poppins', sans-serif;
+
+  --espaco-1: 0.5rem;
+  --espaco-2: 1rem;
+  --espaco-3: 1.5rem;
+  --espaco-4: 2rem;
+  --espaco-5: 3rem;
+
+  --raio: 16px;
+  --sombra: 0 8px 20px rgba(0, 0, 0, 0.15);
+  --transicao: all 0.3s ease;
+}
+
+/* ---------- BASE ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fonte-corpo);
+  background-color: var(--creme);
+  color: var(--noite);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  font-family: var(--fonte-corpo);
+}
+
+/* Foco visível para quem navega pelo teclado (pseudo-classe :focus-visible) */
+:focus-visible {
+  outline: 3px solid var(--dourado);
+  outline-offset: 2px;
+}
+
+/* Texto só para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Títulos reutilizáveis (substituem o CSS inline que existia nas páginas) */
+.titulo-pagina {
+  font-family: var(--fonte-titulo);
+  color: var(--vermelho);
+  font-size: 2.3rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.subtitulo-pagina {
+  text-align: center;
+  color: var(--texto-suave);
+  margin-bottom: var(--espaco-3);
+}
+
+.titulo-secao {
+  font-family: var(--fonte-titulo);
+  color: var(--vermelho);
+  font-size: 2.2rem;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: var(--espaco-3);
+}
+
+.titulo-verde {
+  color: var(--verde);
+}
+
+/* ---------- CABEÇALHO & MENU ---------- */
+header {
+  background-color: var(--verde);
+  color: var(--neve);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--espaco-1);
+  padding: 0.6rem var(--espaco-2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--sombra);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--neve);
+}
+
+.logo-img {
+  height: 42px;
+}
+
+.menu {
+  gap: var(--espaco-3);
+  align-items: center;
+}
+
+.menu a {
+  color: var(--neve);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: var(--transicao);
+}
+
+.menu a:hover,
+.menu a.ativo {
+  color: var(--dourado);
+}
+
+/* Destaque da página ativa: sublinhado dourado feito com ::after */
+.menu a.ativo::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--dourado);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 2px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-audio,
+.btn-carrinho {
+  background: var(--vermelho);
+  color: var(--neve);
+  border: 2px solid var(--dourado);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: var(--transicao);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-audio:hover,
+.btn-carrinho:hover {
+  background: var(--dourado);
+  color: var(--noite);
+  transform: scale(1.05);
+}
+
+/* Botão de música ligado: pulsa suavemente */
+.btn-audio[aria-pressed="true"] {
+  animation: pulsar 1.6s ease-in-out infinite;
+}
+
+.btn-menu {
+  background: none;
+  border: none;
+  color: var(--neve);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0.3rem;
+}
+
+/* ---------- SLIDESHOW ---------- */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--noite);
+}
+
+.slide {
+  display: none;
+  position: relative;
+}
+
+.slide.ativo {
+  display: block;
+  animation: aparecer 0.8s ease-in-out;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  filter: brightness(0.85);
+}
+
+.slide-caption {
+  position: absolute;
+  bottom: 14%;
+  left: 5%;
+  right: 5%;
+  color: var(--neve);
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  background: rgba(18, 38, 63, 0.6);
+  padding: var(--espaco-2);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--dourado);
+}
+
+.slide-caption h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.7rem;
+  line-height: 1.2;
+  color: var(--dourado);
+}
+
+.slide-caption p {
+  font-size: 0.9rem;
+}
+
+.prev-slide,
+.next-slide {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: rgba(179, 32, 42, 0.8);
+  color: var(--neve);
+  border: none;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  transition: var(--transicao);
+  z-index: 10;
+}
+
+.prev-slide { left: 8px; }
+.next-slide { right: 8px; }
+
+.prev-slide:hover,
+.next-slide:hover {
+  background: var(--dourado);
+  color: var(--noite);
+}
+
+/* Indicadores (bolinhas) criados pelo JavaScript */
+.indicadores {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.indicador {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--dourado);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--transicao);
+}
+
+.indicador.ativo {
+  background: var(--dourado);
+  transform: scale(1.25);
+}
+
+/* ---------- CONTAGEM REGRESSIVA ---------- */
+.countdown-section {
+  background: linear-gradient(135deg, var(--vermelho), var(--verde));
+  color: var(--neve);
+  text-align: center;
+  padding: var(--espaco-4) var(--espaco-2);
+  margin: var(--espaco-4) 0;
+  box-shadow: var(--sombra);
+}
+
+.countdown-section h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: var(--espaco-1);
+}
+
+.contagem {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--dourado);
+  letter-spacing: 1px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- PARALLAX ---------- */
+.parallax-wrapper {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--espaco-2);
+}
+
+/* As camadas são maiores que a seção (60px de folga em cima e embaixo)
+   para nunca aparecer "buraco" quando o JavaScript as move. */
+.parallax-layer {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 120px);
+  object-fit: cover;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.parallax-text {
+  position: relative;
+  z-index: 5;
+  color: var(--neve);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.55);
+  padding: var(--espaco-3);
+  border-radius: var(--raio);
+  border: 2px solid var(--dourado);
+}
+
+.parallax-text h1 {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  line-height: 1.2;
+  color: var(--dourado);
+}
+
+/* ---------- DESTAQUES (HOME) ---------- */
+.secao-destaques {
+  max-width: 1200px;
+  margin: var(--espaco-5) auto;
+  padding: 0 var(--espaco-3);
+}
+
+.secao-destaques .grade-produtos {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.chamada-catalogo {
+  text-align: center;
+  margin-top: var(--espaco-4);
+}
+
+/* ---------- CATÁLOGO & GRID ---------- */
+.produtos-header {
+  max-width: 1200px;
+  margin: var(--espaco-4) auto;
+  padding: 0 var(--espaco-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+  align-items: center;
+}
+
+.produtos-titulo {
+  width: 100%;
+}
+
+.filtros-container {
+  display: flex;
+  gap: var(--espaco-2);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.filtros-container input,
+.filtros-container select {
+  padding: 0.8rem 1.2rem;
+  border: 2px solid var(--verde);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: var(--fonte-corpo);
+  flex: 1;
+  min-width: 0;
+  background: var(--neve);
+}
+
+.filtros-container input:focus,
+.filtros-container select:focus {
+  border-color: var(--dourado);
+  box-shadow: 0 0 8px rgba(201, 162, 39, 0.5);
+}
+
+.contador-produtos {
+  font-weight: bold;
+  color: var(--verde);
+  width: 100%;
+}
+
+/* Grid de cards: quantas colunas couberem, cada uma com no mínimo 240px.
+   O responsivo.css refina isso para 1 → 2 → 4 colunas. */
+.grade-produtos {
+  max-width: 1200px;
+  margin: 0 auto var(--espaco-5) auto;
+  padding: 0 var(--espaco-3);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--espaco-3);
+}
+
+.sem-resultado {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--espaco-5) var(--espaco-2);
+}
+
+.card {
+  background: var(--neve);
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  /* Cada propriedade tem a sua transição: assim o "revelar" e o hover não brigam */
+  transition: opacity 0.8s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* O seletor tem 3 classes de propósito: precisa ganhar de ".revelar.visivel",
+   que também define transform. Sem isso o card nunca "levantava" no hover. */
+.card.revelar.visivel:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+.card-img-btn {
+  display: block;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+}
+
+.card img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-categoria {
+  font-size: 0.75rem;
+  color: var(--verde);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  margin: 0.3rem 0;
+  color: var(--noite);
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  margin-bottom: var(--espaco-2);
+  flex-grow: 1;
+}
+
+.card-preco {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--vermelho);
+  margin-bottom: 0.8rem;
+}
+
+.btn-comprar {
+  background: var(--verde);
+  color: var(--neve);
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transicao);
+  width: 100%;
+}
+
+.btn-comprar:hover {
+  background: var(--vermelho);
+}
+
+.btn-link {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+
+/* ---------- SOBRE NÓS & LINHA DO TEMPO ---------- */
+.container-sobre {
+  max-width: 1000px;
+  margin: var(--espaco-4) auto;
+  padding: 0 var(--espaco-3);
+}
+
+.historia-box {
+  background: var(--neve);
+  padding: var(--espaco-3);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  margin-bottom: var(--espaco-4);
+}
+
+.historia-box h1 {
+  font-family: var(--fonte-titulo);
+  color: var(--vermelho);
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: var(--espaco-2);
+}
+
+.historia-box .titulo-verde {
+  text-align: left;
+  font-family: var(--fonte-corpo);
+  font-size: 1.4rem;
+  margin: var(--espaco-3) 0 var(--espaco-1);
+}
+
+.lista-mvv {
+  margin-left: var(--espaco-3);
+  line-height: 1.8;
+}
+
+.linha-tempo {
+  list-style: none;
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto var(--espaco-4);
+  padding-left: 2.2rem;
+}
+
+/* A linha vertical dourada */
+.linha-tempo::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--dourado);
+  border-radius: 2px;
+}
+
+.marco {
+  position: relative;
+  background: var(--neve);
+  padding: var(--espaco-2) var(--espaco-3);
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+  margin-bottom: var(--espaco-3);
+}
+
+/* A bolinha de cada marco */
+.marco::before {
+  content: "";
+  position: absolute;
+  left: calc(-2.2rem + 2px);
+  top: 1.4rem;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--vermelho);
+  border: 3px solid var(--neve);
+  box-shadow: 0 0 0 2px var(--dourado);
+}
+
+.marco .ano {
+  color: var(--vermelho);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.marco h3 {
+  color: var(--verde);
+}
+
+.equipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--espaco-3);
+  margin-top: var(--espaco-4);
+}
+
+.equipe-card {
+  background: var(--neve);
+  padding: var(--espaco-3);
+  border-radius: 12px;
+  text-align: center;
+  border-top: 4px solid var(--dourado);
+  box-shadow: var(--sombra);
+}
+
+.equipe-avatar {
+  font-size: 3.5rem;
+  margin-bottom: var(--espaco-1);
+}
+
+.equipe-card .funcao {
+  color: var(--vermelho);
+  font-weight: bold;
+}
+
+/* ---------- GALERIA & LIGHTBOX ---------- */
+.cabecalho-galeria {
+  padding: var(--espaco-4) var(--espaco-2) 0;
+}
+
+.galeria-grid {
+  max-width: 1200px;
+  margin: var(--espaco-4) auto;
+  padding: 0 var(--espaco-3);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--espaco-3);
+}
+
+.galeria-item {
+  position: relative;
+  display: block;
+  border: none;
+  padding: 0;
+  background: none;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  text-align: left;
+}
+
+.galeria-item img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.galeria-item:hover img,
+.galeria-item:focus-visible img {
+  transform: scale(1.1);
+}
+
+.galeria-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(18, 38, 63, 0.85);
+  color: var(--neve);
+  padding: var(--espaco-2);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.galeria-item:hover .galeria-overlay,
+.galeria-item:focus-visible .galeria-overlay {
+  opacity: 1;
+}
+
+/* ---------- MODAL / LIGHTBOX ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  padding: var(--espaco-2);
+}
+
+.modal.aberto {
+  display: flex;
+}
+
+.modal-conteudo {
+  background: var(--neve);
+  max-width: 600px;
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  border-radius: var(--raio);
+  position: relative;
+  padding: var(--espaco-3);
+  animation: aparecer 0.4s ease;
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--vermelho);
+  z-index: 2;
+}
+
+.modal-img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.modal-titulo {
+  font-family: var(--fonte-titulo);
+  color: var(--vermelho);
+  margin-top: var(--espaco-2);
+  font-size: 2.1rem;
+  line-height: 1.2;
+}
+
+.modal-categoria {
+  color: var(--verde);
+  font-weight: bold;
+}
+
+.modal-texto {
+  margin: var(--espaco-2) 0;
+}
+
+.modal-preco {
+  color: var(--vermelho);
+  font-size: 1.8rem;
+}
+
+.modal-conteudo .btn-comprar {
+  margin-top: var(--espaco-2);
+}
+
+/* ---------- FORMULÁRIO DE CONTATO ---------- */
+.contato-container {
+  max-width: 800px;
+  margin: var(--espaco-4) auto;
+  background: var(--neve);
+  padding: var(--espaco-3);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.contato-container .subtitulo-pagina {
+  margin: var(--espaco-1) 0 var(--espaco-4);
+}
+
+.form-group {
+  margin-bottom: var(--espaco-3);
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: var(--espaco-1);
+  color: var(--verde);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #bbb;
+  border-radius: 8px;
+  font-family: var(--fonte-corpo);
+  font-size: 1rem;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--vermelho);
+}
+
+.form-group input[aria-invalid="true"],
+.form-group textarea[aria-invalid="true"] {
+  border-color: #b00020;
+  background: #fff5f6;
+}
+
+.erro-campo {
+  display: block;
+  min-height: 1.2em;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b00020;
+}
+
+.btn-enviar {
+  font-size: 1.1rem;
+  padding: 1rem;
+}
+
+.mensagem-alerta {
+  padding: var(--espaco-2);
+  border-radius: 8px;
+  margin-top: var(--espaco-2);
+  font-weight: bold;
+  display: none;
+}
+
+.mensagem-alerta.sucesso {
+  background: #d4edda;
+  color: #155724;
+}
+
+.mensagem-alerta.erro {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.contato-info {
+  max-width: 1000px;
+  margin: var(--espaco-5) auto 0;
+  padding: 0 var(--espaco-3);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--espaco-3);
+}
+
+.info-card {
+  background: var(--neve);
+  border-radius: 12px;
+  padding: var(--espaco-3);
+  text-align: center;
+  box-shadow: var(--sombra);
+  border-bottom: 4px solid var(--verde);
+}
+
+.info-card > span {
+  font-size: 2rem;
+}
+
+.info-card h3 {
+  color: var(--vermelho);
+  margin: 0.3rem 0;
+}
+
+.info-card p {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- CARRINHO (painel lateral criado pelo JavaScript) ---------- */
+.carrinho-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.carrinho-painel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(420px, 100%);
+  background: var(--creme);
+  z-index: 3001;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+  box-shadow: -8px 0 25px rgba(0, 0, 0, 0.3);
+}
+
+.carrinho-aberto .carrinho-fundo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.carrinho-aberto .carrinho-painel {
+  transform: translateX(0);
+}
+
+.carrinho-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--vermelho);
+  color: var(--neve);
+  padding: var(--espaco-2) var(--espaco-3);
+}
+
+.carrinho-topo h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.8rem;
+}
+
+.carrinho-fechar {
+  background: none;
+  border: none;
+  color: var(--neve);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.carrinho-lista {
+  list-style: none;
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--espaco-2);
+}
+
+.carrinho-vazio {
+  text-align: center;
+  padding: var(--espaco-5) var(--espaco-2);
+  color: var(--texto-suave);
+}
+
+.item-carrinho {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  background: var(--neve);
+  border-radius: 12px;
+  padding: 0.6rem;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.item-carrinho img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-nome {
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.item-preco {
+  color: var(--vermelho);
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.item-qtd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.item-qtd button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--verde);
+  background: var(--neve);
+  color: var(--verde);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.item-qtd button:hover {
+  background: var(--verde);
+  color: var(--neve);
+}
+
+.item-remover {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.carrinho-rodape {
+  padding: var(--espaco-2) var(--espaco-3);
+  background: var(--neve);
+  border-top: 3px solid var(--dourado);
+}
+
+.carrinho-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+}
+
+.carrinho-total strong {
+  color: var(--vermelho);
+}
+
+.carrinho-acoes {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.carrinho-acoes .btn-comprar {
+  flex: 1;
+}
+
+.btn-secundario {
+  background: var(--neve);
+  color: var(--vermelho);
+  border: 2px solid var(--vermelho);
+}
+
+.btn-secundario:hover {
+  background: var(--vermelho);
+  color: var(--neve);
+}
+
+/* Aviso rápido (toast) */
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: 90px;
+  transform: translateX(-50%);
+  background: var(--noite);
+  color: var(--neve);
+  border: 2px solid var(--dourado);
+  padding: 0.8rem 1.4rem;
+  border-radius: 30px;
+  z-index: 4000;
+  max-width: 90vw;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: var(--sombra);
+  animation: aparecer 0.3s ease;
+}
+
+/* ---------- EFEITOS: NEVE, ANIMAÇÕES, REVELAR, TOPO ---------- */
+.floco {
+  position: fixed;
+  top: -20px;
+  color: var(--neve);
+  user-select: none;
+  pointer-events: none;
+  z-index: 900;
+  animation: cair 8s linear infinite;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes cair {
+  0%   { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0.2; }
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulsar {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.7); }
+  50%      { box-shadow: 0 0 0 8px rgba(201, 162, 39, 0); }
+}
+
+/* Animação ao rolar: começa escondido e o IntersectionObserver adiciona .visivel */
+.revelar {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.revelar.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#topo {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--vermelho);
+  color: var(--neve);
+  border: 2px solid var(--dourado);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  font-size: 1.5rem;
+  z-index: 1000;
+  box-shadow: var(--sombra);
+}
+
+/* ---------- RODAPÉ ---------- */
+footer {
+  background: var(--noite);
+  color: var(--neve);
+  text-align: center;
+  padding: var(--espaco-4) var(--espaco-2);
+  margin-top: var(--espaco-5);
+  border-top: 4px solid var(--dourado);
+  font-size: 0.9rem;
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+/* Respeita quem pediu menos movimento no sistema */
+@media (prefers-reduced-motion: reduce) {
+  .floco { display: none; }
+  .revelar { transition: none; }
+  .btn-audio[aria-pressed="true"] { animation: none; }
+}
