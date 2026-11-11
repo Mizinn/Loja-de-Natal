@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doce Natal | Catálogo de Produtos</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsivo.css">
+</head>
+<body>
+
+  <!-- CABEÇALHO (igual em todas as páginas) -->
+  <header>
+    <a href="index.html" class="logo-container">
+      <img src="img/logo.svg" alt="Logotipo Doce Natal Confeitaria" class="logo-img">
+    </a>
+    <nav class="menu" id="menu-principal" aria-label="Menu principal">
+        <a href="index.html">Home</a>
+        <a href="produtos.html" class="ativo" aria-current="page">Produtos</a>
+        <a href="sobre.html">Sobre Nós</a>
+        <a href="galeria.html">Galeria & Ofertas</a>
+        <a href="contato.html">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <button type="button" id="btn-musica" class="btn-audio" aria-pressed="false" aria-label="Tocar música de Natal">
+        <span class="icone" aria-hidden="true">🎵</span><span class="rotulo">Tocar música</span>
+      </button>
+      <button type="button" id="btn-carrinho" class="btn-carrinho" aria-label="Abrir carrinho de compras">
+        <span aria-hidden="true">🛒</span> <span id="qtd-carrinho">0</span>
+      </button>
+      <button type="button" class="btn-menu" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="produtos-header">
+      <div class="produtos-titulo">
+        <h1 class="titulo-pagina revelar">Nosso Catálogo de Natal 🎄</h1>
+        <p class="subtitulo-pagina">Explore os nossos 50 produtos artesanais com sabor de festa e encanto.</p>
+      </div>
+      <div class="filtros-container revelar">
+        <label class="sr-only" for="busca">Buscar produto</label>
+        <input type="search" id="busca" placeholder="🔍 Buscar por nome ou ingrediente...">
+        <label class="sr-only" for="categoria">Filtrar por categoria</label>
+        <select id="categoria">
+          <option value="todas">Todas as Categorias</option>
+          <option value="Panetones e Chocotones">Panetones & Chocotones</option>
+          <option value="Biscoitos Natalinos">Biscoitos Natalinos</option>
+          <option value="Bolos e Tortas">Bolos & Tortas</option>
+          <option value="Cestas e Kits">Cestas & Kits</option>
+          <option value="Bebidas e Chocolates">Bebidas & Chocolates</option>
+        </select>
+      </div>
+      <p id="contador" class="contador-produtos" aria-live="polite">Mostrando 50 de 50 produtos</p>
+    </section>
+
+    <!-- GRADE DOS 50 PRODUTOS: os cards são criados pelo JavaScript a partir do array -->
+    <section id="lista-produtos" class="grade-produtos" aria-label="Lista de produtos"></section>
+  </main>
+
+  <!-- RODAPÉ (igual em todas as páginas) -->
+  <footer>
+    <p>🎄 <strong>Doce Natal Confeitaria Natalina</strong> &copy; 2026 - Todos os direitos reservados.</p>
+    <p>Projeto AV2 Desenvolvimento Web - Colégio UNASP | Prof. Samuel Elias</p>
+    <p>Imagens: ilustrações vetoriais (SVG) autorais. Fontes: Google Fonts. Música: "Jingle Bells" (domínio público), gerada no navegador.</p>
+  </footer>
+
+  <!-- JANELA (MODAL) DE DETALHES DO PRODUTO / LIGHTBOX -->
+  <div id="modal-produto" class="modal" role="dialog" aria-modal="true" aria-label="Detalhes do produto">
+    <div class="modal-conteudo">
+      <button type="button" class="fechar-modal" aria-label="Fechar janela">&times;</button>
+      <div id="modal-corpo"></div>
+    </div>
+  </div>
+  <button type="button" id="topo" aria-label="Voltar ao topo">⬆</button>
+
+  <!-- A ordem importa: produtos.js precisa vir ANTES de script.js -->
+  <script src="js/produtos.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
