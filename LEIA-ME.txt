@@ -8,8 +8,8 @@ INTEGRANTES:
  - Gabriel Karan - nº [PREENCHER]
 
 LINKS:
- Site (GitHub Pages): [PREENCHER: https://usuario.github.io/nome-do-repositorio/]
- Repositório (GitHub): [PREENCHER: https://github.com/usuario/nome-do-repositorio]
+ Site (GitHub Pages): https://mizinn.github.io/Loja-de-Natal/
+ Repositório (GitHub): https://github.com/Mizinn/Loja-de-Natal
  Vídeo (YouTube): [PREENCHER: https://www.youtube.com/watch?v=...]
 
 RECURSOS DE JAVASCRIPT IMPLEMENTADOS (13: 5 obrigatórios + 8 extras) - arquivo js/script.js
