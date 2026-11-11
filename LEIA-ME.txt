@@ -1,4 +1,4 @@
-LOJA: Doce Natal Confeitaria
+LOJA: Casa Natalina Confeitaria
 SEGMENTO: Confeitaria
 TURMA: 1TI_A
 

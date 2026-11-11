@@ -1,5 +1,5 @@
 // js/produtos.js
-// Catálogo da Doce Natal: 50 produtos guardados em um array de objetos.
+// Catálogo da Casa Natalina: 50 produtos guardados em um array de objetos.
 // Campos: id, nome, categoria, preco (número!), imagem, descricao, destaque.
 // As categorias são escritas sempre do mesmo jeito, porque o filtro compara o texto.
 

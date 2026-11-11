@@ -1,5 +1,5 @@
 /* ==========================================================
-   DOCE NATAL - script.js
+   CASA NATALINA - script.js
    Um arquivo só para o site inteiro. Cada função começa
    verificando se o elemento existe na página; se não existir,
    ela para ali (return) e não dá erro nas outras páginas.
@@ -285,7 +285,7 @@ function iniciarFiltro() {
 /* ---------- 6. CARRINHO (sacola) ----------
    Guardamos só { id, qtd } de cada item no localStorage.
    Nome, preço e foto são buscados no array "produtos" pelo id. */
-const CHAVE = "sacola-doce-natal";
+const CHAVE = "sacola-casa-natalina";
 let carrinho = lerCarrinho();
 
 function lerCarrinho() {
