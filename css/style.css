@@ -937,6 +937,12 @@ header {
   outline: 2px solid var(--dourado);
 }
 
+/* quando o avatar é uma foto: recorta redondinho sem esticar */
+img.avatar {
+  object-fit: cover;
+  background: var(--creme);
+}
+
 .pessoa:nth-child(2) .avatar { background: var(--vermelho); }
 .pessoa:nth-child(3) .avatar { background: var(--noite); }
 

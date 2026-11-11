@@ -3,7 +3,7 @@ SEGMENTO: Confeitaria
 TURMA: 1TI_A
 
 INTEGRANTES:
- - Miguel Carnieli - nº [PREENCHER]
+ - Miguel Carnieli Moreira - nº [PREENCHER]
  - Felipe Russomano - nº [PREENCHER]
  - Gabriel Karan - nº [PREENCHER]
 
