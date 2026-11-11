@@ -1626,6 +1626,20 @@ body {
   border-left: 6px solid transparent;
 }
 
+/* parallax da abertura: pinheiros clarinhos atrás do texto e do slideshow */
+.inicio {
+  position: relative;
+  isolation: isolate;          /* a camada com z-index -1 fica só atrás desta seção */
+}
+
+.camada-inicio {
+  bottom: -30px;
+  height: auto;
+  z-index: -1;
+  opacity: 0.13;
+  pointer-events: none;
+}
+
 /* estrelas piscando no céu do parallax */
 .camada-fundo { z-index: 0; }
 .camada-frente { z-index: 2; }

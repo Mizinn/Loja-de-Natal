@@ -21,7 +21,7 @@ PÁGINAS: index.html (Início), produtos.html, sobre.html, galeria.html (Galeria
 
 RECURSOS DE JAVASCRIPT IMPLEMENTADOS (13: 5 obrigatórios + 8 extras) - arquivo js/script.js
  1. Slideshow com setas, bolinhas e troca automática a cada 5 s (obrigatório) - index.html
- 2. Parallax em JavaScript com 2 camadas: foto da serra ao fundo e pinheiros na frente (obrigatório) - index.html
+ 2. Parallax em JavaScript: pinheiros no banner de abertura e, mais abaixo, 2 camadas (foto da serra ao fundo e pinheiros na frente) (obrigatório) - index.html
  3. Sons: música "Jingle Bells" com botão de ligar/desligar e sininho ao colocar na sacola (obrigatório) - todas as páginas
  4. Cards dinâmicos dos 50 produtos com map(), join("") e template literal (obrigatório) - produtos.html e index.html (destaques)
  5. Filtro por categoria (botões) e busca por nome/ingrediente, com contador e aviso de "nenhum doce encontrado" (obrigatório) - produtos.html

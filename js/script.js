@@ -94,19 +94,18 @@ function iniciarSlideshow() {
 /* ---------- 2. PARALLAX ----------
    Quando a página rola, cada camada se move uma fração diferente
    (data-velocidade). O fundo anda pouco e os pinheiros andam mais:
-   isso dá a sensação de profundidade. */
+   isso dá a sensação de profundidade.
+   Funciona em qualquer seção: na abertura da Home e na faixa da serra. */
 function iniciarParallax() {
   const camadas = document.querySelectorAll("[data-velocidade]");
   if (camadas.length === 0) return;
 
-  const secao = camadas[0].parentElement;
-
   function mover() {
-    // distância entre o meio da seção e o meio da tela
-    const caixa = secao.getBoundingClientRect();
-    const distancia = caixa.top + caixa.height / 2 - window.innerHeight / 2;
-
     camadas.forEach(camada => {
+      // distância entre o meio da seção (o "pai" da camada) e o meio da tela
+      const caixa = camada.parentElement.getBoundingClientRect();
+      const distancia = caixa.top + caixa.height / 2 - window.innerHeight / 2;
+
       const velocidade = Number(camada.dataset.velocidade);
       camada.style.transform = `translateY(${distancia * velocidade * -0.3}px)`;
     });
