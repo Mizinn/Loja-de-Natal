@@ -27,6 +27,18 @@
   --tinta-suave: #6B5F55;
   --linha: #E3D7C3;
 
+  /* tons de apoio (luzes do varal, avisos do formulário e textos do rodapé) */
+  --verde-luz: #3E8E63;
+  --luz-creme: #E9E2D0;
+  --luz-neve: #F4EFE2;
+  --verde-nevoa: #CFE0D5;
+  --erro-fundo: #FDF1F1;
+  --erro-borda: #F0C7C9;
+  --sucesso-fundo: #E6F2EA;
+  --sucesso-borda: #B9D8C4;
+  --rodape-texto: #C9D1DC;
+  --rodape-suave: #95A1B1;
+
   /* fontes (só duas, como pede o projeto) */
   --fonte-titulo: 'Fraunces', Georgia, serif;
   --fonte-texto: 'Nunito Sans', Arial, sans-serif;
@@ -321,8 +333,8 @@ header {
 
 .varal::after {
   background-image:
-    radial-gradient(circle at 28px 9px, #3E8E63 4px, transparent 5px),
-    radial-gradient(circle at 60px 9px, #E9E2D0 4px, transparent 5px);
+    radial-gradient(circle at 28px 9px, var(--verde-luz) 4px, transparent 5px),
+    radial-gradient(circle at 60px 9px, var(--luz-creme) 4px, transparent 5px);
   animation-delay: 0.8s;
 }
 
@@ -476,7 +488,7 @@ header {
 }
 
 .faixa-contagem p {
-  color: #CFE0D5;
+  color: var(--verde-nevoa);
   font-size: 0.9rem;
 }
 
@@ -1097,7 +1109,7 @@ img.avatar {
 /* campo com erro (o JavaScript coloca aria-invalid="true") */
 .campo [aria-invalid="true"] {
   border-color: var(--vermelho);
-  background: #FDF1F1;
+  background: var(--erro-fundo);
 }
 
 .erro-campo {
@@ -1118,16 +1130,16 @@ img.avatar {
 
 .mensagem-form.sucesso {
   display: block;
-  background: #E6F2EA;
+  background: var(--sucesso-fundo);
   color: var(--verde);
-  border: 1px solid #B9D8C4;
+  border: 1px solid var(--sucesso-borda);
 }
 
 .mensagem-form.erro {
   display: block;
-  background: #FDF1F1;
+  background: var(--erro-fundo);
   color: var(--vermelho);
-  border: 1px solid #F0C7C9;
+  border: 1px solid var(--erro-borda);
 }
 
 .info-loja {
@@ -1399,7 +1411,7 @@ body.carrinho-aberto .carrinho-fundo {
 /* ---------- 12. RODAPÉ ---------- */
 footer {
   background: var(--noite);
-  color: #C9D1DC;
+  color: var(--rodape-texto);
   font-size: 0.9rem;
   margin-top: var(--e5);
 }
@@ -1422,7 +1434,7 @@ footer {
 }
 
 .rodape a {
-  color: #C9D1DC;
+  color: var(--rodape-texto);
   text-decoration: none;
 }
 
@@ -1441,7 +1453,7 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding: var(--e2) 0;
   font-size: 0.78rem;
-  color: #95A1B1;
+  color: var(--rodape-suave);
 }
 
 .rodape-fim p + p {
@@ -1555,8 +1567,8 @@ body {
 
 .varal::after {
   background-image:
-    radial-gradient(circle at 28px 12px, #3E8E63 4px, transparent 5px),
-    radial-gradient(circle at 60px 12px, #F4EFE2 4px, transparent 5px);
+    radial-gradient(circle at 28px 12px, var(--verde-luz) 4px, transparent 5px),
+    radial-gradient(circle at 60px 12px, var(--luz-neve) 4px, transparent 5px);
 }
 
 /* estrelinha antes do "chapéu" dos títulos */
@@ -1651,13 +1663,13 @@ body {
   inset: 0;
   z-index: 1;
   background-image:
-    radial-gradient(circle at 12% 18%, #fff 1.2px, transparent 2px),
-    radial-gradient(circle at 28% 9%, #fff 1px, transparent 2px),
-    radial-gradient(circle at 47% 22%, #fff 1.4px, transparent 2.4px),
-    radial-gradient(circle at 66% 12%, #fff 1px, transparent 2px),
-    radial-gradient(circle at 83% 26%, #fff 1.3px, transparent 2.3px),
-    radial-gradient(circle at 93% 7%, #fff 1px, transparent 2px),
-    radial-gradient(circle at 6% 34%, #fff 1px, transparent 2px);
+    radial-gradient(circle at 12% 18%, var(--neve) 1.2px, transparent 2px),
+    radial-gradient(circle at 28% 9%, var(--neve) 1px, transparent 2px),
+    radial-gradient(circle at 47% 22%, var(--neve) 1.4px, transparent 2.4px),
+    radial-gradient(circle at 66% 12%, var(--neve) 1px, transparent 2px),
+    radial-gradient(circle at 83% 26%, var(--neve) 1.3px, transparent 2.3px),
+    radial-gradient(circle at 93% 7%, var(--neve) 1px, transparent 2px),
+    radial-gradient(circle at 6% 34%, var(--neve) 1px, transparent 2px);
   animation: cintilar 3s ease-in-out infinite alternate;
 }
 
