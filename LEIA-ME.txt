@@ -15,7 +15,7 @@ FUNÇÕES NA EQUIPE:
 LINKS:
  Site (GitHub Pages): https://mizinn.github.io/Loja-de-Natal/
  Repositório (GitHub): https://github.com/Mizinn/Loja-de-Natal
- Vídeo (YouTube): [PREENCHER: link do vídeo]
+ Vídeo (YouTube): https://youtu.be/m6qXuRhG2YQ
 
 PÁGINAS: index.html (Início), produtos.html, sobre.html, galeria.html (Galeria e ofertas), contato.html
 
