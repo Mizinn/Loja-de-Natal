@@ -1,4 +1,4 @@
-LOJA: Casa Natalina Confeitaria
+LOJA: felipe
 SEGMENTO: Confeitaria
 TURMA: 1TIC
 
